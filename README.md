@@ -10,7 +10,7 @@
         <h1>DEAW 2020</h1>
     </header>
     <div align="center">
-        <img width="250px" src="logo.png"/>
+        <img width="50%" src="logo.png"/>
         <p>Repositorio para los retos de la asignatura despliegue de aplicaciones web del ciclo DAW</p>
     </div>    
     <footer>
