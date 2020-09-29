@@ -13,7 +13,8 @@
         <img width="40%" src="logo.png"/>
          <br/>
         <p>Repositorio para los retos de la asignatura despliegue de aplicaciones web del ciclo DAW</p>
+        <footer>akrck02 - 2020</footer>
     </div>    
-    <footer align="center">akrck02 - 2020</footer>
+    
 </body>
 </html>
