@@ -8,13 +8,14 @@
 <body>
     <header>
         <h1>DEAW 2020</h1>
-    </header>
+    </header> <br/>
     <div align="center">
-        <img style="max-width:250px; margin 30px;" src="logo.png"/>
+        <img width="40%" src="logo.png"/>
+         <br/><br/>
         <p>Repositorio para los retos de la asignatura despliegue de aplicaciones web del ciclo DAW</p>
+        <br/><br/>
+        <footer>akrck02 - 2020</footer>
     </div>    
-    <footer>
-        akrck02 - 2020
-    </footer>
+    
 </body>
 </html>
