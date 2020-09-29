@@ -1,5 +1,5 @@
-# Calvo_2020
 <div align="center">
- <img src="calvo.png"/>
+    <h1>DEAW 2020</h1>
+    <img src="logo.png"/>
 </div>
  
