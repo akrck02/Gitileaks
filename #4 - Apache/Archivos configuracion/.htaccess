@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Identifícate mamarracho"
-AuthUserFile /var/www/servidor.local/gestion/.password
-Require valid-user
