@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanda 3 - Ejercicio 5</title>
+    <link rel="stylesheet" href="css/ex5.css">
+    <script src="js/ex5.js"></script>
+</head>
+<body onload="load()">
+    <div id="calc">
+        <input id="resultado" type="text" placeholder="Calculadora" disabled>
+        <div> 
+            <button onclick="clickEvent(1)">1</button>
+            <button onclick="clickEvent(2)">2</button>
+            <button onclick="clickEvent(3)">3</button>
+            <button class="sign" id="clear" onclick="reset()">C</button>
+        </div>
+        <div>
+            <button onclick="clickEvent(4)">4</button>
+            <button onclick="clickEvent(5)">5</button>
+            <button onclick="clickEvent(6)">6</button>
+            <button class="sign" onclick="clickEvent('+')">+</button>
+        </div>
+        <div>
+            <button onclick="clickEvent(7)">7</button>
+            <button onclick="clickEvent(8)">8</button>
+            <button onclick="clickEvent(9)">9</button>
+            <button class="sign" onclick="clickEvent('-')">-</button>
+        </div>
+        <div>
+            <button onclick="clickEvent(0)">0</button>
+            <button class="sign" onclick="clickEvent('/')">/</button>
+            <button class="sign" onclick="clickEvent('=')">=</button>
+            <button class="sign" onclick="clickEvent('*')">*</button>    
+        </div>
+        <button id="debug" onclick="debuger()">DEBUG</button>
+
+    </div>
+
+
+</body>
+</html>

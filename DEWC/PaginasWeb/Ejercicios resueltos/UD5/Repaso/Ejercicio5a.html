@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio5</title>
+		<style type="text/css">
+			body {
+				font-family: arial, helvetica;
+			}
+			.contenedor{
+				display: block;
+				clear:both;
+			}
+			.etiqueta{
+				width:100px; float:left;
+			}
+			.contendio{
+				width:100px; float:left;
+			}	
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				inputs=document.getElementsByTagName("input");
+				for(var i=0;i<inputs.length;i++){
+					inputs[i].onclick=cargar;
+				}
+			}
+			function cargar(){
+				window.opener.document.getElementById("prefijo").value=this.value;
+				window.close();
+			}
+		</script>
+	</head>
+	<body>
+   	<div id="principal">
+		<h1>Lista de prefijos</h1>
+        <form>
+            <div class="contenedor">
+                <div class="etiqueta"><label for="esp">España</label></div>
+                <div class="contendio"><input type="button" id="esp" value="+34"/></div><br/>
+             </div>
+             <div class="contenedor">
+            <div class="etiqueta"><label for="hol">Holanda</label></div>
+            <div class="contendio"><input type="button" id="hol" value="+31"/></div><br/>
+             </div>
+            <div class="contenedor">
+            <div class="etiqueta"><label for="uk">Gran Bretaña</label></div>
+            <div class="contendio"><input type="button" id="uk" value="+44"/></div><br/>
+             </div>
+           <div class="contenedor">
+            <div class="etiqueta"><label for="usa">EEUU</label></div>
+            <div class="contendio"><input type="button" id="usa" value="+01"/></div><br/>
+             </div>
+           <div class="contenedor">
+            <div class="etiqueta"><label for="bel">Belgica</label></div>
+            <div class="contendio"><input type="button" id="bel" value="+32"/></div>
+             </div>
+		</form>
+        </div>
+    	
+    </body>
+</html> 

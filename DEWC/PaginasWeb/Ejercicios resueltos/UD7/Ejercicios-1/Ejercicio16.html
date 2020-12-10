@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   		<title>Ejercicio16</title>
+    	<script src="scripts/jquery-1.10.2.min.js" type="text/javascript"></script>	
+ 		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#mostrar").click(mostrar);
+				
+				function mostrar(){
+					$("a").each(function(){
+						texto= $(this).text()
+						enlace=$(this).attr("href")
+						$(this).text(enlace)
+						$(this).attr("name",texto)
+					});
+					setTimeout(ocultar,5000);
+				}
+				function ocultar(){
+					$("a").each(function(){
+						enlace= $(this).text()
+						texto=$(this).attr("name")
+						$(this).text(texto)
+						$(this).attr("href",enlace)
+					});
+				}  
+			  });
+		</script>
+	</head>
+	<body>
+        <a href="http://www.google.es">Google</a><br/>
+        <a href="http://www.yahoo.es">Yahoo</a><br/>
+        <a href="http://moodle.icjardin.com/">Moodle</a><br/>
+        <a href="http://intranet.icjardin.net/">Intranet</a> <br/>
+        <a href="http://librojquery.com/">jQuery1</a> <br/>
+        <a href="http://www.desarrolloweb.com/manuales/manual-jquery.html">jQuery2</a> <br/>
+        <a href="http://librosweb.es/javascript/">JavaScript1</a><br/>
+        <a href="http://www.w3schools.com/jsref/default.asp">JavaScript2</a> <br/>
+        <input type="button" id="mostrar" value="Mostrar enlaces"/>
+	</body>
+    
+</html>

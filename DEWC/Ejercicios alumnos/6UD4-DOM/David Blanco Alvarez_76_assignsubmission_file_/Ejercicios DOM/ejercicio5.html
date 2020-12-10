@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Calculdora</title>
+</head>
+
+<body>
+    <header>
+        <h1>CALCULADORA</h1>
+    </header>
+
+    <main>
+        <script>
+            var numCompleto = "";
+            var operacion = "";
+            var valor = "";
+            var resultado = 0;
+            var simbolo = "";
+            var anterior = 0;
+
+            function escribir(valor) {
+                numCompleto += valor;
+                document.getElementById("resultado").setAttribute("value", numCompleto);
+            }
+
+            function operar(simbolo) {
+                if (simbolo == "sumar") {
+                    numCompleto += "+";
+
+                } else if (simbolo == "restar") {
+                    numCompleto += "-";
+                } else if (simbolo == "multiplicar") {
+                    numCompleto += "*";
+                } else if (simbolo == "dividir") {
+                    numCompleto += "/";
+                }
+
+            }
+
+            function resolver() {
+                if (numCompleto.includes("/")) {
+                    var pos = numCompleto.indexOf("/");
+                    var divisor = numCompleto.charAt(pos + 1);
+                    if (divisor == "0") {
+                        resultado = "Error";
+                        document.getElementById("resultado").setAttribute("value", resultado);
+                    }
+                } else {
+                    resultado = eval(numCompleto);
+                    document.getElementById("resultado").setAttribute("value", resultado);
+                    numCompleto = "(" + numCompleto + ")";
+                }
+            }
+
+            function borrar() {
+                numCompleto = "";
+                operacion = "";
+                document.getElementById("resultado").setAttribute("value", numCompleto);
+            }
+        </script>
+        <div><input id="resultado" type="text" name="resultado" value="" /><br><br></div>
+        <div>
+            <table style="border: solid 2px; padding: 15px;">
+                <tr>
+                    <td><input type="button" name="num" value="1" onclick="escribir(1)" /></td>
+                    <td><input type="button" name="num" value="2" onclick="escribir(2)" /></td>
+                    <td><input type="button" name="num" value="3" onclick="escribir(3)" /></td>
+                    <td><input type="button" name="simbolo" value="C" onclick="borrar()" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" name="num" value="4" onclick="escribir(4)" /></td>
+                    <td><input type="button" name="num" value="5" onclick="escribir(5)" /></td>
+                    <td><input type="button" name="num" value="6" onclick="escribir(6)" /></td>
+                    <td><input type="button" name="simbolo" value="+" onclick="operar('sumar')" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" name="num" value="7" onclick="escribir(7)" /></td>
+                    <td><input type="button" name="num" value="8" onclick="escribir(8)" /></td>
+                    <td><input type="button" name="num" value="9" onclick="escribir(9)" /></td>
+                    <td><input type="button" name="simbolo" value="-" onclick="operar('restar')" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" name="num" value="0" onclick="escribir(0)" /></td>
+                    <td><input type="button" name="simbolo" value="/" onclick="operar('dividir')" /></td>
+                    <td><input type="button" name="simbolo" value="=" onclick="resolver()" /></td>
+                    <td><input type="button" name="simbolo" value="*" onclick="operar('multiplicar')" /></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>

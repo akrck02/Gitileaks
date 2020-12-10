@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        var letras = new Array('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L',
+        'C', 'K', 'E', 'T');
+        function validarDNI() {
+            var dni = document.getElementById("dni").value.trim();
+            var nums = Number(dni.substr(0, 8));
+            var letra = dni.substr(8, 1);
+            if (dni.length != 9 || isNaN(nums)){
+                alert("DNI inválido");
+                document.getElementById("dni").value = "";
+                return;
+            }
+
+            var iletra = nums % 23;
+            if (letra != letras[iletra]){
+                alert("DNI inválido");
+                document.getElementById("dni").value = "";
+            } else {
+                alert("DNI válido");
+            }
+        }
+    </script>
+
+    <form>
+        <table>
+            <tr>
+                <td>Introduce tu DNI (con letra): </td>
+                <td><input type="text" id="dni" /></td>
+                <td><input type="button" onclick="validarDNI()" value="VALIDAR"/></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

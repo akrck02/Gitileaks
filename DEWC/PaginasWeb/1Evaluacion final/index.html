@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>jQuery Fundamentals</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript">
+        	$(document).ready(function() {
+				$('#nav li').hover(function() {
+					$(this).addClass('hover')
+					$(this).children("ul").show();
+				}, function() {
+					$(this).removeClass('hover')
+					$(this).children("ul").hide();
+				})
+				
+				$("#blog h3").click(function(e) {
+					var elemento =$(this).next("p")
+					if (elemento.css("display")=="none"){
+						elemento.css("display","block")
+					}else{
+						elemento.css("display","none")
+					}
+					e.preventDefault()
+				});
+				
+				var alto=$(window).innerHeight();
+				alto=alto-300;
+				$("<div id='caja'><div><img id='cerrar' src='images/close.png'/></div><div><img id='imagen' src='images/flamenco.jpg' /></div></div>").appendTo("body")
+				$("#caja").css({
+					"top":alto + "px",
+					"left":"-300px"
+				})
+				$("#caja").show();
+				var ancho=($(document).innerWidth()/2)-150
+				$("#caja").animate({"left":ancho},10000)
+				 
+				$("#cerrar").click(function(evento){
+					$("#caja").hide();
+				})
+			});
+        </script>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo" rel="logo"><a href="index.html">jQuery Fundamentals</a></div>
+            <ul id="nav">
+                <li><a href="http://docs.jquery.com">jQuery Docs</a></li>
+                <li><a href="sandbox.html">Sandbox</a></li>
+                <li>Resources
+                    <ul>
+                        <li><a href="http://groups.google.com/group/jquery-en">Google Group</a></li>
+                        <li><a href="http://stackoverflow.com">Stack Overflow</a></li>
+                        <li><a href="http://delicious.com/rdmey/jquery-class">Delicious Bookmarks</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="main">
+            <ul id="slideshow">
+                <li>
+                    <h2 rel="yummy fruit!">Fruit</h2>
+                    <img src="images/fruit.jpg" alt="fruit" />
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </li>
+                <li>
+                    <h2>Vegetables</h2>
+                    <img src="images/vegetable.jpg" alt="vegetables" />
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </li>
+                <li>
+                    <h2>Bread</h2>
+                    <img src="images/bread.jpg" alt="bread" />
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </li>
+            </ul>
+            <div class="module" id="blog">
+                <h2>Blog</h2>
+                <ul>
+                    <li>
+                        <h3><a href="blog.html#post1">Blog post 1</a></h3>
+                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </li>
+                    <li>
+                        <h3><a href="blog.html#post2">Blog post 2</a></h3>
+                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </li>
+                    <li>
+                        <h3><a href="blog.html#post3">Blog post 3</a></h3>
+                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+         
+    </body>
+</html>

@@ -1,0 +1,90 @@
+
+
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>MUNICIPIOS</title>
+
+    </head>
+    
+     <script>
+        var provincias = new Array("Araba", "Bizkaia", "Gipuzkoa", "Nafarroa", "Lapurdi", "Zuberoa", "Nafarroa Beherea")
+
+        var municipios_1 = new Array("Seleccione Municipio", "Vitoria-Gasteiz", "Amurrio", "El Ciego", "La Guardia");
+        var municipios_2 = new Array("Seleccione Municipio", "Bilbao", "Barakaldo", "Durango", "Elorrio", "Muzkiz");
+        var municipios_3 = new Array("Seleccione Municipio", "Donostia-San Sebastián", "Arrasate-Mondragón", "Eibar");
+        var municipios_4 = new Array("Seleccione Municipio", "Iruña", "Burlada", "Estella-Lizarra", "Tafalla");
+        var municipios_5 = new Array("Seleccione Municipio", "Baiona", "Bastida", "Hendaya", "Miarritze");
+        var municipios_6 = new Array("Seleccione Municipio", "Maule", "Barkoxe", "Sohüta");
+        var municipios_7 = new Array("Seleccione Municipio", "Baigorri", "Garazi", "Oztibarre");
+
+        var todosMunicipios = [
+            [],
+            municipios_1,
+            municipios_2,
+            municipios_3,
+            municipios_4,
+            municipios_5,
+            municipios_6,
+            municipios_7,
+        ];
+
+        function sacaCiudades(){
+            var x = document.getElementById("ciudades");
+            while(x.firstChild){
+                x.removeChild(x.lastChild);
+            }
+            var option = document.createElement("option");
+            option.text = "Selecciona municipio";
+            x.add(option);
+            var indice = document.getElementById("provincia").value;
+            for (let i = 1; i <= todosMunicipios.length; i++) {
+                if(i == indice){
+                    var arr = todosMunicipios[i];
+                    for (let j = 1; j < arr.length; j++) {
+                        var option = document.createElement("option");
+                        option.setAttribute("id", "ciudad");
+                        option.text = arr[j];
+                        x.add(option);                          
+                    }
+                }
+            }
+        }
+        
+
+    </script>
+    <body>
+        <select id="provincia" onchange="sacaCiudades()">
+            <option value=0>Seleccione municipio</option>
+            <script>
+                cont = 1;
+                provincias.forEach(provi =>{
+                document.write("<option value='"+cont+"'>"+provi+"</option>");
+                cont++;
+            })
+            </script>
+        </select>
+        <select id="ciudades" onchange="sacarTxt()">
+            <option value=0>Seleccione municipio</option>
+        </select>
+        <script>
+            function sacarTxt(){
+                var indice = document.getElementById("provincia").value;
+                for (let i = 1; i <= provincias.length; i++) {
+                    if(i == indice){
+                        var arr = provincias[i];
+                        for (let j = 1; j < arr.length; j++) {
+                            var provinciaSelec = arr[j];
+                        }
+                    }
+                }   
+                var ciudadSelec = document.getElementById("ciudades").value;
+                document.write("<p>Ha seleccionado "+provinciaSelec+" como provincia y "+ciudadSelec+" como ciudad.</p>");
+            }
+            
+        </script>
+     </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+   		<meta charset="utf-8" />
+   		<title>Ejercicio2</title>
+         <style type="text/css">
+			body{
+				font-family:Verdana, Geneva, sans-serif;
+				text-align:center;
+			}
+			section{
+				width:90%;
+				margin: 0 auto;
+			}
+			video{
+				height: 200px;
+				border:1px solid black;
+			}
+        </style>
+		<script>
+			var videos
+			window.addEventListener('load', iniciar);
+			function iniciar(){
+				videos=document.getElementsByTagName('video')
+				for (var i=1; i<=videos.length;i++){
+					document.getElementById(i).addEventListener('ended',siguiente);
+				}
+			}
+			function siguiente(){
+				var indice=parseInt(this.getAttribute("id"));
+				if (indice==videos.length){
+					indice=1;
+				}else{
+					indice++
+				}
+				document.getElementById(indice).play()
+			}
+        </script>
+	</head>
+    <body>
+        <section id="reproductor">
+            <video id="1" autoplay>
+                <source src="trailer.mp4" >
+                <source src="trailer.ogg">
+            </video>
+             <video id="2">
+                <source src="movie.mp4">
+                <source src="movie.ogg">
+            </video>
+             <video id="3">
+                <source src="video.mp4">
+                <source src="video.webm">
+            </video>
+        </section>
+    </body>
+</html>

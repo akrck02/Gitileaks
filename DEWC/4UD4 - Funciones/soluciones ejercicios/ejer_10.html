@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        var fecha = null;
+
+        function validar(){
+            farr = fecha.split("/");
+            if ((farr[0].length != 2) && (mes.farr[1] != 2) && (farr[2].length != 4))
+                return false;
+            var dia = parseInt(farr[0]);
+            var mes = parseInt(farr[1]);
+            var anio = parseInt(farr[2]);
+            switch (mes) {
+                case 1 :
+                case 3 :
+                case 5 :
+                case 7 : 
+                case 8 : 
+                case 10: 
+                case 12:    if ((dia < 1) || (dia > 31)){
+                                return false;
+                            }
+                            break;
+
+                case 4 :
+                case 6 : 
+                case 9 :
+                case 11:    if ((dia < 1) || (dia > 30)){
+                            return false;
+                            }
+                            break;
+
+                    case 2 :if (dia == 29){
+                                if ((anio % 4 != 0) || (anio % 100 == 0 && anio % 400 != 0)){
+                                    return false;
+                                    break;
+                                }
+                            } else if ((dia < 1) || (dia > 28)){
+                                return false;
+                                break;
+                            }
+                default :    return false;
+            }
+            return true;
+        }
+
+        function getWeekday (date){
+            var day = date.getDay();
+            switch (day){
+                case 0 : return "domingo";
+                         break;
+                case 1 : return "lunes";
+                         break;
+                case 2 : return "martes";
+                         break;
+                case 3 : return "miércoles";
+                         break;
+                case 4 : return "jueves";
+                         break;
+                case 5 : return "viernes";
+                         break;
+                case 6 : return "sábado";
+                         break;
+                default : return "";
+            }
+        }
+        
+        do{
+            fecha = prompt("Introduce una fecha en formato correcto (dd/mm/aaaa)").trim();
+        }while (!validar(fecha));
+        
+        farr = fecha.split("/");
+        var dia = parseInt(farr[0]);
+        var mes = parseInt(farr[1]);
+        var anio = parseInt(farr[2]);
+        
+        var fechas = [new Date((anio-4), (mes-1), dia), new Date((anio-3), (mes-1), dia),
+                      new Date((anio-2), (mes-1), dia), new Date((anio-1), (mes-1), dia),
+                      new Date(anio, (mes-1), dia)];
+
+        document.write("<h2>Validando fechas</h2>");
+        document.write("<p>Fecha introducida:" + fecha + "<br/><br/>Ese mismo día en...</p>");
+        document.write("<table border='1'>");
+        document.write("<tr><th>el año... </th>");
+        document.write("<td>" + fechas[0].getFullYear() + "</td>");
+        document.write("<td>" + fechas[1].getFullYear() + "</td>");
+        document.write("<td>" + fechas[2].getFullYear() + "</td>");
+        document.write("<td>" + fechas[3].getFullYear() + "</td>");
+        document.write("<td>" + fechas[4].getFullYear() + "</td></tr>");
+        document.write("<tr><th>era un... </th>");
+        document.write("<td>" + getWeekday(fechas[0]) + "</td>");
+        document.write("<td>" + getWeekday(fechas[1]) + "</td>");
+        document.write("<td>" + getWeekday(fechas[2]) + "</td>");
+        document.write("<td>" + getWeekday(fechas[3]) + "</td>");
+        document.write("<td>" + getWeekday(fechas[4]) + "</td></tr>");
+                    
+        document.write("</table>")
+    </script>    
+</body>
+</html>

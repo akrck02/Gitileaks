@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio10</title>
+      
+    </head>
+	<body>
+    	<header><h1>MÚLTIPLES VENTANAS</h1></header>
+        <section>
+				<form name="formulario">
+                	
+                     <input type="button" value="Abriendo multiples ventanas..." onclick="
+                    		for (i=0;i<=4;i++){
+                                 myWindow1 = window.open('', '', 'width=200,height=200');
+                                 myWindow1.document.write('<!doctype html>');
+                                 myWindow1.document.write('<html lang=\'es\'>');
+                                 myWindow1.document.write('<head>');
+                                 myWindow1.document.write('<meta charset=\'utf-8\'>');  
+                                 myWindow1.document.write('<title>Bienvenido</title>'); 
+                                 myWindow1.document.write('</head>') ; 
+                                 myWindow1.document.write('<body><section>');
+                                 myWindow1.document.write('<form><input type=\'button\' value=\'Cerrar\' onclick= 		\'window.close()\'></form>');
+                                 myWindow1.document.write('</section></body>');
+                                 myWindow1.document.write('</html>');
+                            }
+                            "
+                    	
+				</form>
+				
+			
+		</section>      
+        <noscript>
+            <p>Para ver correctamente este código tiene que activar JavaScript</p>
+        </noscript>
+	</body> 
+</html> 
+

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio7</title>
+        <script> 
+            var j, i, sumatorio;
+            document.write ("<header><h1>Sumatorios</h1></header>"); 
+			j=1;
+			sumatorio=0;
+			document.write("<section>");
+			for (i=1;i<=100;i++){
+				sumatorio=sumatorio+i;
+				if (sumatorio>=1000){
+					break;
+				}
+				if (sumatorio%2==1){
+					document.write (sumatorio + ",");
+					if (j==4){
+						document.write("<br>")
+						j=0;
+					}
+					j=j+1;
+				}
+			}
+			document.write("</section>");
+        </script> 
+	</head>
+	<body>
+    	<noscript>
+			<p>Para ver correctamente este código tiene que activar JavaScript</p>
+		</noscript>  
+	</body> 
+</html> 
+

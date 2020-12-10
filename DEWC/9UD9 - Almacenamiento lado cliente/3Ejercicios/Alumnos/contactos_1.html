@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Contactos</title>
+    <script src="contactos.js"></script>
+    <script>
+        window.onload = ( function() {
+            cargarTodos();
+        });
+    </script>
+</head>
+<body>
+    <h1>Contactos</h1>
+    Búsqueda <input type="text" id="busqueda" placeholder="Introduce nombre" />
+    <button onclick="buscar()">Buscar</button> 
+    <button onclick="cargarTodos()">Ver todos</button>
+    <button onclick="abrirAniadir()">Añadir Contacto</button>
+    <br/><br/>
+    <table id="contactos">
+        <tr>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Código Postal</th>
+            <th></th>
+        </tr>
+    </table>
+</body>
+</html>

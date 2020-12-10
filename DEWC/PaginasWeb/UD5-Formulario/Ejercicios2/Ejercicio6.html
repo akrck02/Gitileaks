@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio6</title>
+		<style type="text/css" >
+            body {
+                font-family: arial, helvetica;
+				font-size:12px;
+				margin:4px;
+            }
+            form{
+               width:100%;
+			   vertical-align:top;
+			  
+            }
+            #titulo {
+                text-align:center;
+                width:100%;
+            }
+			#botones {
+                text-align:center;
+                width:100%;
+            }
+            label{
+				width:1300px;
+			}
+        </style>
+        <script type="text/javascript">
+		//<![CDATA[
+			window.onload=function(){
+				document.getElementById("enviar").onclick=validarDatos;
+			}	
+			function validarDatos(){
+				if (validar()){
+					alert("Los datos son correctos");
+				}
+				return false;
+			}
+			function validar(){
+				var dni=document.getElementById("dni").value;
+				var email=document.getElementById("email").value;
+				var cp=document.getElementById("cp").value;
+				var fecha=document.getElementById("fecha").value;
+				var letras = new Array('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T');
+				if(dni!=""){
+					if  (!/^\d{8}[A-Za-z]$/.test(dni)){
+						alert("El dni no es correcto");
+						return false;
+					}else{
+						if (dni.charAt(8)!=letras[dni.substring(0,8)%23]){
+							alert("El dni no es correcto");
+							return false;
+						}
+					}
+				}
+				if (email!=""){
+					if  (!/^\w+@\w+\.\w+$/.test(email)){
+						alert("El email no es correcto");
+						return false;
+					}
+				}
+				if (cp!=""){
+					if  (!/^\d{5}$/.test(cp)){
+						alert("El codigo postal no es correcto");
+						return false;
+					}
+				}
+				if (fecha!=""){
+					if  (!/^[0123][0-9]\/[01][0-9]\/\d{4}$/.test(fecha)){
+						alert("La fecha no es correcta");
+						return false;
+					}else{
+						var partes=fecha.split("/");
+						var dia=partes[0];
+						var mes=partes[1]
+						var anio=partes[2];
+						var fechavalida=false;
+						if (mes>=1 && mes<=12){
+							if ((mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12) && (dia>=1 && dia<=31)){
+								fechavalida=true;
+							}else if ((mes==4 || mes==6 || mes==9 || mes==11) && (dia>=1 &&dia<=30)){
+								fechavalida=true;
+							}else if (mes==2){
+								if (dia>=1 &&dia<=28){
+									fechavalida=true;
+								}else if (dia==29 && (anio%4)==0){
+									fechavalida=true;
+								}else{
+									alert("La fecha no es correcta");
+									fechavalida=false;
+								}
+							}else{
+								alert("La fecha no es correcta");
+								fechavalida=false;
+							}
+						}
+						return fechavalida;	
+					}
+				}
+				return true;
+			}
+		//]]>
+        </script>
+    </head>
+    <body>
+        <div id="titulo"><h1>VALIDACION DE DATOS</h1></div>
+        <form id="miform" action="">
+        	<label for="dni" >DNI:</label><input type="text" id="dni" value="" size="9" maxlength="9"/><br/>
+            <label for="email">Email:</label><input type="text" id="email" value="" size="50" /><br/>
+            <label for="cp">Codigo Postal:</label><input type="text" id="cp" value="" size="5" maxlength="5"/><br/>
+            <label for="fecha">Fecha (dd/mm/aaaa):</label><input type="text" id="fecha" value="" size="10" maxlength="10"/><br/>
+            <div id="botones">  
+                <input type="submit" id="enviar" value="Enviar" />
+                <input type="reset" id="limpiar" value="Limpiar"/>
+            </div>
+        </form>
+    </body>
+</html>

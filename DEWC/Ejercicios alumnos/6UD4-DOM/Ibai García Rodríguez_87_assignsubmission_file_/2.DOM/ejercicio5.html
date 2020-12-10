@@ -1,0 +1,69 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Ejercicio 4</title>
+    <script>
+        function escribir(valor) {
+            var escribir = valor;
+            document.getElementById("txt").value += escribir;
+        }
+
+        function limpiar(){
+            document.getElementById("txt").value = "";
+        }
+
+        function resultado(){
+            var leer = document.getElementById("txt").value;
+            if(leer === ""){
+                alert("Escriba algo por favor");
+                limpiar();
+            }else{
+                var result = eval(leer);
+                if(isFinite(result)){
+                    document.getElementById("txt").value = result;
+                }else{
+                    alert("Numero no finito");
+                    limpiar();
+                }
+            }            
+        }
+    </script>
+</head>
+
+<body>
+    <h3>CALCULADORA</h3>
+    <form>
+        <table style="border: 2px solid black">
+            <tr><td colspan="4"><input type="text" name="txt" id="txt"  /></td></tr>
+            <tr>
+                <td><input type="button" name="1" id="1" value="1" onclick="escribir(1)" /></td>
+                <td><input type="button" name="2" id="2" value="2" onclick="escribir(2)" /></td>
+                <td><input type="button" name="3" id="3" value="3" onclick="escribir(3)" /></td>
+                <td><input type="button" name="C" id="C" value="C" onclick="limpiar()" /></td>
+            </tr>
+            <tr>
+                <td><input type="button" name="4" id="4" value="4" onclick="escribir(4)" /></td>
+                <td><input type="button" name="5" id="5" value="5" onclick="escribir(5)" /></td>
+                <td><input type="button" name="6" id="6" value="6" onclick="escribir(6)" /></td>
+                <td><input type="button" name="+" id="+" value="+" onclick="escribir('+')" /></td>
+            </tr>
+            <tr>
+                <td><input type="button" name="7" id="7" value="7" onclick="escribir(7)" /></td>
+                <td><input type="button" name="8" id="8" value="8" onclick="escribir(8)" /></td>
+                <td><input type="button" name="9" id="9" value="9" onclick="escribir(9)" /></td>
+                <td><input type="button" name="-" id="-" value="-" onclick="escribir('-')" /></td>
+            </tr>
+            <tr>
+                <td><input type="button" name="0" id="0" value="0" onclick="escribir(0)" /></td>
+                <td><input type="button" name="/" id="/" value="/" onclick="escribir('/')" /></td>
+                <td><input type="button" name="=" id="=" value="=" onclick="resultado()" /></td>
+                <td><input type="button" name="*" id="*" value="*" onclick="escribir('*')" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

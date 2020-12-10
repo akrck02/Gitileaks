@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+   		<meta charset="utf-8" />
+		<title>Ejercicio4</title>
+		 <style type="text/css">
+			body { 
+				text-align:center;
+				font-family:Verdana, Geneva, sans-serif;
+				font-size:14px;
+				
+			}
+			table{
+				border:1px solid black;
+				border-collapse:collapse;
+				width: 100%;
+			}
+			td, th{
+				border:1px solid black;
+			}
+			#botones{
+				margin: 0 auto;
+				text-align:center;
+				clear:both;
+				width: 600px;
+				padding: 10px;
+			}
+			#cajadatos{
+				margin: 0 auto;
+				text-align:center;
+				clear:both;
+				margin: 10px;
+				padding: 10px;
+			}
+			#botones input{ 
+				font-family:Verdana, Geneva, sans-serif;
+				float:none;
+				width: 150px;
+			}
+			#cajabusqueda{
+				margin: 10px;
+				padding: 10px;
+			}
+        </style>
+		<script>
+        	var cajadatod, bd, tabla
+			var tabla_inicial="<table><tr><th>ID</th><th>Nombre</th><th>Telefono</th><th>Email</th><th>Codigo Postal</th><th>&nbsp;</th></tr>"
+			function iniciar(){
+				//indexedDB.deleteDatabase('contactos')
+				var solicitud=indexedDB.open('contactos');
+				solicitud.addEventListener('error', errores);
+				solicitud.addEventListener('success', crear);
+				solicitud.addEventListener('upgradeneeded', crearbd);
+				var buscar=document.getElementById("buscar");
+				buscar.addEventListener("click",buscarobjetos);
+			}
+			function errores(e){
+				alert("Ha ocurrido un error");
+			} 
+			function crear(e){
+				bd=e.target.result;
+				buscarobjetos();
+			}
+			function crearbd(e){
+				bd=e.target.result;
+				var almacen=bd.createObjectStore('contactos',{keyPath:'id',autoIncrement:true});
+				almacen.createIndex('BuscarNombre','nombre',{unique:false});
+			}
+			function mostrarlista(e){
+				var cursor=e.target.result;
+				if (cursor){
+					tabla+="<tr><td>"+cursor.value.id+"</td><td>"+cursor.value.nombre+"</td><td>"+cursor.value.telefono+"</td><td>"+cursor.value.email+"</td><td>"+cursor.value.cp+"</td><td><input type='button' onclick='eliminar(\""+cursor.value.id+"\")' value='Eliminar'></td></tr>";
+					cursor.continue();
+				}else{
+					tabla+="</table>"
+					cajadatos.innerHTML=tabla
+				}
+			}
+			function eliminar(clave){
+				if (confirm('¿Está seguro?')){
+					var transaccion=bd.transaction(['contactos'],'readwrite');
+					var almacen=transaccion.objectStore('contactos');
+					alert(clave);
+					var solicitud=almacen.delete(clave);
+					solicitud.addEventListener('success',buscarobjetos);
+					solicitud.addEventListener('error', errores);
+				}
+			}
+			function buscarobjetos(){
+				alert("a");
+				cajadatos.innerHTML='';
+				var buscar=document.getElementById('nombre').value;
+				if (buscar!=""){
+					var transaccion=bd.transaction(['contactos']);
+					var almacen=transaccion.objectStore('contactos');
+					var indice=almacen.index('BuscarNombre');
+					var rango=IDBKeyRange.only(buscar);
+					var cursor=indice.openCursor(rango);
+					tabla=tabla_inicial;
+					cursor.addEventListener('success', mostrarlista, false);
+				}else{
+					var transaccion=bd.transaction(['contactos'],'readwrite');
+					var almacen=transaccion.objectStore('contactos');
+					var nuevocusor=almacen.openCursor();
+					tabla=tabla_inicial;
+					nuevocusor.addEventListener('success', mostrarlista);
+				}
+			}
+			window.addEventListener('load', iniciar);
+        </script>
+	</head>
+    <body>
+        <section id="cajabusquda">
+             <form id="formulario" action="Ejercicio4-1.html">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre"/>
+                <input type="button"  id="buscar" value="Buscar">
+            </form>
+		</section>
+       <section id="cajadatos">
+            
+		</section>
+        <section id="botones">
+            <form id="formulario" action="Ejercicio4-2.html">
+                <input type="submit"  id="nuevo" value="Nuevo contacto">
+            </form>
+        </section>
+	</body>
+</html>

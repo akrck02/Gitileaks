@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let rutas=["images/0.jpg",
+        "images/1.jpg",
+        "images/2.jpg",
+        "images/3.jpg",
+        "images/4.jpg",
+        "images/5.jpg",
+        "images/6.jpg",
+        "images/7.jpg",
+        "images/8.jpg",
+        "images/9.jpg"];
+
+
+
+        function datos(){
+            let fecha=new Date();
+            let anio=fecha.getUTCFullYear();
+            let mes=fecha.getUTCMonth()+1;
+            let dia=fecha.getDate();
+            let horas=fecha.getUTCHours();
+            let minutos=fecha.getUTCMinutes();
+            let segundos=fecha.getUTCSeconds();
+
+            if(dia<10){
+                dia1=0;
+            }
+            else{
+                dia1=Math.floor(dia/10);
+            }
+            dia2=Math.floor(dia%10);
+
+            if(mes<10){
+                mes1=0;
+            }
+            else{
+                mes1=Math.floor(mes/10);
+            }
+            mes2=Math.floor(mes%10);
+
+            anio1=Math.floor(anio/1000);
+            anio2=Math.floor((anio/100)%10);
+            anio3=Math.floor((anio/10)%10);
+            anio4=Math.floor(anio%10);
+
+            if(horas<10){
+                hora1=0;
+            }
+            else{
+                hora1=Math.floor(horas/10);
+            }
+            hora2=Math.floor(horas%10);
+
+            if(minutos<10){
+                minuto1=0;
+            }
+            else{
+                minuto1=Math.floor(minutos/10);
+            }
+            minuto2=Math.floor(minutos%10);
+
+            if(segundos<10){
+                segundo1=0;
+            }else{
+                segundo1=Math.floor(segundos/10);
+            }
+            segundo2=Math.floor(segundos%10);
+
+            cambiarfecha(dia1,dia2,mes1,mes2,anio1,anio2,anio3,anio4);
+            cambiarhora(segundo1,segundo2,minuto1,minuto2,hora1,hora2);
+
+        }
+
+        function cambiarfecha(dia1,dia2,mes1,mes2,anio1,anio2,anio3,anio4){
+            document.getElementById("dia1").src=rutas[dia1];
+            document.getElementById("dia2").src=rutas[dia2];
+            document.getElementById("mes1").src=rutas[mes1];
+            document.getElementById("mes2").src=rutas[mes2];
+            document.getElementById("anio1").src=rutas[anio1];
+            document.getElementById("anio2").src=rutas[anio2];
+            document.getElementById("anio3").src=rutas[anio3];
+            document.getElementById("anio4").src=rutas[anio4];
+
+        }
+
+        function cambiarhora(segundo1,segundo2,minuto1,minuto2,hora1,hora2){
+            document.getElementById("segundo1").src=rutas[segundo1];
+            document.getElementById("segundo2").src=rutas[segundo2];
+            document.getElementById("minuto1").src=rutas[minuto1];
+            document.getElementById("minuto2").src=rutas[minuto2];
+            document.getElementById("hora1").src=rutas[hora1];
+            document.getElementById("hora2").src=rutas[hora2];
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Fecha y hora</h1>
+    <table border=1>
+        <tr>
+            <td><img src="" id="dia1"/></td>
+            <td><img src="" id="dia2"/></td>
+            <td><img><img src="images/barra.jpg"/></td>
+            <td><img src="" id="mes1"/></td>
+            <td><img src="" id="mes2"/></td>
+            <td><img><img src="images/barra.jpg"/></td>
+            <td><img src="" id="anio1"/></td>
+            <td><img src="" id="anio2"/></td>
+            <td><img src="" id="anio3"/></td>
+            <td><img src="" id="anio4"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><img src="" id="hora1"/></td>
+            <td><img src="" id="hora2"/></td>
+            <td><img><img src="images/puntos.jpg"/></td>
+            <td><img src="" id="minuto1"/></td>
+            <td><img src="" id="minuto2"/></td>
+            <td><img><img src="images/puntos.jpg"/></td>
+            <td><img src="" id="segundo1"/></td>
+            <td><img src="" id="segundo2"/></td>
+            <td></td>
+
+        </tr>
+    </table>
+    <script>setInterval(function(){ datos(); }, 1000);</script>
+</body>
+</html>

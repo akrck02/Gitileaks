@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio 1</title>
+        <style type="text/css">
+			body { font: 13px Arial, Helvetica, sans-serif; }
+			h2 { margin-bottom: 0; font-size: 1.2em; }
+			#recurso, #enviar { padding: .3em; font-size: 1.2em; }
+			#principal { float: left; width: 70%; }
+			#secundario { float: right; width: 25%; }
+			#contenidos, #estados, #cabeceras, #codigo {
+				border: 2px solid #CCC;
+				background: #FAFAFA;
+				padding: 1em;
+				white-space: pre;
+			}
+			#contenidos {
+				min-height: 400px;
+				max-height: 600px;
+				overflow: scroll;
+			}
+			#estados { min-height: 200px; }
+			#cabeceras { min-height: 200px; }
+			#codigo { min-height: 100px; font-size: 1.5em; }
+        </style>
+        <script type="text/javascript">
+        //<![CDATA[
+			var peticion_http;
+			var estadosPosibles = ["No inicializado", "Cargando", "Cargado", "Interactivo", "Completado"];
+			function transformaCaracteresEspeciales(texto) {
+    				return decodeURIComponent(encodeURIComponent(texto).
+                      replace(/%0A/g, '<br/>').
+                      replace(/%3C/g, '&lt;').
+                      replace(/%3E/g, '&gt;'));
+ 			}
+			function inicializa_xhr() { 
+				if(window.XMLHttpRequest) {
+					return new XMLHttpRequest();
+				}else if(window.ActiveXObject) {
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				}
+			}
+			function cargaContenido(metodo, url, funcion) { 
+				document.getElementById("contenidos").innerHTML = "";
+    			document.getElementById("estados").innerHTML = "";
+				document.getElementById("cabeceras").innerHTML = "";
+				document.getElementById("codigo").innerHTML = "";
+				peticion_http = inicializa_xhr();
+				if (peticion_http){
+					peticion_http.onreadystatechange = muestraContenido;
+					peticion_http.open("GET", recurso.value);
+					peticion_http.send(null);
+				}
+			}
+			function muestraContenido() {
+    			document.getElementById("estados").innerHTML += estadosPosibles[peticion_http.readyState] + "<br/>";
+				if(peticion_http.readyState == 4){
+					if (peticion_http.status==200){
+						document.getElementById("contenidos").innerHTML=transformaCaracteresEspeciales(peticion_http.responseText);
+						document.getElementById("cabeceras").innerHTML = transformaCaracteresEspeciales(peticion_http.getAllResponseHeaders());
+					}
+					document.getElementById("codigo").innerHTML = peticion_http.status + "-" + peticion_http.statusText;  
+				}
+				      
+			}
+			
+			window.onload = function() {
+				var recurso = document.getElementById("recurso");
+				recurso.value = location.href;
+				document.getElementById("enviar").onclick = cargaContenido
+			 }
+        //]]>
+        </script>
+    </head>
+    <body>
+        <form action="#">
+            <label for="recurso">URL: </label><input type="text" id="recurso" size="70" />
+            <input type="button" id="enviar" value="Mostrar contenidos" />
+        </form>
+        <div id="principal">
+            <h2>Contenidos del archivo:</h2>
+            <div id="contenidos"></div>
+            <h2>Cabeceras HTTP de la respuesta del servidor:</h2>
+            <div id="cabeceras"></div>
+        </div>
+        <div id="secundario">
+            <h2>Estados de la petición:</h2>
+            <div id="estados"></div>
+            <h2>Código de estado:</h2>
+            <div id="codigo"></div>
+        </div>
+    </body>
+</html>

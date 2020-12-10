@@ -1,0 +1,33 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin:0;
+    justify-content: center;
+    align-items: center;
+    background: #fafafa;
+    color: #404040;
+}
+table{
+    position: relative;
+}
+tr{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+img{
+    border-radius: 5px;
+    transition: .5s;
+    width: 30px;
+    padding: 15px;
+    background: white;
+    box-shadow: 0px 2px 4px rgb(0,0,0,0.15);
+}
+
+img:hover{transform:scale(1.1)}
+td{
+    margin: 5px;
+}

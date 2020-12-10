@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        var vocTilde = ["Á", "É", "Í", "Ó", "Ú", "á", "é", "í", "ó", "ú"];
+        document.write("<h2>Cómo escapar vocales con tilde</h2><p>");
+        for(var i = 0; i < vocTilde.length; i++){
+            document.write("<b>" + vocTilde[i] + "</b> = " + escape(vocTilde[i]) + "&emsp;");
+        }
+        document.write("</p>");
+    </script>
+</body>
+</html>

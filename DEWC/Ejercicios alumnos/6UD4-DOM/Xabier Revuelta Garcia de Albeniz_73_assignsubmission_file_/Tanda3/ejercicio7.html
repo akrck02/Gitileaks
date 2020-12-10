@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 7</title>
+
+<script type="text/javascript">
+
+var ahora = new Date();
+var dia="";
+var mes="";
+var anio="";
+var hora="";
+var minuto="";
+var segundo="";
+
+setInterval(() => {
+
+	ahora = new Date();
+	dia=ahora.getDate()+"";
+	mes=(ahora.getUTCMonth()+1)+"";
+	anio=ahora.getFullYear()+"";
+	segundo=ahora.getSeconds()+"";
+	minuto=ahora.getMinutes()+"";
+	hora=(ahora.getHours()+1)+"";
+
+	if(dia.length==2){
+		document.getElementById("dia1").setAttribute("src","images/"+dia.charAt(0)+".jpg");
+		document.getElementById("dia2").setAttribute("src","images/"+dia.charAt(1)+".jpg");
+	}
+	else{
+		document.getElementById("dia1").setAttribute("src","images/0.jpg");
+		document.getElementById("dia2").setAttribute("src","images/"+dia.charAt(0)+".jpg");
+	}
+	document.getElementById("barra").setAttribute("src","images/barra.jpg");
+	if(mes.length==2){
+		document.getElementById("mes1").setAttribute("src","images/"+mes.charAt(0)+".jpg");
+		document.getElementById("mes2").setAttribute("src","images/"+mes.charAt(1)+".jpg");
+	}
+	else{
+		document.getElementById("mes1").setAttribute("src","images/0.jpg");
+		document.getElementById("mes2").setAttribute("src","images/"+mes.charAt(0)+".jpg");
+	}
+	document.getElementById("barra2").setAttribute("src","images/barra.jpg");
+	document.getElementById("anio1").setAttribute("src","images/"+anio.charAt(0)+".jpg");
+	document.getElementById("anio2").setAttribute("src","images/"+anio.charAt(1)+".jpg");
+	document.getElementById("anio3").setAttribute("src","images/"+anio.charAt(2)+".jpg");
+	document.getElementById("anio4").setAttribute("src","images/"+anio.charAt(3)+".jpg");
+
+	if(segundo.length==2){
+		document.getElementById("segundo1").setAttribute("src","images/"+segundo.charAt(0)+".jpg");
+		document.getElementById("segundo2").setAttribute("src","images/"+segundo.charAt(1)+".jpg");
+
+	}
+	else{
+	document.getElementById("segundo1").setAttribute("src","images/0.jpg");
+	document.getElementById("segundo2").setAttribute("src","images/"+segundo.charAt(0)+".jpg");
+		
+	}
+	document.getElementById("puntos").setAttribute("src","images/puntos.jpg");
+	if(minuto.length==2){
+		document.getElementById("minuto1").setAttribute("src","images/"+minuto.charAt(0)+".jpg");
+		document.getElementById("minuto2").setAttribute("src","images/"+minuto.charAt(1)+".jpg");
+	}
+	else{
+		document.getElementById("minuto1").setAttribute("src","images/0.jpg");
+		document.getElementById("minuto2").setAttribute("src","images/"+minuto.charAt(0)+".jpg");
+	}
+	document.getElementById("puntos2").setAttribute("src","images/puntos.jpg");
+	if(hora.length==2){
+		document.getElementById("hora1").setAttribute("src","images/"+hora.charAt(0)+".jpg");
+		document.getElementById("hora2").setAttribute("src","images/"+hora.charAt(1)+".jpg");
+	}
+	else{
+		document.getElementById("hora1").setAttribute("src","images/0.jpg");
+		document.getElementById("hora2").setAttribute("src","images/"+hora.charAt(0)+".jpg");
+	}
+
+
+
+}, 1000);
+
+
+
+</script>
+</head>
+
+<body>
+	<table>
+		<caption>Fecha y Hora</caption>
+		<tr> 
+			<td><img id="dia1" src=""/> </td>
+			<td><img id="dia2" src=""/> </td>
+			<td><img id="barra" src=""/> </td>
+			<td><img id="mes1" src=""/> </td>
+			<td><img id="mes2" src=""/> </td>
+			<td><img id="barra2" src=""/> </td>
+			<td><img id="anio1" src=""/> </td>
+			<td><img id="anio2" src=""/> </td>
+			<td><img id="anio3" src=""/> </td>
+			<td><img id="anio4" src=""/> </td>
+		</tr>
+
+		<tr> 
+			<td><img id="hora1" src=""/> </td>
+			<td><img id="hora2" src=""/> </td>
+			<td><img id="puntos" src=""/> </td>
+			<td><img id="minuto1" src=""/> </td>
+			<td><img id="minuto2" src=""/> </td>
+			<td><img id="puntos2" src=""/> </td>
+			<td><img id="segundo1" src=""/> </td>
+			<td><img id="segundo2" src=""/> </td>
+
+		</tr>
+		
+	</table>
+
+</body>
+</html>

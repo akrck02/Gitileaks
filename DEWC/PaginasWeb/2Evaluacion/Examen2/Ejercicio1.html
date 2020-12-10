@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Ejercicio1</title>
+        <style type="text/css">
+			body{
+				font-family:Verdana, Geneva, sans-serif
+			}
+			#divtitulo{
+				width:525px;
+				text-align:center;
+			}
+			#divinformacion{
+				width:525px;
+				text-align:center;
+			}
+			form{
+				width:525px;
+			}
+			label{
+				width:100px;
+				float:left;
+				text-align:right;
+				padding-right: 5px;
+			}
+			select{
+				text-align:left;
+				width:420px;
+				padding-left: 5px;
+			}
+			#divprecio{
+				text-align:center;
+				widows:100%;
+			}
+        </style>
+        <script src="scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+		<script type="text/javascript"> 
+		//<![CDATA[
+			var tipo_accion=""
+			function cargaSelect(tipo) {
+				tipo_accion=tipo;
+				if (tipo_accion=="opcion1"){
+					$("#opcion2").html("");
+					$("#opcion3").html("");
+					$("#divinformacion").html("");
+					$("#precio").prop("disabled",true);
+					$("#divopcion2").css("display","none");
+					$("#divopcion3").css("display","none");
+					var datos="tipo=opcion1&" + Math.random();
+				}else if(tipo_accion=="opcion2"){
+					$("#opcion2").html("");
+					$("#opcion3").html("");
+					$("#divinformacion").html("");
+					$("#precio").prop("disabled",true);
+					$("#divopcion3").css("display","none");
+					var codigo=$("#opcion1").children(":selected").attr("value")
+					if (codigo==0){
+						$("#divopcion2").css("display","none");
+						return false;
+					}else{
+						$("#divopcion2").css("display","inline");
+						var datos="tipo=opcion2&codigo_anterior=" + encodeURIComponent(codigo) + "&nocache=" + Math.random(); 
+					}
+				}else{
+					$("#divinformacion").html("");
+					$("#opcion3").html("");
+					$("#precio").prop("disabled",true);
+					var codigo=$("#opcion2").children(":selected").attr("value")
+					if (codigo==0){
+						$("#divopcion3").css("display","none");
+						return false;
+					}else{
+						$("#divopcion3").css("display","inline");
+						var datos="tipo=opcion3&codigo_anterior=" + encodeURIComponent(codigo) + "&nocache=" + Math.random(); 
+					}
+				}
+				var peticion = $.ajax({
+					url:  'Ejercicio1a.php',
+					type: 'POST',
+					data: datos,
+					success: procesaOptions, 
+					error: function() { alert('Se ha producido un error'); }
+				  });
+			}
+			function calcularPrecio() {
+				var codigo=$("#opcion3").children(":selected").attr("value")
+				var datos="codigo_anterior=" + encodeURIComponent(codigo) + "&nocache=" + Math.random(); 
+				var peticion = $.ajax({
+					url:  'Ejercicio1b.php',
+					type: 'POST',
+					data: datos,
+					success: procesaPrecio, 
+					error: function() { alert('Se ha producido un error'); }
+				  });
+			}
+			function procesaOptions(respuesta) { 
+				var opcion =  new Option("Elige una opción",0);
+				$("#"+tipo_accion).append(opcion);
+				var i=0;
+				$(respuesta).find("codigo").each(function(){
+					opcion =  new Option($(this).next("nombre").text(),$(this).text());
+					$("#"+tipo_accion).append(opcion);
+				});
+			}
+			function procesaPrecio(respuesta) { 
+				$("#divinformacion").html("<p>El precio estimado sería: "+respuesta+"€</p>");
+			}
+			$(document).ready(function(){
+			  	cargaSelect("opcion1");
+				$("#divopcion2").css("display","none");
+				$("#divopcion3").css("display","none");
+				$("#opcion1").change(function(){
+						cargaSelect("opcion2");
+				});
+				$("#opcion2").change(function(){
+						cargaSelect("opcion3");
+				});
+				$("#opcion3").change(function(){
+					var codigo=$("#opcion3").children(":selected").attr("value")
+					$("#divinformacion").html("");
+					if (codigo!=0){
+						$("#precio").prop("disabled",false);
+					}
+				});
+				$("#precio").prop("disabled",true);
+				$("#divinformacion").html("");
+				$("#precio").click(calcularPrecio);
+			});
+		//]]>
+		</script>
+	</head>
+	<body>
+    	<div id="divtitulo"><h1>ORDENADORES</h1></div>
+        <form action="" >
+            <div id="divopcion1">
+            	<label for="opcion1">Tipo:</label>
+           		<select id="opcion1"> </select>
+           	</div>
+           	<div id="divopcion2"> 
+            	<label for="opcion2">Procesador:</label>
+            	<select id="opcion2"></select>
+          	</div>
+            <div id="divopcion3"> 
+            	<label for="opcion3">Disco duro:</label>
+            	<select id="opcion3"></select>
+          	</div>
+            <div id="divprecio"><input type="button" value="Calcular precio" id="precio"/></div>
+            <div id="divinformacion"></div>
+        </form>
+	</body>
+</html>

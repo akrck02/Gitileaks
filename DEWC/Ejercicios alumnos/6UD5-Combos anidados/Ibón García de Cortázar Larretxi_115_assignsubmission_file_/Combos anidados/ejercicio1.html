@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<title>Combos anidados</title>
+
+<script type="text/javascript">
+
+	var provincias = new Array("Araba", "Bizkaia", "Gipuzkoa", "Nafarroa", "Lapurdi", "Zuberoa", "Nafarroa Beherea");
+	
+	var municipios_1 = new Array("Seleccione Municipio", "Vitoria-Gasteiz", "Amurrio", "El Ciego", "La Guardia");
+	var municipios_2 = new Array("Seleccione Municipio", "Bilbao", "Barakaldo", "Durango", "Elorrio", "Muzkiz");
+	var municipios_3 = new Array("Seleccione Municipio", "Donostia-San Sebastián", "Arrasate-Mondragón", "Eibar");
+	var municipios_4 = new Array("Seleccione Municipio", "Iruña", "Burlada", "Estella-Lizarra", "Tafalla");
+	var municipios_5 = new Array("Seleccione Municipio", "Baiona", "Bastida", "Hendaya", "Miarritze");
+	var municipios_6 = new Array("Seleccione Municipio", "Maule", "Barkoxe", "Sohüta");
+	var municipios_7 = new Array("Seleccione Municipio", "Baigorri", "Garazi", "Oztibarre");
+
+	var todosMunicipios = [
+    	[],
+		municipios_1,
+		municipios_2,
+		municipios_3,
+		municipios_4,
+		municipios_5,
+		municipios_6,
+		municipios_7,
+	];
+
+	function removeOptions(){
+		var municipios = document.getElementById("comboMunicipios");
+		var length = municipios.options.length;
+		for (i = length-1; i >= 0; i--) {
+				municipios.options[i] = null;
+			}
+			var option = document.createElement("option");
+			option.text = "Seleccione Municipio";
+			municipios.add(option);
+	}
+	function limpiarEtiqueta(){
+		etiqueta = document.getElementById("seleccionados");
+		etiqueta.innerText = "";
+	}
+
+	function cambioProvincia(){
+		seleccion = document.getElementById("comboProvincias").value;
+		var municipios = document.getElementById("comboMunicipios");
+		//SI SELECCIONAN LA PRIMERA OPCION, SE VACIA EL COMBO Y SE DEJA LA OPCON POR DEFECTO
+		if(seleccion == "Seleccione Provincia"){
+			removeOptions();
+		}
+		else{
+			//BUSCAMOS A QUE INDICE CORRESPONDE LA PROVINCIA SELECCIONADA
+			var length = provincias.length;
+			indice = 0;
+			for (i = 0; i < length; i++) {
+				if(provincias[i] == seleccion){
+					indice = i;
+				}
+			}
+			removeOptions();
+			var municipiosNuevos = todosMunicipios[indice+1];
+			for(j = 0; j<municipiosNuevos.length; j++){
+				var option = document.createElement("option");
+				option.text = municipiosNuevos[j];
+				municipios.add(option);
+			}
+		}
+		limpiarEtiqueta();
+	}
+
+	function cambioMunicipio(){
+		etiqueta = document.getElementById("seleccionados");
+		seleccionProvincia = document.getElementById("comboProvincias").value;
+		seleccionMunicipio = document.getElementById("comboMunicipios").value;
+		etiqueta.innerText = "Has seleccionado "+seleccionMunicipio+" en "+seleccionProvincia;
+	}
+
+</script>
+</head>
+<body>
+	<h1>MUNICIPIOS</h1>
+	<select name="provincias" id="comboProvincias" onchange='cambioProvincia();'>
+		<option value="Seleccione Provincia">Seleccione Provincia</option>
+		<script>
+			for(var i = 0; i < provincias.length; i++){
+				document.write("<option value='"+provincias[i]+"' >"+provincias[i]+"</option>");
+			}
+		</script>
+
+	</select>
+	<select name="municipios" id="comboMunicipios" onchange='cambioMunicipio();'>
+		<option value="seleccionMunicipio">Seleccione Municipio</option>
+	</select>
+	</br></br>
+	<label id="seleccionados"></label>
+</body>
+</html>

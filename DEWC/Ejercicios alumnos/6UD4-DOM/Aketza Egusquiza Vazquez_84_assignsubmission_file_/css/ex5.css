@@ -1,0 +1,104 @@
+:root {  --color: dodgerblue;}
+
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f4f4;
+    color:#404040;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#calc{
+    width: 400px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5px;
+    justify-content: center;
+    align-items: center;
+}
+
+#calc>input{
+    align-self: center;
+    width: 80%;
+    padding: 15px;
+    font-size: 1.5em;
+    margin-bottom: 50px;
+    color: #404040;
+    border-radius: 3px;
+    background: white;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.15);
+    border:none;
+    transition: .5s;
+}
+
+#calc>div>button{
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+    padding: 5px;
+    margin: 15px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    background: white;
+    color: #404040;
+    border:none;
+    border-radius: 6px;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.15);
+    transition:.15s;
+    cursor: pointer;
+}
+
+#calc>div>.sign{
+    color:dodgerblue;
+    background: #fff;
+}
+#debug:hover , #calc>div>button:hover{
+    transform: scale(1.1);
+}
+
+#debug{
+    background: crimson;
+    margin-top:20px;
+    padding: 15px;
+    color:white;
+    width: 50%;
+    font-weight: bold;
+    font-size: 1.5em;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.15);
+    transition:.15s;
+    cursor: pointer;
+    display: none;
+}
+
+
+button:focus {outline:0;}
+
+#calc>div>#clear.movimiento{
+    transition: .5s;
+    animation: move .5s alternate infinite;
+    background: dodgerblue;
+    border-radius: 50px;
+    color: #fafafa;
+}
+
+@keyframes move {
+    0%{transform: translateY(0);}
+    100%{transform: translateY(-10px);}
+}
+
+#calc>#resultado.error{
+    letter-spacing: 2px;
+    text-align: center;
+    transition: .5s;
+    color:rgb(211, 74, 74);
+    font-family: monospace;
+    font-size: 1.7em;
+}
+

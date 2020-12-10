@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Ejercicio8f</title>
+        <style type="text/css">
+			form{
+				width:525px;
+			}
+			label{
+				width:100px;
+				float:left;
+				text-align:right;
+				padding-right: 5px;
+			}
+			select{
+				text-align:left;
+				width:420px;
+				padding-left: 5px;
+			}
+        </style>
+		<script src="scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+		<script type="text/javascript"> 
+		//<![CDATA[
+			var tipo_accion="municipio";
+			function cargaSelect(tipo) {
+				if (tipo=="provincia"){
+					var datos="tipo=provincia&" + Math.random();
+					tipo_accion="provincia"
+				}else{
+					$("#municipio").html("");
+					var codigo=$("#provincia").children(":selected").attr("value")
+					if (codigo==0){
+						$("#divmunicipio").css("display","none");
+						return false;
+					}else{
+						$("#divmunicipio").css("display","inline");
+						var datos="tipo=municipio&codigo_provincia=" + encodeURIComponent(codigo) + "&nocache=" + Math.random(); 
+						tipo_accion="municipio"
+					}
+				}
+				 var peticion = $.ajax({
+					url:  'Ejercicio7.php',
+					type: 'POST',
+					data: datos,
+					success: procesaOptions, 
+					error: function() { alert('Se ha producido un error'); }
+				  });
+			}
+			function procesaOptions(objson) { 
+				var opcion =  new Option("Elige una opción",0);
+				$("#"+tipo_accion).append(opcion);
+				var respuesta = eval("("+objson+")");
+				for(var codigo in respuesta) {
+					opcion =  new Option(respuesta[codigo], codigo);
+					$("#"+tipo_accion).append(opcion);
+				};
+			}
+			
+			$(document).ready(function(){
+			  	cargaSelect("provincia")
+				$("#divmunicipio").css("display","none");
+				$("#provincia").change(cargaSelect);
+			});
+		//]]>
+		</script>
+	</head>
+	<body>
+    	<form action="" >
+            <div id="divprovincia">
+            	<label for="provincia">Provincia:</label>
+           		<select id="provincia"> </select>
+           	</div><br/>
+           	<div id="divmunicipio"> 
+            	<label for="municipio">Municipio:</label>
+            	<select id="municipio"></select>
+          	</div>
+        </form>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio7</title>
+        <script> 
+           var ano=prompt("Introduce un año");
+		   var fecha_vieja = new Date(ano,0,1);
+		   var fecha_nueva = new Date()
+		   alert (fecha_vieja.getHours() + "--" + fecha_vieja.getMinutes() + "--" + fecha_vieja.getSeconds() );
+		   alert (fecha_nueva.getHours()+ "--" + fecha_nueva.getMinutes() + "--" + fecha_nueva.getSeconds() );
+		   var tiempo=fecha_nueva-fecha_vieja
+		   alert(tiempo); 
+		   //Un dia tiene 86400000 milisegundos*/
+			var dias = Math.floor(tiempo/86400000); 
+			tiempo= tiempo%86400000
+			//Una hora tiene  3600000 milisegundos
+			var horas =Math.floor(tiempo/3600000)
+			tiempo= tiempo%3600000
+			//Un minuto tiene  60000 milisegundos
+			var minutos =Math.floor(tiempo/60000)
+			tiempo= tiempo%60000
+			//Un segundo tiene  1000 milisegundos
+			var segundos =Math.floor(tiempo/1000)
+			document.write("<section>Desde el " + fecha_vieja.toLocaleDateString() + " han pasado " );
+			document.write(dias + " dias, " + horas + " horas, " + minutos + " minutos y " +segundos + " segundos</section>");
+        </script> 
+	</head>
+	<body>
+    	<noscript>
+			<p>Para ver correctamente este código tiene que activar JavaScript</p>
+		</noscript>  
+	</body> 
+</html> 
+

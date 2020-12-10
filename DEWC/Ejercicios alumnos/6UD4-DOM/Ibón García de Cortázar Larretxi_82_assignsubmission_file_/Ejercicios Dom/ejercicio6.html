@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 6</title>
+
+<script type="text/javascript">
+	var rutas = [
+		"images/0.jpg",
+		"images/1.jpg",
+		"images/2.jpg",
+		"images/3.jpg",
+		"images/4.jpg",
+		"images/5.jpg",
+		"images/6.jpg",
+		"images/7.jpg",
+		"images/8.jpg",
+		"images/9.jpg",
+	];
+
+	function cambiaFecha(dia1,dia2,mes1,mes2,anio1,anio2,anio3,anio4){
+		document.getElementById("dia1").src = rutas[dia1];
+		document.getElementById("dia2").src = rutas[dia2];
+		document.getElementById("mes1").src = rutas[mes1];
+		document.getElementById("mes2").src = rutas[mes2];
+		document.getElementById("anio1").src = rutas[anio1];
+		document.getElementById("anio2").src = rutas[anio2];
+		document.getElementById("anio3").src = rutas[anio3];
+		document.getElementById("anio4").src = rutas[anio4];	
+	}
+	function cambiaHora(hora1,hora2,min1,min2,seg1,seg2){
+		document.getElementById("hora1").src = rutas[hora1];
+		document.getElementById("hora2").src = rutas[hora2];
+		document.getElementById("min1").src = rutas[min1];
+		document.getElementById("min2").src = rutas[min2];
+		document.getElementById("seg1").src = rutas[seg1];
+		document.getElementById("seg2").src = rutas[seg2];	
+	}
+	function getInfo(){
+		fecha = new Date(Date.now());
+		dia = fecha.getDate();
+		var mes = fecha.getUTCMonth()+1;
+		var anio = fecha.getUTCFullYear();
+		var hora = fecha.getUTCHours();
+		var minutos = fecha.getUTCMinutes();
+		var segundos = fecha.getUTCSeconds();
+
+		//SACAMOS LOS DIAS
+		if(dia < 10){
+			dia1 = 0;
+		}
+		else{
+			dia1 = Math.floor(dia/10);
+		}
+		dia2 = Math.floor(dia%10);
+		//SACAMOS LOS MESES
+		if(mes < 10){
+			mes1 = 0;
+		}
+		else{
+			mes1 = Math.floor(mes/10);
+		}
+		mes2 = Math.floor(mes%10);
+		//SACAMOS EL AÑO
+		anio1 = Math.floor(anio/1000);
+		anio2 = Math.floor((anio/100)%10);
+		anio3 = Math.floor((anio/10)%10);
+		anio4 = Math.floor(anio%10);
+
+		//HORA
+		if(hora < 10){
+			hora1 = 0;
+		}
+		else{
+			hora1 = Math.floor(hora/10);
+		}
+		hora2 = Math.floor(hora%10);
+
+		//MINUTOS
+		if(minutos < 10){
+			min1 = 0;
+		}
+		else{
+			min1 = Math.floor(minutos/10);
+		}
+		min2 = Math.floor(minutos%10);
+
+		//SEGUNDOS
+		if(segundos < 10){
+			seg1 = 0;
+		}
+		else{
+			seg1 = Math.floor(segundos/10);
+		}
+		seg2 = Math.floor(segundos%10);
+
+		cambiaFecha(dia1,dia2,mes1,mes2,anio1,anio2,anio3,anio4);
+		cambiaHora(hora1,hora,min1,min2,seg1,seg2);
+	}
+</script>
+</head>
+<body>
+	<h1>FECHA Y HORA</h1>
+	<table border="1">
+		<tr>
+			<td><img id="dia1" src=""/></td>
+			<td><img id="dia2" src=""/></td>
+			<td><img src="images/barra.jpg"/></td>
+			<td><img id="mes1" src=""/></td>
+			<td><img id="mes2" src=""/></td>
+			<td><img src="images/barra.jpg"/></td>
+			<td><img id="anio1" src=""/></td>
+			<td><img id="anio2" src=""/></td>
+			<td><img id="anio3" src=""/></td>
+			<td><img id="anio4" src=""/></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><img id="hora1" src=""/></td>
+			<td><img id="hora2" src=""/></td>
+			<td><img src="images/puntos.jpg"/></td>
+			<td><img id="min1" src=""/></td>
+			<td><img id="min2" src=""/></td>
+			<td><img src="images/puntos.jpg"/></td>
+			<td><img id="seg1" src=""/></td>
+			<td><img id="seg2" src=""/></td>
+		</tr>
+	</table>
+	<script>
+		setInterval(function(){ getInfo(); }, 1000);
+	</script>
+</body>
+</html>

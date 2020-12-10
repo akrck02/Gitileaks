@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        var num = Math.floor((Math.random() * 100) + 1);
+        var intentos = 0;
+        var n = null;
+        do{
+            n = prompt("Adivina el número entre 1 y 100").trim();
+            if (n < num){
+                alert("El número es mayor");
+            } else if (n > num){
+                alert("El número es menor");
+            }
+            intentos++;
+        }while (n != num);
+
+        alert("¡Felicidades! Has acertado el número en " + intentos + " intentos")
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title></title>
+		<script type="text/javascript">
+			tiendas = new Array();
+			tiendas["cp48"] = new Array("Vizcaya", new Array("Bilbao", "Durango", "Barakaldo"));
+			tiendas["cp20"] = new Array("Guipuzcoa", new Array("Eibar", "Donosti"));
+			tiendas["cp01"] = new Array("Alava", new Array("Vitoria", "Amurrio", "Laguardia"));
+			
+			function cargarMuni() {
+				var pros = document.getElementById("provincias");
+				var cp = pros.options[pros.selectedIndex].value;
+  
+                var municipios = document.getElementById("municipios");
+                document.getElementById("municipios").disabled = false;
+                while (municipios.firstChild) {
+                    municipios.removeChild(municipios.firstChild);
+                }
+                for(i = 0; i < tiendas[cp][1].length; i++) {
+                    var muni = document.createElement("option");
+                    muni.text = tiendas[cp][1][i];
+                    municipios.add(muni);
+                }
+			}
+			
+			window.onload = function() {
+				document.write("<h1>Provincias y municipios</h1></br>");
+				document.write("<select name='provincias' id='provincias' onclick='cargarMuni();' style='width: 120px;'>");
+					for(p in tiendas) {
+						var opt = new Option(tiendas[p][0], p);
+						document.write("<option id='pro' value='"+p+"'>"+opt.innerHTML+"</option>");
+					}
+				document.write("</select>");
+                
+                document.write("<select name='municipios' id='municipios' style='width: 120px;'>");
+                    document.write("<option></option>");
+                document.write("</select>");
+                cargarMuni();
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

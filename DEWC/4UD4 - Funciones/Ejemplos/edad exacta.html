@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin t&iacute;tulo</title>
+</head>
+
+<body>
+<H1>RoyerStudios</H1>
+<HR COLOR="RED">
+<script language="javascript">
+ var nrodia,mesnac,anio,edad,nrodiames;
+ var diaactual=10,mesactual=10,anioactual=2011,dias;
+ 
+ nrodia=parseInt(prompt("Ingrese el dia de su cumpleaños",""));
+ mesnac=parseInt(prompt("Ingrese el mes en que nacio",""));
+ anio=parseInt(prompt("Ingrese su año de nacimiento",""));
+ 
+ switch (mesnac)
+ {
+  case 1:
+		  nrodiames=31;
+		  break;
+  case 2: 
+		  nrodiames=28;
+		  break;
+  case 3:
+		  nrodiames=31;
+		  break;
+  case 4:
+		 nrodiames=30;
+		 break;
+  case 5:
+		 nrodiames=31;
+		 break;
+  case 6:
+		 nrodiames=30;
+		 break;
+  case 7:
+		 nrodiames=31;
+		 break;
+  case 8:
+		 nrodiames=31;
+		 break;
+  case 9:
+		 nrodiames=30;
+		 break;
+  case 10:
+		 nrodiames=31;
+		 break;
+  case 11:
+		 nrodiames=30;
+		 break;
+  case 12:
+		 nrodiames=31;
+		 break;
+ }
+ if (mesnac<mesactual)
+  edad=anioactual-anio;
+ else
+  edad=((anioactual-anio)-1);
+
+
+ if (nrodia<diaactual)
+   if (mesnac<mesactual)
+      mes=mesactual-mesnac;
+   else 
+      mes=((12-mesnac)+mesactual);
+ else
+  if (mesnac<mesactual)
+    mes=mesactual-mesnac-1;
+  else
+    mes=(((12-mesnac)+mesactual)-1);
+
+
+
+ if (nrodia<diaactual)
+   dias=diaactual-nrodia;
+ else
+   dias=((nrodiames-nrodia)+diaactual);
+ 
+ document.write("Ud. tienes "+edad+" años con: "+mes+" meses y "+dias+" dias <br>");
+</script> 
+</body>
+</html>

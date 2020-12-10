@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        function paroimpar (num){
+            if(num % 2 == 0)
+                return "El número es par";
+            else
+                return "El número es impar";
+        }
+        
+        var num = null;
+        do{
+            var strnum = prompt("Introduce un número").trim();
+            var num = Number(strnum);
+            if(isNaN(num)){
+                alert("El número no es válido");
+            }
+        }while(isNaN(num));
+        alert(paroimpar(num));
+    </script>
+</body>
+</html>

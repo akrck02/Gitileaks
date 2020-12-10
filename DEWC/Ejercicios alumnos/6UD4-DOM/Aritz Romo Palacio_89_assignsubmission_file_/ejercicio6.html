@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arrayNums = ["0.jpg","1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg"];
+        const ruta = "images/";
+
+        function cargar(){
+            var dia1 = document.getElementById("dia1");
+            var dia2 = document.getElementById("dia2");
+            var mes1 = document.getElementById("mes1");
+            var mes2 = document.getElementById("mes2");
+            var anio1 = document.getElementById("anio1");
+            var anio2 = document.getElementById("anio2");
+            var anio3 = document.getElementById("anio3");
+            var anio4 = document.getElementById("anio4");
+            var hora1 = document.getElementById("hora1");
+            var hora2 = document.getElementById("hora2");
+            var min1 = document.getElementById("min1");
+            var min2 = document.getElementById("min2");
+            var seg1 = document.getElementById("seg1");
+            var seg2 = document.getElementById("seg2");
+        }
+
+        function fecha(){
+            dia();
+            mes();
+            anio();
+            hora();
+            mins();
+            segs();
+        }
+
+        function actualizar(){
+            let actualizar = setInterval(fecha,1000);
+        }
+
+        function dia(){
+            var hoy = new Date();
+            var dia = hoy.getDate().toString();
+            var arrayDia = dia.split("");
+
+            if (dia<10){
+                dia1.src = ruta+arrayNums[0];
+                dia2.src = ruta+arrayNums[dia];
+            }
+            else{
+                dia1.src = ruta+arrayNums[arrayDia[0]];
+                dia2.src = ruta+arrayNums[arrayDia[1]];
+            }
+        }
+
+        function mes(){
+            var hoy = new Date();
+            var mes = hoy.getMonth();
+
+            if (mes<9){
+                mes1.src = ruta+arrayNums[0];
+                mes2.src = ruta+arrayNums[mes+1];
+            }
+            else{
+                mes1.src = ruta+arrayNums[1];
+                mes2.src = ruta+arrayNums[mes-9];
+            }
+        }
+
+        function anio(){
+            var hoy = new Date();
+            var anio = hoy.getFullYear().toString();
+            var arrayAnio = anio.split("");
+
+            anio1.src = ruta+arrayNums[arrayAnio[0]];
+            anio2.src = ruta+arrayNums[arrayAnio[1]];
+            anio3.src = ruta+arrayNums[arrayAnio[2]];
+            anio4.src = ruta+arrayNums[arrayAnio[3]];
+            
+        }
+
+        function hora(){
+            var hoy = new Date();
+            var hora = hoy.getHours().toString();
+            var arrayHora = hora.split("");
+
+            if (hora<10){
+                hora1.src = ruta+arrayNums[0];
+                hora2.src = ruta+arrayNums[arrayHora[0]];
+            }
+            else{
+                hora1.src = ruta+arrayNums[arrayHora[0]];
+                hora2.src = ruta+arrayNums[arrayHora[1]];
+            }
+        }
+
+        function mins(){
+            var hoy = new Date();
+            var min = hoy.getMinutes().toString();
+            var arrayMin = min.split("");
+
+            if (min<10){
+                min1.src = ruta+arrayNums[0];
+                min2.src = ruta+arrayNums[arrayMin[0]];
+            }
+            else{
+                min1.src = ruta+arrayNums[arrayMin[0]];
+                min2.src = ruta+arrayNums[arrayMin[1]];
+            }
+        }
+
+        function segs(){
+            var hoy = new Date();
+            var seg = hoy.getSeconds().toString();
+            var arraySeg = seg.split("");
+
+            if (seg<10){
+                seg1.src = ruta+arrayNums[0];
+                seg2.src = ruta+arrayNums[arraySeg[0]];
+            }
+            else{
+                seg1.src = ruta+arrayNums[arraySeg[0]];
+                seg2.src = ruta+arrayNums[arraySeg[1]];
+            }
+        }
+
+        window.onload = cargar;
+
+    </script>
+        <table>
+            <tr>
+                <td><img id="dia1" src="#"></td>
+                <td><img id="dia2" src="#"></td>
+                <td><img id="barra1" src="images/barra.jpg"></td>
+                <td><img id="mes1" src="#"></td>
+                <td><img id="mes2" src="#"></td>
+                <td><img id="barra2" src="images/barra.jpg"></td>
+                <td><img id="anio1" src="#"></td>
+                <td><img id="anio2" src="#"></td>
+                <td><img id="anio3" src="#"></td>
+                <td><img id="anio4" src="#"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><img id="hora1" src="#"></td>
+                <td><img id="hora2" src="#"></td>
+                <td><img id="puntos1" src="images/puntos.jpg"></td>
+                <td><img id="min1" src="#"></td>
+                <td><img id="min2" src="#"></td>
+                <td><img id="puntos2" src="images/puntos.jpg"></td>
+                <td><img id="seg1" src="#"></td>
+                <td><img id="seg2" src="#"></td>
+                <td></td>
+            </tr>
+        </table>
+        <script>
+            actualizar();
+        </script>
+</body>
+</html>

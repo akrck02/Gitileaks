@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+   		<meta charset="utf-8" />
+		<title>Ejercicio3</title>
+		 <style type="text/css">
+			body { 
+				text-align:center;
+				font-family:Verdana, Geneva, sans-serif;
+				font-size:14px;
+			}
+			#cajaformulario{
+				margin: 0 auto;
+				text-align:center;
+				width:500px;
+				border: 1px solid black;
+				padding: 10px;
+			}
+			label{
+				width: 150px;
+				float:	left;
+				clear:both;
+				text-align:right;
+				padding: 5px;
+			}
+			input{
+				float:	left;
+				width: 330px;
+			}
+			#botones input{ 
+				font-family:Verdana, Geneva, sans-serif;
+				float:none;
+				width: 160px;
+			}
+			#botones{
+				margin: 0 auto;
+				text-align:center;
+				clear:both;
+			}
+        </style>
+		<script>
+        	var cajadatod, bd
+			function iniciar(){
+				//indexedDB.deleteDatabase('videos')
+				var solicitud=indexedDB.open('videos');
+				solicitud.addEventListener('error', errores);
+				solicitud.addEventListener('success', crear);
+				solicitud.addEventListener('upgradeneeded', crearbd);
+				var boton=document.getElementById('guardar');
+				boton.addEventListener('click', agregarobjeto);
+			}
+			function errores(e){
+				alert("Ha ocurrido un error");
+			} 
+			function crear(e){
+				bd=e.target.result;
+			}
+			function crearbd(e){
+				var bd=e.target.result;
+				var almacen = bd.createObjectStore("videos", {keyPath: "id" });	
+			}
+			
+			function agregarobjeto(){
+				var id=document.getElementById('id').value;
+				var archivo1=document.getElementById('archivo1').value;
+				var archivo2=document.getElementById('archivo2').value;
+				var descripcion=document.getElementById('descripcion').value;
+				var transaccion=bd.transaction(['videos'],'readwrite');
+				var almacen=transaccion.objectStore('videos');
+				var solicitud=almacen.put({id: id, archivo1: archivo1, archivo2: archivo2, descripcion: descripcion});
+				solicitud.addEventListener('success',mostrar);
+				solicitud.addEventListener('error',errores);
+			}
+			function mostrar(){
+				document.getElementById('id').value="";
+				document.getElementById('archivo1').value="";
+				document.getElementById('archivo2').value="";
+				document.getElementById('descripcion').value="";
+				alert("Datos guardados correctamente");;
+			}
+			window.addEventListener('load', iniciar);
+        </script>
+	</head>
+    <body>
+       <section id="cajaformulario">
+            <form id="formulario" action="Ejercicio3-2.html">
+                 <label for="id">Id:</label>
+                <input type="text"  id="id"><br/>
+                <label for="archivo1">Ruta archivo 1:</label>
+                <input type="text"  id="archivo1"><br/>
+                <label for="archivo2">Ruta archivo 2:</label>
+                <input type="text"  id="archivo2"><br/>
+                <label for="descripcion">Descripcion:</label>
+                <input type="text"  id="descripcion"><br/>
+                <div id="botones">
+                	<input type="button"  id="guardar" value="Guardar">
+                    <input type="submit"  id="ver" value="Ver todos los videos">
+                </div>
+             </form>
+		</section>
+	</body>
+</html>

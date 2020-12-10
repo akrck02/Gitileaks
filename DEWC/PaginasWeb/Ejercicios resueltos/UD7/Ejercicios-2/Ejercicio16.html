@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   		<title>Ejercicio16</title>
+    	<style type="text/css">
+			body{
+			   background: #eee;
+			   text-align: center;
+			   font-family:Verdana, Geneva, sans-serif;
+			   font-size:10px;
+			   
+			}
+			
+			ul{
+			   background: #e3e3e3;
+			   border: 1px solid black;
+			   cursor: pointer;
+			   font-weight: bold;
+			   line-height: 20px;
+			   float:left;
+			   width: 200px;
+			   margin:0px;
+			   padding: 0px;
+			   
+			}
+			
+			li{
+			   margin: 0;
+			   padding: 0;
+			   list-style:none;
+			   
+			   
+			}
+			
+			.esconder{
+			   display: none;
+			}
+			a, a:visited{
+				text-decoration: none;
+				color:#AAA;
+			}
+			
+        </style>
+		<script src="scripts/jquery-1.10.2.min.js" type="text/javascript"></script>	
+ 		<script type="text/javascript">
+			$(document).ready(function(){
+					$("li").addClass("esconder");
+					$("ul").mouseenter(function(){
+						$("li").slideUp()
+						var nombre=$(this).attr("class")
+						$("." +nombre + " li").each(function(){
+							$(this).slideDown();
+						})
+					});
+				$("#menu").mouseleave(function(){
+					$("li").slideUp()
+				});
+			});
+		</script>
+	</head>
+	<body>
+         <div id="menu" >
+              <ul  class="1">BUSCADOR
+                  <li class="1"><a href="http://google.es">Google</a></li>
+                  <li class="1"><a href="http://yahoo.es">Yahoo</a></li>
+                  <li class="1"><a href="http://www.bing.com/">Bing</a></li>
+              </ul>
+              <ul class="2">SISTEMA OPERATIVO
+                  <li class="2"><a href="http://ubuntu.com">Ubuntu</a></li>
+                  <li class="2"><a href="http://windows.microsoft.com/es-es/windows/home">Windows</a></li>
+                  <li class="2"><a href="http://www.apple.com/es/osx/">Mac OS</a></li>
+              </ul>
+              <ul class="3">LENGUAJE DE PROGRAMACIÓN
+                  <li class="3"><a href="http://www.w3schools.com/js/">JavaScript</a></li>
+                  <li class="3"><a href="http://www.jquery.com">jQuery</a></li>
+                  <li class="3"><a href="http://docs.oracle.com/javaee/1.4/api/overview-summary.html">Java</a></li>
+                  <li class="3"><a href="http://www.w3schools.com/php/">PHP</a></li>
+                  <li class="3"><a href="http://www.w3schools.com/ajax/">Ajax</a></li>
+              </ul>
+              <ul class="4">VIDEO
+                  <li class="4"><a href="http://www.youtube.com">Youtube</a></li>
+              </ul>
+          </div>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>ECMA6 - V2_miDisplay</title>
+    <style type="text/css">
+        #contenedor {
+            position: relative;
+            background-color: #C0C0C0;
+        }
+        
+        #display {
+            background-color: #00FF00;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            left: 200px
+        }
+    </style>
+    <script>
+        class miDisplay {
+            constructor(inicio) {
+                this.miObj = document.getElementById('display');
+                this.miObjestilo = document.getElementById('display').style;
+                this.valor = inicio;
+            }
+            posiciona(x, y) {
+                this.miObjestilo.left = x + "px";
+                this.miObjestilo.top = y + "px";
+            }
+            asignaValor(result) {
+                this.valor = result;
+            }
+            muestraValor() {
+                let tam = document.formEntrada.txtTamano.value;
+                this.miObjestilo.fontSize = tam + "px";
+                this.miObj.innerHTML = this.valor;
+            }
+        }
+
+        function programa(num) {
+            let obj = new miDisplay(0);
+            obj.posiciona(500, 200);
+            obj.asignaValor(num);
+            obj.muestraValor();
+        }
+    </script>
+</head>
+
+<body>
+    <h3> Display </h3>
+    <div id="contenedor">
+        <form name="formEntrada">
+            Tamaño<input type="text" name="txtTamano" value="36" /> Valor <input type="text" name="txtValor" value="0" />
+            <input type="button" value="Pulsa" onclick="programa(formEntrada.txtValor.value)" /></br>
+        </form>
+        <div id="display"></div>
+    </div>
+</body>
+
+</html>

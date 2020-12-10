@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        function Producto_alimenticio(cod, nom, precio){
+            this.cod = cod;
+            this.nom = nom;
+            this.precio = precio;
+        }
+        Producto_alimenticio.prototype.imprimeDatos = function(){
+                document.write("<p>");
+                document.write("<b>Código:</b> " + this.cod + "<br/>");
+                document.write("<b>Nombre:</b> " + this.nom + "<br/>");
+                document.write("<b>Precio:</b> " + this.precio);
+                document.write("<p>");
+            }
+
+        var prods = [new Producto_alimenticio("01010101", "Naranjas", 1.99),
+                     new Producto_alimenticio("02020202", "Pasta", 1.29),
+                     new Producto_alimenticio("03030303", "Pechugas de pollo", 3.49)];
+        
+        for (var i = 0; i < prods.length; i++){
+            prods[i].imprimeDatos();
+        }
+    </script>
+</body>
+</html>

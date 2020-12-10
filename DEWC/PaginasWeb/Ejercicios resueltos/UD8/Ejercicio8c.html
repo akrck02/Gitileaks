@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Ejercicio 8c</title>
+         <script src="scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+			function comprobar() {
+			  var login = $('#login').val();
+			  var peticion = $.ajax({
+				url:  'Ejercicio4.php?nocache=' + Math.random(),
+				type: 'POST',
+				data: " login=" + login,
+				success: procesaRespuesta, 
+				error: function() { alert('Se ha producido un error'); }
+			  });
+			}	 
+			function procesaRespuesta(respuesta) {
+				var login =$("#login").val();
+				if($(respuesta).find("disponible").text() == "si") {
+					$("#disponibilidad").html("El nombre elegido ["+login+"] está disponible");
+				}else {
+					var mensaje = "NO está disponible el nombre elegido ["+login+"]. Puedes probar con las siguientes alternativas.";
+					$(respuesta).find("login").each(function(){
+						mensaje += "<li><a href=\"#\" onclick=\"selecciona('"+$(this).text()+"'); return false\">"+$(this).text()+"</a></li>";	
+					})
+					$("#disponibilidad").html("<ul>"+mensaje+"</ul>");
+				}
+            }
+            function selecciona(login) {
+                $("#login").attr("value",login);
+            }
+			$(document).ready(function(){
+			  $('#comprobar').click(comprobar);
+			});
+			
+		</script>
+    </head>
+    <body>
+        <h1>Comprobar disponibilidad del login y mostrar alternativas</h1>
+        <form action="">
+            <label for="login">Nombre de usuario:</label>
+            <input type="text" name="login" id="login" />
+            <a id="comprobar" href="#">Comprobar disponibilidad...</a>
+        </form>
+        <div id="disponibilidad"></div>
+    </body>
+</html>

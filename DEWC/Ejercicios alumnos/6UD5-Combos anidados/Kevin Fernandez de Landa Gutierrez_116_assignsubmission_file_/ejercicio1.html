@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>Page Title</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<script src='muncipios.js'>
+	</script>
+</head>
+<body>
+	<form>
+		<select id="provincias" onchange="cargarmunicipio()">
+			<option name="Selecciona provincia">Selecciona provincia</option>
+		</select>
+		<select id="municipios" onchange="mostrarDatos()">
+			<option name="Seleccione municipio">Seleccione municipio</option>
+		</select>
+	</form>
+	<p id="datos"></p>
+</body>
+</html>

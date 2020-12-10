@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/ejercicio5.css" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const div0 = "NO SE PUEDE DIVIDIR ENTRE 0";
+        var x = "-5+4";
+        var xS = x.split('+');
+        console.log(xS[0]);
+        console.log(xS[1]);
+        var r = parseInt(xS[0]) + parseInt(xS[1]);
+        console.log(r);
+
+        function calc(tecla){
+            pant = document.getElementById("pantalla");
+
+            if(pant.value==div0){
+                pant.value = 0;
+            }
+
+            if (tecla == 0 && pant.value!="0"){
+                pant.value += tecla;
+            }
+            else if (tecla >= 1 && tecla <= 9){
+                if (pant.value == "0")
+                    pant.value = tecla;
+                else
+                pant.value += tecla;
+            }
+            else if (tecla == C){
+                pant.value = "0";
+            }
+            else if ((tecla == '+' || tecla == '-' || tecla == '*' || tecla == '/') 
+            && (pant.value.substring(pant.value.length-1)>=0) && (pant.value.substring(pant.value.length-1)<=9)){
+                console.log(pant.value.substring(pant.value.length-1));
+                var valorP = pant.value;
+                if (resolver(pant.value)){
+                    pant.value += tecla;
+                }
+                else{
+                    pant.value = tecla;
+                }
+            }
+            else{
+                resolver(pant.value);
+            }
+        }
+        function resolver(cadena){
+            if (cadena.indexOf("+")!=-1) {
+                    var splitP = cadena.split("+");
+                    var result = parseInt(splitP[0],10) + parseInt(splitP[1],10);
+                    pant.value = result;
+                }
+            else if (cadena.substring(1).indexOf("-")!=-1) {
+                    var splitP = cadena.split("-");
+                    var result = parseInt(splitP[0],10) - parseInt(splitP[1],10);
+                    pant.value = result;
+                }
+            else if (cadena.indexOf("*")!=-1) {
+                var splitP = cadena.split("*");
+                var result = parseInt(splitP[0],10) * parseInt(splitP[1],10);
+                pant.value = result;
+            }
+            else if (cadena.indexOf("/")!=-1){
+                var splitP = cadena.split("/");
+                if(splitP[1]==0){
+                    pant.value = div0;
+                    return false;
+                }
+                var result = parseInt(splitP[0],10) / parseInt(splitP[1],10);
+                pant.value = result;
+            }
+            else{
+
+            }
+            return true;
+        }
+    </script>
+    <h1>CALCULADORA</h1>
+    <table id="calculadora">
+        <tr>
+            <td colspan="4">
+                <input type="text" id="pantalla" size="55%" value="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td><button type="button" onclick="calc(1)" id="1" name="1">1</button></td>
+            <td><button type="button" onclick="calc(2)" id="2" name="2">2</button></td>
+            <td><button type="button" onclick="calc(3)" id="3" name="3">3</button></td>
+            <td><button type="button" onclick="calc(C)" id="C" name="C">C</button></td>
+        </tr>
+        <tr>
+            <td><button type="button" onclick="calc(4)" id="4" name="4">4</button></td>
+            <td><button type="button" onclick="calc(5)" id="5" name="5">5</button></td>
+            <td><button type="button" onclick="calc(6)" id="6" name="6">6</button></td>
+            <td><button type="button" onclick="calc('+')" id="mas" name="mas">+</button></td>
+        </tr>
+        <tr>
+            <td><button type="button" onclick="calc(7)" id="7" name="7">7</button></td>
+            <td><button type="button" onclick="calc(8)" id="8" name="8">8</button></td>
+            <td><button type="button" onclick="calc(9)" id="9" name="9">9</button></td>
+            <td><button type="button" onclick="calc('-')" id="menos" name="menos">-</button></td>
+        </tr>
+        <tr>
+            <td><button type="button" onclick="calc(0)" id="0" name="0">0</button></td>
+            <td><button type="button" onclick="calc('/')" id="div" name="div">/</button></td>
+            <td><button type="button" onclick="calc('=')" id="igual" name="igual">=</button></td>
+            <td><button type="button" onclick="calc('*')" id="mult" name="mult">*</button></td>
+        </tr>
+    </table>
+</body>
+</html>

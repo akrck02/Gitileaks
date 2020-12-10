@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ejercicio4</title>
+
+<style type="text/css">
+body {
+	font-family: arial, helvetica;
+}
+form{
+	text-align:center;
+	width:100%;
+}
+#titulo {
+	text-align:center;
+	width:100%;
+}
+table{
+	padding:0px;
+	margin: 0 auto;
+}
+th{
+	border: 1px solid black;
+}
+td{
+	border: 1px solid black;
+	text-align: left;
+	width:300px;
+}
+</style>
+
+<script type="text/javascript">
+
+window.onload=function(){
+	document.getElementById("enviar").onclick=mostrarinformacion;
+	
+	
+}
+function mostrarinformacion(){
+	var procesadores=document.getElementById("procesador").options;
+	var indice=document.getElementById("procesador").selectedIndex;
+	var proc=procesadores[indice].text;
+	var sistemas=document.getElementById("so").options;
+	var indice=document.getElementById("so").selectedIndex;
+	var so=new Array();
+	contso=0;
+	for (var i=0;i<=sistemas.length-1;i++){
+		if (sistemas[i].selected){
+			so[contso]=(sistemas[i].text);
+			contso++;
+		}	
+	}
+	var textoso="";
+	textoso=so[0];
+	for (i=1;i<=so.length-1;i++){
+		if (i==so.length-1){
+			textoso=textoso +  " y " +so[i];
+		}else{
+			textoso=textoso +  ", "+ so[i];
+		}
+	}
+		
+	alert("Ha selecionado el procesador " + proc + " con sistema operativo " + textoso);
+	return false;
+}
+</script>
+</head>
+
+<body>
+
+<div id="titulo"><h1>SELECT</h1>
+<p> Selecciona las opciones deseadas</p></div>
+<form id="miform">
+<table>
+<tr>
+	<th>Procesador</th>
+	<th>Sistema Operativo</th>
+</tr>
+<tr>
+	<td>
+    	<select id="procesador" >
+            <option>Mac Pro 2,0 Mhz</option>
+            <option>Intel i3 1,9 Mhz</option>
+            <option selected="selected">Intel i5 2,2 Mhz</option>
+        </select>
+	</td>
+	<td>
+    	<select id="so"  size="2" multiple="multiple">
+            <option >Windows XP</option>
+            <option selected="selected">Windows 7</option>
+            <option>Windows Server 2008</option>
+        </select>
+		
+	</td>
+</tr>
+</table>
+</br>
+<input type="submit" id="enviar" value="Enviar" />
+<input type="reset" id="limpiar" value="Limpiar"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Ejercicio7</title>
+        <style type="text/css">
+			form{
+				width:525px;
+			}
+			label{
+				width:100px;
+				float:left;
+				text-align:right;
+				padding-right: 5px;
+			}
+			select{
+				text-align:left;
+				width:420px;
+				padding-left: 5px;
+			}
+        </style>
+		<script type="text/javascript"> 
+		//<![CDATA[
+			var peticion_http = null;
+			var tipo_accion="municipio";
+			function inicializa_xhr() { 
+				if(window.XMLHttpRequest) {
+					return new XMLHttpRequest();
+				}else if(window.ActiveXObject) {
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				}
+			}
+			function cargaSelect(tipo) {
+				if (tipo=="provincia"){
+					var datos="tipo=provincia&" + Math.random();
+					tipo_accion="provincia"
+				}else{
+					document.getElementById("municipio").innerHTML="";
+					var codigo=this.options[this.selectedIndex].value
+					if (codigo==0){
+						document.getElementById("divmunicipio").style.display="none";
+						return false;
+					}else{
+						document.getElementById("divmunicipio").style.display="inline";
+						var datos="tipo=municipio&codigo_provincia=" + encodeURIComponent(codigo) + "&nocache=" + Math.random(); 
+						tipo_accion="municipio"
+					}
+				}
+				peticion_http = inicializa_xhr();
+				if(peticion_http) {
+					peticion_http.onreadystatechange = procesaOptions; 
+					peticion_http.open("POST", "Ejercicio7.php");
+					peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+					peticion_http.send(datos);
+				}
+			}
+			function procesaOptions() { 
+				if(peticion_http.readyState ==4 && peticion_http.status == 200) {
+					var elementos = eval("("+peticion_http.responseText+")");
+					document.getElementById(tipo_accion).options[0]= new Option("Elige una opción",0);
+					var i=0;
+					for(var codigo in elementos) {
+						document.getElementById(tipo_accion).options[i+1] = new Option(elementos[codigo], codigo);
+						i++;
+					 }
+				}
+			}
+			window.onload = function(){
+				cargaSelect("provincia")
+				document.getElementById("divmunicipio").style.display="none";
+				document.getElementById("provincia").onchange=cargaSelect;
+			}
+		//]]>
+		</script>
+	</head>
+	<body>
+    	<form action="" >
+            <div id="divprovincia">
+            	<label for="provincia">Provincia:</label>
+           		<select id="provincia"> </select>
+           	</div><br/>
+           	<div id="divmunicipio"> 
+            	<label for="municipio">Municipio:</label>
+            	<select id="municipio"></select>
+          	</div>
+        </form>
+	</body>
+</html>

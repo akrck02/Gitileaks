@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio4</title>
+         <script>
+			function copiar(){
+				var textoIzquierda=document.getElementById("izquierda");
+				var textoDerecha=document.getElementById("derecha");
+				textoDerecha.value=textoIzquierda.value;
+			}
+			
+		</script>
+	</head>
+	<body>
+		<h1>COPIAR TEXTO</h1>
+		<form id="formu1">
+			<input type="text" id="izquierda" value=""/>
+			<input type="text" id="derecha" value=""/>
+			<input type="button" value="Copiar el texto a la derecha" onclick="copiar()"/>
+		</form>
+    	<noscript>
+            <p>Para ver correctamente este codigo tiene que activar JavaScript</p>
+        </noscript>
+	</body> 
+</html> 
+

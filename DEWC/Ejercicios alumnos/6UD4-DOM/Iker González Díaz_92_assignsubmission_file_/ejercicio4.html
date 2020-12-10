@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+    <script>
+        function cambiarTexto(){
+            var izda=document.getElementById("hidari");
+            var derecha=document.getElementById("migi");
+            var aux=derecha.value;
+            document.getElementById("migi").value=izda.value;
+            document.getElementById("hidari").value=aux;
+        }
+    </script>
+    <h1>COPIAR TEXTO</h1>
+    <form>
+        <input type="text" id="hidari" name="izquierda"/>
+        <input type="text" id="migi" name="derecha"/>
+        <input type="button" value="Copiar el texto a la derecha" onclick="cambiarTexto()"/>
+    </form>
+</body>
+</html>

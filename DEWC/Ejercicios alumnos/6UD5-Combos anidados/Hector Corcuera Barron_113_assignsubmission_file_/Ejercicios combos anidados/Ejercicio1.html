@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="municipios.js"></script>
+    <script>
+        function escribirMunicipio(){
+            let prov=document.getElementById("prov").value;
+            if(prov!="blanco"){
+               let sel=document.getElementById("muni");
+                for(let p=1;p<todosMunicipios[prov].length;p++){
+                    let element=document.createElement("option");
+                    element.value=todosMunicipios[prov][p];
+                    element.innerHTML=todosMunicipios[prov][p];
+                    sel.add(element);
+                }
+            }else{
+                let provs=document.getElementById("muni");
+                let max=provs.options.length;
+                max=max-1;
+                for(let i=max;i>=1;i--){
+                    provs.options[i]=null;
+                }
+                document.getElementById("info").innerHTML="";
+            }
+        }
+
+        function escribirInfo(){
+            let prov=document.getElementById("prov").value;
+            prov=provincias[prov-1];
+            let mun=document.getElementById("muni").value;
+            let parrafo=document.getElementById("info");
+            let str="Ha seleccionado <b>"+mun+"</b> en <b>"+prov+"</b>";
+            parrafo.innerHTML=str;
+        }
+    </script>
+</head>
+<body>
+    <select name="provincias" id="prov" onchange="escribirMunicipio();"> 
+        <option value='blanco' selected>Seleccione provincia</option>
+        <script>
+            for(let i=0;i<provincias.length;i++){
+                document.write("<option value='"+[i+1]+"'>"+provincias[i]+"</option>");
+            }
+        </script>
+    </select>
+    <select name="municipios" id="muni" onchange="escribirInfo();">
+        <option value="blanco" selected>Seleccione municipio</option>
+    </select>
+    <p id="info"></p>
+</body>
+</html>

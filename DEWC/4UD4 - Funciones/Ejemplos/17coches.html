@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+	<meta charset="utf-8">
+
+	<title>Coches</title>
+	<script>
+
+
+	function imprimeDatos(){
+		document.write("<br>Marca: " + this.marca);
+		document.write("<br>Modelo: " + this.modelo);
+		document.write("<br>Año: " + this.anyo);
+		document.write("<br>Localización de concesionario: " + this.concesionario.ciudad);
+		document.write("<br>Responsable de Concesionario: " + this.concesionario.responsable);
+	}
+	
+	function Concesionario (cod_oficina_in, ciudad_in, responsable_in) {  
+		this.cod_oficina = cod_oficina_in;
+		this.ciudad = ciudad_in;
+		this.responsable = responsable_in; 
+	}
+
+	function Coche (nombre_in, modelo_in, anyo_in,concesionario_in) {
+		this.marca = nombre_in; 
+		this.modelo = modelo_in; 
+		this.anyo = anyo_in; 
+		this.concesionario = concesionario_in;
+		this.imprimeDatos = imprimeDatos;
+	}
+	
+	var concesionario_atocha = new Concesionario('281','Madrid','Pedro Bravo');
+	var mi_coche = new Coche ("Citroen", "C4", "2010",concesionario_atocha);
+	mi_coche.imprimeDatos();
+
+
+
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

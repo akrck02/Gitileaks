@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tanda 2</title>
+</head>
+<body>
+    <script>
+        var provincias = new Array("Araba", "Bizkaia", "Gipuzkoa", "Nafarroa", "Lapurdi", "Zuberoa", "Nafarroa Beherea")
+
+var municipios_1 = new Array("Vitoria-Gasteiz", "Amurrio", "El Ciego", "La Guardia");
+var municipios_2 = new Array("Bilbao", "Barakaldo", "Durango", "Elorrio", "Muzkiz");
+var municipios_3 = new Array("Donostia-San Sebastián", "Arrasate-Mondragón", "Eibar");
+var municipios_4 = new Array("Iruña", "Burlada", "Estella-Lizarra", "Tafalla");
+var municipios_5 = new Array("Baiona", "Bastida", "Hendaya", "Miarritze");
+var municipios_6 = new Array("Maule", "Barkoxe", "Sohüta");
+var municipios_7 = new Array("Baigorri", "Garazi", "Oztibarre");
+
+var todosMunicipios = [
+    [],
+    municipios_1,
+    municipios_2,
+    municipios_3,
+    municipios_4,
+    municipios_5,
+    municipios_6,
+    municipios_7,
+];
+    </script>
+
+    <form name="formulario">
+        <select name="provincias" id="provi" onchange="cambiaOption()">
+            <option name="SeleccionaProvincia" value="0">Selecciona Provincia</option>
+            <script>
+                for (let index = 0; index < provincias.length; index++) {
+                    document.write("<option name='"+provincias[index]+"' value='"+(index+1)+"'>"+provincias[index]+"</option>")
+                    
+                }
+            </script>
+        </select>
+        <select name="municipios" id="muni" onchange="confirmaMuni()">
+            <option name="Selecciona Municipio" value="null">Selecciona Municipio</option>
+        </select>
+        <p id="pFinal"></p>
+        
+    </form>
+
+
+    <script>
+        function cambiaOption(){
+            var temp = document.getElementById("provi").value;
+            var seleccion = document.getElementById("muni");
+            while (seleccion.firstChild) {
+                seleccion.removeChild(seleccion.lastChild);
+            }
+            var elemento = document.createElement("option");
+            elemento.text="Selecciona Municipio";
+            seleccion.add(elemento);
+
+            for (let index = 1; index < todosMunicipios[temp].length; index++) {
+                var elemento = document.createElement("option");
+                elemento.text=todosMunicipios[temp][index];
+                seleccion.add(elemento);
+            }
+            document.getElementById("pFinal").innerHTML = "";
+           // alert("Salto cuando cambias de Provincia: "+temp);
+        }
+
+        function confirmaMuni(){
+            var muni = document.getElementById("muni").value;
+            var prov = provincias[document.getElementById("provi").value-1];
+            var cadena ="Ha seleccionado <strong>" +prov+"</strong> en <strong>" + muni + "</strong>";
+            document.getElementById("pFinal").innerHTML = cadena;
+        }
+
+    </script>
+
+</body>
+
+</html>

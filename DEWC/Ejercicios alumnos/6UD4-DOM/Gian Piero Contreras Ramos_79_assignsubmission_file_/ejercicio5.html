@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Ejercicio 5 - DOM basico y atributos XHTML</title>
+        <style>
+            table{
+                width: 40%;
+            }
+            table tr td{
+                border-style: inset;
+                border-collapse: separate; 
+            }
+            input{
+                width:100%;
+            }
+            #texto{
+                width: 40%;
+            }
+           
+        </style>
+      
+
+        <script type="text/javascript">
+        var numeroPrimero = 0;
+        var operacion = "";
+        function pintar(pintarLetra) {
+            var posibleCalculo = ['+', '-', '/', '*'];
+            if (posibleCalculo.includes(pintarLetra)){
+                operacion = pintarLetra;
+                numeroPrimero = parseInt(document.getElementById("texto").value);
+                limpiar();
+            }
+            else
+                document.getElementById("texto").value+=pintarLetra;
+        }
+
+        function calcular() {
+            var segundo= parseInt(document.getElementById("texto").value);
+            if (segundo == "" || numeroPrimero == ""){
+                 document.getElementById("texto").value= "Error no se han introducido numeros"
+            }
+            else{
+                 switch(operacion) {
+                    case "+":
+                        var resultado = numeroPrimero + segundo;
+                        document.getElementById("texto").value=resultado;
+                        numeroPrimero = 0;
+                        break;
+                    case "-":
+                        var resultado = numeroPrimero - segundo;
+                        document.getElementById("texto").value=resultado;
+                        numeroPrimero = 0;
+                        break;
+                    case "*":
+                        var resultado = numeroPrimero * segundo;
+                        document.getElementById("texto").value=resultado;
+                        numeroPrimero = 0;
+                        break;
+                    case "/":
+                        if (segundo == 0)
+                            document.getElementById("texto").value="Error division";
+                        else{
+                            var resultado = numeroPrimero / segundo;
+                            document.getElementById("texto").value=resultado;
+                            numeroPrimero = 0;
+                            break;
+                        }
+  
+                }
+           
+            }
+        }
+        
+        function limpiar() {
+           document.getElementById("texto").value="";
+        }
+
+        </script>
+    </head>
+
+    <body>
+        <h1>CALCULADORA</h1>
+        <table>
+
+            <tr>
+                <input type="text" id="texto"/>
+            </tr>
+
+            <tr>
+                <td><input type="button" value="1" onclick="pintar('1')"></td>
+                <td><input type="button" value="2" onclick="pintar('2')"></td>
+                <td><input type="button" value="3" onclick="pintar('3')"></td>
+                <td><input type="button" value="C" onclick="limpiar()"></td>
+            </tr>
+
+             <!-- SEGUNDA FILA -->
+            <tr>
+                <td><input type="button" value="4" onclick="pintar('4')"></td>
+                <td><input type="button" value="5" onclick="pintar('5')"></td>
+                <td><input type="button" value="6" onclick="pintar('6')"></td>
+                <td><input type="button" value="+" onclick="pintar('+')"></td>
+            </tr>        
+            <!-- TERCERA FILA -->
+            <tr>
+                <td><input type="button" value="7" onclick="pintar('7')"></td>
+                <td><input type="button" value="8" onclick="pintar('8')"></td>
+                <td><input type="button" value="9" onclick="pintar('9')"></td>
+                <td><input type="button" value="-" onclick="pintar('-')"></td>
+            </tr>
+            <!-- CUARTA FILA -->
+            <tr>
+                <td><input type="button" value="0" onclick="pintar('0')"></td>
+                <td><input type="button" value="/" onclick="pintar('/')"></td>          
+                <td><input type="button" value="=" onclick="calcular()"></td>
+                <td><input type="button" value="*" onclick="pintar('*')"></td>
+            </tr>
+
+        </table>
+       
+    </body>
+</html>

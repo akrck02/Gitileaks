@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://www.txemaserrano.com/proyectos/combos2D/ -->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Municipios de Euskal Herria</title>
+       
+
+    </head>
+    
+    <body>
+
+        <form name="f1">
+            <select id="provincia" onchange="cambia_provincia()"> </select>
+            <select id="municipio" onchange="verSelecionados()"> </select>
+            <p id="mensaje"></p>
+        </form>
+
+        <script>
+            var provincias = new Array("Araba", "Bizkaia", "Gipuzkoa", "Nafarroa", "Lapurdi", "Zuberoa", "Nafarroa Beherea")
+            var municipios_1 = new Array("Seleccione Municipio", "Vitoria-Gasteiz", "Amurrio", "El Ciego", "La Guardia");
+            var municipios_2 = new Array("Seleccione Municipio", "Bilbao", "Barakaldo", "Durango", "Elorrio", "Muzkiz");
+            var municipios_3 = new Array("Seleccione Municipio", "Donostia-San Sebastián", "Arrasate-Mondragón", "Eibar");
+            var municipios_4 = new Array("Seleccione Municipio", "Iruña", "Burlada", "Estella-Lizarra", "Tafalla");
+            var municipios_5 = new Array("Seleccione Municipio", "Baiona", "Bastida", "Hendaya", "Miarritze");
+            var municipios_6 = new Array("Seleccione Municipio", "Maule", "Barkoxe", "Sohüta");
+            var municipios_7 = new Array("Seleccione Municipio", "Baigorri", "Garazi", "Oztibarre");
+
+            var todosMunicipios = [
+                [],
+                municipios_1,
+                municipios_2,
+                municipios_3,
+                municipios_4,
+                municipios_5,
+                municipios_6,
+                municipios_7,
+            ];
+
+            //Cargar provincias
+            var select = document.getElementById("provincia");
+            var opcion = document.createElement("option");
+            opcion.text = "Seleccione una provincia";
+            select.add(opcion);
+
+            for (var i=0; i<provincias.length; i++){
+                var opcion = document.createElement("option");
+                opcion.value = i;
+                opcion.text = provincias[i];
+                select.add(opcion);
+            }
+
+
+            var select = document.getElementById("municipio");
+            var opcion = document.createElement("option");
+            opcion.text = "Seleccione Municipio";
+            select.add(opcion);
+        
+
+            //Cargar municipios
+            function cambia_provincia(){
+                indiceSelecionado = document.getElementById("provincia").value;
+                indiceSelecionado++;
+              
+                //Remover
+                document.getElementById("municipio").options.length = 0;
+                
+                var arrayMunicipios = todosMunicipios[indiceSelecionado];
+                for (var i=0; i<arrayMunicipios.length; i++){
+                    var opcion = document.createElement("option");
+                    opcion.value = arrayMunicipios[i];
+                    opcion.text = arrayMunicipios[i];
+                    select.add(opcion);
+                }   
+            }
+
+            function verSelecionados(){
+                indiceProvincia = document.getElementById("provincia").value;
+                provincia = provincias[indiceProvincia];
+                municipio = document.getElementById("municipio").value;
+                document.getElementById("mensaje").innerHTML = "Has selecionado " + municipio + " en " + provincia;
+            }
+
+        </script>
+
+    </body>
+
+</html>

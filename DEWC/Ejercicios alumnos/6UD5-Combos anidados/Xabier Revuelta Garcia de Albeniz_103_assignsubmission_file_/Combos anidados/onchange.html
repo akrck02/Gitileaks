@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio onchange</title>
+    <script type="text/javascript" src="muncipios.js"></script>
+</head>
+
+<body>
+    <select id="provincias" onchange="myFunction()"> </select>
+    <select id="municipios" onchange="verDatos()"> </select>
+    <p id="mensaje"></p>
+</body>  
+</html>
+
+<script>
+    var mens = document.getElementById("mensaje");
+    var sel = document.getElementById("provincias");
+    var opt = document.createElement('option');
+    opt.appendChild( document.createTextNode("Selecciona una provincia") );
+    opt.value = 0;     
+    sel.appendChild(opt); 
+    var selMu = document.getElementById("municipios");
+    opt = document.createElement('option');
+    opt.appendChild( document.createTextNode("Seleccione Municipio") );
+    opt.value = 0;     
+    selMu.appendChild(opt); 
+
+
+    var cont=1;
+    provincias.forEach(provincia => {
+        opt = document.createElement('option');
+        opt.appendChild( document.createTextNode(provincia) );
+        opt.value = cont;     
+        sel.appendChild(opt); 
+        cont++;
+    });
+
+
+
+    function myFunction(){
+
+        mens.innerHTML="";
+        var muni = document.getElementById("provincias").value;
+
+        for(var i = selMu.options.length - 1; i >= 0; i--) {
+            selMu.remove(i);
+        }
+
+        if(muni==0){
+            opt = document.createElement('option');
+            opt.appendChild( document.createTextNode("Seleccione Municipio") );
+            opt.value = 0;     
+            selMu.appendChild(opt); 
+
+        }
+
+        selMu = document.getElementById("municipios");
+    
+     
+        todosMunicipios[muni].forEach(municipio => {
+        var opt = document.createElement('option');
+        opt.appendChild( document.createTextNode(municipio) );
+        opt.value = municipio;     
+        selMu.appendChild(opt); 
+    
+    });
+
+
+    }
+
+    function verDatos(){
+    
+
+        if(document.getElementById("municipios").value=="Seleccione Municipio"){
+            mens.innerHTML="";
+
+        }
+        else{
+            var prov = document.getElementById("provincias").value;
+            mens.innerHTML="Has seleccionado " + document.getElementById("municipios").value + " en "+ provincias[prov-1];
+
+        }
+
+    }
+
+</script>

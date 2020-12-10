@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+   		<meta charset="utf-8" />
+   		<title>Ejercicio3</title>
+         <style type="text/css">
+			body{
+				text-align:center;
+			}
+			section{
+				width:90%;
+				margin: 0 auto;
+			}
+			#vid{
+				height: 400px;
+			}
+        </style>
+		<script>
+			var videos0= new Array("trailer.mp4","trailer.ogg");
+			var videos1= new Array("movie.mp4","movie.ogg");
+			var videos2= new Array("video.mp4","video.webm");
+			var videos= new Array(videos0, videos1, videos2);
+			var indice=-1;
+			var primero=true;
+			window.addEventListener('load', siguiente);
+			function siguiente(){
+				if (indice==videos.length-1){
+					indice=0;
+				}else{
+					indice++;
+				}
+				if (!primero){
+					document.getElementById("vid").remove();
+				}else{
+					primero=true;
+				}
+				document.getElementById("reproductor").innerHTML="<video id='vid' autoplay controls><source src='" +videos[indice][0] +"' ><source src='"+videos[indice][1] +"'></video>";
+				document.getElementById("vid").addEventListener('ended',siguiente);
+			}
+        </script>
+	</head>
+    <body>
+        <section id="reproductor"></section>
+    </body>
+</html>

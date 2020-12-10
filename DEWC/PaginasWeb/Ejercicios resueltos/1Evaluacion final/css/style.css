@@ -1,0 +1,128 @@
+html, body, div, h1, h2, h3,  p, a,  img,   ul, li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+h1 {
+	font-size: 250%;
+	margin: 5px 0 10px 0;
+}
+h2 {
+	font-size: 150%;
+	margin: 5px 0;
+}
+h3 {
+	font-size: 120%;
+	margin: 5px 0;
+}
+p {
+	line-height: 1.4em;
+	margin: 0 0 8px 0;
+	font-size: 90%;
+}
+a {
+	color: red;
+	text-decoration: none;
+}
+a:visited {
+	color: #a00;
+}
+body {
+	font-family: Arial;
+	color: #333;
+	width: 900px;
+	margin: 10px auto;
+	line-height: 1;
+	color: black;
+	background: white;
+}
+#header {
+	margin: 0 0 20px 0;
+}
+#main {
+	width: 600px;
+	float: left;
+	clear: both;
+}
+#logo {
+	font-size: 400%;
+	margin: 0 0 40px 0;
+}
+#logo a {
+	color: #000;
+}
+#nav {
+	margin: 0 0 20px 0;
+	overflow: visible;
+	height: 30px;
+}
+#nav li {
+	float: left;
+	padding: 15px;
+	background-color: #333;
+	margin: 0 5px 0 0;
+	position: relative;
+	height: 20px;
+	list-style-type: none;
+	color: #fff;
+	cursor: pointer;
+}
+#nav li.selected {
+	background-color: red;
+	font-weight: normal;
+}
+#nav li.hover {
+	background-color: blue;
+}
+#nav li ul {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	width: 200px;
+	display: none;
+	margin: 0;
+}
+#nav li ul li {
+	float: none;
+	padding: 5px;
+	border-bottom: 1px solid #fff;
+	height: auto;
+}
+#nav a {
+	color: #fff;
+}
+#main .module {
+	margin: 0 0 10px 0;
+}
+#slideshow {
+	margin: 0;
+}
+#slideshow li {
+	margin: 0 0 10px 0;
+	list-style-type: none;
+}
+#blog p.excerpt { display: none; }
+
+#caja div{
+	float:right; 
+	clear:both
+}
+#caja{
+  position:fixed;
+  width:300px;
+  height: 300px;
+  top: 10px;
+  left: 00px;
+  z-index:100;
+  margin: 0 auto;
+}
+#imagen{
+	width: 300px;
+	height: 273px
+}

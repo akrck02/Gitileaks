@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        function tipoletra() {
+            var texto = document.getElementById("texto").value;
+            if (texto == ""){
+                alert("Debes introducir algo en la caja de texto");
+            }
+            var mayus = ["A","B","C","D","E","F","G","H","I","J","K","L",
+                         "M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+            var minus = ["a","b","c","d","e","f","g","h","i","j","k","l",
+                         "m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"];
+            var nums  = ["0","1","2","3","4","5","6","7","8","9"];
+
+            var contmay = 0;
+            var contmin = 0;
+            var contnum = 0;
+
+            for (var i = 0; i < texto.length; i++){
+                var char = texto.charAt(i);
+                if (mayus.indexOf(char) != -1){
+                    contmay++;
+                } else if (minus.indexOf(char) != -1){
+                    contmin++;
+                } else if (nums.indexOf(char) != -1){
+                    contnum++;
+                }
+            }
+
+            var w = window.open('','Nueva ventana','width=300,height=300');
+            w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8" /><title>Resultado</title></head><body>');
+            if ((contmay != 0) || (contmin != 0) || (contnum != 0)){
+                w.document.write('<p>El texto contiene: <p><ul>');
+                if (contmay != 0)
+                    w.document.write("<li>Mayúsculas</li>");
+                if (contmin != 0)
+                    w.document.write("<li>Minúsculas</li>");
+                if ((contnum != 0))
+                    w.document.write("<li>Números</li>");
+            } else {
+                w.document.write('<p>El texto no contiene ni mayúsculas, ni minúsculas, ni números.<p>');
+            }
+            w.document.write('<input type="button" value"CERRAR" onclick="window.close() />');
+            w.document.write('</body></html>');
+        }
+    </script>
+    <table>
+        <tr>
+            <td><input type="text" id="texto" /></td>
+            <td><input type="button" value="Tipo de letra" onclick="tipoletra()" /></td>
+        </tr>
+    </table>
+</body>
+</html>

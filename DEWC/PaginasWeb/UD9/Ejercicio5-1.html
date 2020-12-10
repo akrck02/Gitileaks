@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+   		<meta charset="utf-8" />
+		<title>Ejercicio5</title>
+		 <style type="text/css">
+			body { 
+				text-align:center;
+				font-family:Verdana, Geneva, sans-serif;
+				font-size:14px;
+			}
+			#cajaformulario{
+				margin: 0 auto;
+				text-align:center;
+				width:400px;
+				border: 1px solid black;
+				padding: 10px;
+			}
+			label{
+				width: 100px;
+				float:	left;
+				clear:both;
+				text-align:right;
+				padding: 5px;
+			}
+			input{
+				float:	left;
+				width: 280px;
+			}
+			#botones input{ 
+				font-family:Verdana, Geneva, sans-serif;
+				float:none;
+				width: 100px;
+			}
+			#botones{
+				margin: 0 auto;
+				text-align:center;
+				clear:both;
+			}
+        </style>
+		<script>
+        	var cajadatod, bd
+			function iniciar(){
+				//indexedDB.deleteDatabase('galeria')
+				var solicitud=indexedDB.open('galeria');
+				solicitud.addEventListener('error', errores);
+				solicitud.addEventListener('success', crear);
+				solicitud.addEventListener('upgradeneeded', crearbd);
+				var boton=document.getElementById('guardar');
+				boton.addEventListener('click', agregarobjeto);
+			}
+			function errores(e){
+				alert("Ha ocurrido un error");
+			} 
+			function crear(e){
+				bd=e.target.result;
+			}
+			function crearbd(e){
+				var bd=e.target.result;
+				var almacen = bd.createObjectStore("galeria", {keyPath: "id" });	
+			}
+			
+			function agregarobjeto(){
+				var id=document.getElementById('id').value;
+				var ruta=document.getElementById('ruta').value;
+				var ancho=document.getElementById('ancho').value;
+				var alto=document.getElementById('alto').value;
+				var transaccion=bd.transaction(['galeria'],'readwrite');
+				var almacen=transaccion.objectStore('galeria');
+				var solicitud=almacen.add({id: id, ruta: ruta, ancho: ancho, alto: alto});
+				solicitud.addEventListener('success',mostrar);
+				solicitud.addEventListener('error',errores);
+			}
+			function mostrar(){
+				location.href="Ejercicio5-2.html";
+			}
+			window.addEventListener('load', iniciar);
+        </script>
+	</head>
+    <body>
+       <section id="cajaformulario">
+            <form id="formulario" action="Ejercicio5-2.html">
+                 <label for="id">Id:</label>
+                <input type="text"  id="id"><br/>
+                <label for="ruta">Ruta:</label>
+                <input type="text"  id="ruta"><br/>
+                <label for="ancho">Ancho:</label>
+                <input type="text"  id="ancho"><br/>
+                <label for="alto">Alto:</label>
+                <input type="text"  id="alto"><br/>
+                <div id="botones">
+                	<input type="button"  id="guardar" value="Guardar">
+                    <input type="submit"  id="ver" value="Ver todo">
+                </div>
+             </form>
+		</section>
+	</body>
+</html>

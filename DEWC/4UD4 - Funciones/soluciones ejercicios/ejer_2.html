@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+            var array = [];
+        function agregarpalabra(){
+            var pal = document.getElementsByName('palabra')[0].value;
+            
+            if (array.length == 0 && pal == ""){
+                alert('Debes introducir al menos una palabra');
+            } else {
+                array.push(pal);
+                document.getElementsByName('palabra')[0].value = "";
+            }
+        }
+        function resul(){
+            var pal = document.getElementsByName('palabra')[0].value;
+            array.push(pal);
+            document.write("<p><b>Primera palabra ingresada:</b> " + array[0] + "</p>");
+            document.write("<p><b>Última palabra ingresada:</b> " + array[array.length-1] + "</p>");
+            document.write("<p><b>Número de palabras:</b> " + array.length);
+            array.sort();
+            document.write("<p><b>Palabras ordenadas alfabéticamente:</b> ");
+            for(var i = 0; i < array.length-1; i++){
+                document.write(array[i] + ", ");
+            }
+            document.write(array[array.length-1] + "</p>")
+        }
+    
+    </script>
+</head>
+<body>
+    <form>
+        <input type="text" name="palabra"/>
+        <input type="button" name="nuevapalabra" value="Introducir otra palabra" onclick="agregarpalabra()" />
+        <input type="button" name="resultados" value="Ver resultados" onclick="resul()"/>
+    </form>
+
+</body>
+</html>

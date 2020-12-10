@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Ejercicio 13 - DOM b�sico y atributos XHTML</title>
+
+	<script type="text/javascript">
+	function anade() {
+		var numRandom = Math.round(Math.random()*4);
+		var unLi = document.getElementsByTagName("li")[numRandom].innerHTML;
+
+		console.log(unLi);
+		var elemento = document.createTextNode(unLi);
+		var nuevo = document.createElement("li");
+		var padre = document.getElementById("lista");
+		nuevo.innerHTML = unLi;
+		padre.appendChild(nuevo);
+		//document.ul.appendChild(nuevo);
+	}
+	</script>
+</head>
+<body>
+	<ul id="lista">
+		<li>Lorem ipsum dolor sit amet</li>
+		<li>Consectetuer adipiscing elit</li>
+		<li>Sed mattis enim vitae orci</li>
+		<li>Phasellus libero</li>
+		<li>Maecenas nisl arcu</li>
+	</ul>
+
+	<input type="button" value="Añadir elemento" onclick="anade();">
+</body>
+</html>

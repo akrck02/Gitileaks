@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var provincias = new Array("Seleccione Provincia",  "Araba", "Bizkaia", "Gipuzkoa", "Nafarroa", "Lapurdi", "Zuberoa", "Nafarroa Beherea")
+
+        var municipios_1 = new Array("Seleccione Municipio", "Vitoria-Gasteiz", "Amurrio", "El Ciego", "La Guardia");
+        var municipios_2 = new Array("Seleccione Municipio", "Bilbao", "Barakaldo", "Durango", "Elorrio", "Muzkiz");
+        var municipios_3 = new Array("Seleccione Municipio", "Donostia-San Sebastián", "Arrasate-Mondragón", "Eibar");
+        var municipios_4 = new Array("Seleccione Municipio", "Iruña", "Burlada", "Estella-Lizarra", "Tafalla");
+        var municipios_5 = new Array("Seleccione Municipio", "Baiona", "Bastida", "Hendaya", "Miarritze");
+        var municipios_6 = new Array("Seleccione Municipio", "Maule", "Barkoxe", "Sohüta");
+        var municipios_7 = new Array("Seleccione Municipio", "Baigorri", "Garazi", "Oztibarre");
+        
+        var todosMunicipios = [
+            [],
+            municipios_1,
+            municipios_2,
+            municipios_3,
+            municipios_4,
+            municipios_5,
+            municipios_6,
+            municipios_7,
+        ];
+        
+        function changeProvince() {
+            let index = document.formulario.province.selectedIndex;
+
+            if(index != 0) {
+                let arr_municipality = todosMunicipios[index];
+
+                document.formulario.municipality.length = arr_municipality.length;
+
+                for(let i = 0; i < arr_municipality.length; i++) {
+                    document.formulario.municipality.options[i].value = arr_municipality[i];
+                    document.formulario.municipality.options[i].innerHTML = arr_municipality[i];
+                }
+            }
+            else {
+                document.formulario.municipality.length = 1;
+                document.formulario.municipality.options[0].value = '-';
+                document.formulario.municipality.options[0].innerHTML = 'Seleccione Municipio';
+            }
+            document.formulario.municipality.options[0].selected = true;
+        }
+        
+        function showText() {
+            let province = document.formulario.province.value - 1; 
+            let municipality = document.formulario.municipality.value;
+
+            if(municipality != "Seleccione Municipio") 
+                document.getElementById('texto').innerHTML = "Seleccionado " + municipality + " en " + provincias[province];
+            else
+                document.getElementById('texto').innerHTML = '';
+        }
+
+        window.onload = function() {
+            let arr_option = document.formulario.province.getElementsByTagName('option');
+            for(let i = 0; i < arr_option.length; i++) {
+                arr_option[i].innerHTML = provincias[i];
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form name='formulario'>
+        <select name='province' onchange="changeProvince()">
+            <option value="0"></option>
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+            <option value="6"></option>
+            <option value="7"></option>
+        </select>
+        <select name='municipality' onchange='showText()'>
+            <option value=' '>Seleccione Municipio</option>
+        </select>
+        <p id='texto'></p>
+    </form>
+</body>
+
+</html>

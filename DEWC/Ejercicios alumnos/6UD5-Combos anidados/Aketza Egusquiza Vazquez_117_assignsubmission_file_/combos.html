@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combos anidados</title>
+    <link rel="stylesheet" href="css/combos.css">
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="centered">
+        <h1>SELECTOR DE MUNICIPIOS</h1>
+        <form name="lugares">
+            <select name="provincia" onchange="cambiarProvincia()">
+                <option value="0" selected>Seleccione Provincia </option>
+                <option value="Araba">Araba</option>
+                <option value="Bizkaia">Bizkaia</option>
+                <option value="Gipuzkoa">Gipuzkoa</option>
+                <option value="Nafarroa">Nafarroa</option>
+                <option value="Lapurdi">Lapurdi</option>
+                <option value="Zuberoa">Zuberoa</option>
+                <option value="Nafarroa Beherea">Nafarroa Beherea</option>
+            </select>
+
+            <select name="municipio" onchange="muestraDatos()">
+                <option value="-">Seleccione Municipio</option>
+            </select>
+            <p id="mensaje"></p>
+        </form>
+    </div>
+</body>
+</html>

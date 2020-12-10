@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Alta usuario</title>
+    <script type="text/javascript" src="encriptador.js"></script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>DNI </td>
+            <td>
+                <input type="text" id="dni" size="9" maxlength="9" minlength="9"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Nombre </td>
+            <td>
+                <input type="text" id="nombre" />
+            </td>
+        </tr>
+        <tr>
+            <td>Apellidos </td>
+            <td>
+                <input type="text" id="apellidos" />
+            </td>
+        </tr>
+        <tr>
+            <td>Contraseña </td>
+            <td>
+                <input type="text" id="pass"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center" >
+                <button onclick="registrar()">Registrar</button>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <p id="pdni"></p>
+        <p id="pnombre"></p>
+        <p id="papellidos"></p>
+        <p id="ppass"></p>
+    </div>
+</body>
+</html>

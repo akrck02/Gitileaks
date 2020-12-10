@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio6</title>
+         <script type="text/javascript">
+			var imagenes=new Array();
+			imagenes[0]="images/0.jpg";
+			imagenes[1]="images/1.jpg";
+			imagenes[2]="images/2.jpg";
+			imagenes[3]="images/3.jpg";
+			imagenes[4]="images/4.jpg";
+			imagenes[5]="images/5.jpg";
+			imagenes[6]="images/6.jpg";
+			imagenes[7]="images/7.jpg";
+			imagenes[8]="images/8.jpg";
+			imagenes[9]="images/9.jpg";
+			window.onload=function(){
+				demora =setInterval("calcular()",1000);
+			}
+			function calcular(){
+				var fecha=new Date();
+				var dia=fecha.getDate();
+				var mes=fecha.getMonth()+1;
+				var anio=fecha.getFullYear();
+				var hora=fecha.getHours();
+				var minutos=fecha.getMinutes();
+				var segundos=fecha.getSeconds();
+				var dia1 = document.getElementById("dia1");
+				dia1.src=imagenes[Math.floor(dia/10)];
+				var dia2 = document.getElementById("dia2");
+				dia2.src=imagenes[(dia%10)];
+				var mes1 = document.getElementById("mes1");
+				mes1.src=imagenes[Math.floor(mes/10)];
+				var mes2 = document.getElementById("mes2");
+				mes2.src=imagenes[(mes%10)];
+				var anio1 = document.getElementById("anio1");
+				anio1.src=imagenes[Math.floor(anio/1000)];
+				var aux=anio%1000;
+				var anio2 = document.getElementById("anio2");
+				anio2.src=imagenes[Math.floor(aux/100)];
+				aux=aux%100;
+				var anio3 = document.getElementById("anio3");
+				anio3.src=imagenes[Math.floor(aux/10)];
+				var anio4 = document.getElementById("anio4");
+				anio4.src=imagenes[aux%10];
+				var hora1 = document.getElementById("hora1");
+				hora1.src=imagenes[Math.floor(hora/10)];
+				var hora2 = document.getElementById("hora2");
+				hora2.src=imagenes[(hora%10)];
+				var minuto1 = document.getElementById("minuto1");
+				minuto1.src=imagenes[Math.floor(minutos/10)];
+				var minuto2 = document.getElementById("minuto2");
+				minuto2.src=imagenes[(minutos%10)];
+				var segundo1 = document.getElementById("segundo1");
+				segundo1.src=imagenes[Math.floor(segundos/10)];
+				var segundo2 = document.getElementById("segundo2");
+				segundo2.src=imagenes[(segundos%10)];
+				
+			}
+			
+		</script>
+		<style>
+			* { 
+				font-size: 20px;
+				font-family:Verdana, Geneva, sans-serif;
+				margin: 5px;
+				padding: 5px;
+			}
+			td{
+				width:25px;
+				border: 1px solid black
+			}
+			.sinborde{
+				border:0px
+			}
+			table{
+				padding:0px;
+				margin: 0 auto;
+			}
+			#header{
+				text-align:center;
+			}
+			#contenedor{
+				text-align:center;
+				
+			}
+		</style>
+	</head>
+	<body >
+    	<div id="header">
+			<h1>FECHA Y HORA</h1>
+        </div>
+        <div id="contenedor">
+            <table>
+                <tr>
+                    <td><img id="dia1" src=""/></td>
+                    <td><img id="dia2" src=""/></td>
+                    <td><img src="images/barra.jpg"/></td>
+                    <td><img id="mes1" src=""/></td>
+                    <td><img id="mes2" src=""/></td>
+                    <td><img src="images/barra.jpg"/></td>
+                    <td><img id="anio1" src=""/></td>
+                    <td><img id="anio2" src=""/></td>
+                    <td><img id="anio3" src=""/></td>
+                    <td><img id="anio4" src=""/></td>
+                </tr>
+                <tr>
+                    <td class="sinborde">&nbsp;</td>
+                    <td><img id="hora1" src=""/></td>
+                    <td><img id="hora2" src=""/></td>
+                    <td><img src="images/puntos.jpg"/></td>
+                    <td><img id="minuto1" src=""/></td>
+                    <td><img id="minuto2" src=""/></td>
+                    <td><img src="images/puntos.jpg"/></td>
+                    <td><img id="segundo1" src=""/></td>
+                    <td><img id="segundo2" src=""/></td>
+                    <td class="sinborde">&nbsp;</td>
+                </tr>
+            </table>
+		</div>
+    	<noscript>
+            <p>Para ver correctamente este cÃ³digo tiene que activar JavaScript</p>
+        </noscript>
+	</body> 
+</html> 
+

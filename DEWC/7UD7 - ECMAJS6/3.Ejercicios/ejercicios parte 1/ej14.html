@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function calcula() {
+            var entrada = document.getElementById('entrada').value;
+            console.log(entrada);
+            salida = document.getElementById('respuesta');
+            console.log(eval(entrada));
+            salida.value = eval(entrada);
+        }
+    </script>
+</head>
+
+<body>
+    <form name="datos"></form>
+    Escribe una fórmula matemática, por ejemplo: (2+3)*10
+    <br/><br/><input type="text" size="20" id="entrada" />
+    <input type="button" name="B1" value="Ejecuta" onclick="calcula()" />
+    <br /><br /> Respuesta:
+    <input type="text" size="20" id="respuesta" />
+    <br /><br />
+    <input type="reset" name="B2" value="Reset" />
+    </form>
+</body>
+
+</html>

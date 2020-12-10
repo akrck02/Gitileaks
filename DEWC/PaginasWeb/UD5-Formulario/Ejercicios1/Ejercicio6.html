@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio6</title>
+         <script type="text/javascript">
+			window.onload=function(){
+				document.getElementById("imagen").onmouseover=cambiaImagen;
+				document.getElementById("imagen").onmouseout=cambiaImagen;
+			}
+			function cambiaImagen(elEvento){
+				var imagen=document.getElementById("imagen");
+				var evento = elEvento || window.event;
+			
+				if (evento.type=="mouseover") {
+					this.src="images/imagen2.jpg";
+				}else if (evento.type=="mouseout"){
+						
+					this.src="images/imagen1.jpg";
+				}
+			}
+			
+		</script>
+		<style>
+			*{ 
+				font-size: 20px;
+				font-family:Verdana, Geneva, sans-serif;
+				margin: 5px;
+				padding: 5px;
+			}
+			#header{
+				text-align:center;
+			}
+			#contenedor{
+				text-align:center;
+				
+			}
+		</style>
+	</head>
+	<body>
+    	<div id="header">
+			<h1>EFECTO ROLLOVER</h1>
+        </div>
+        <div id="contenedor">
+            <img src="images/imagen1.jpg" id="imagen">
+		</div>
+    	<noscript>
+            <p>Para ver correctamente este código tiene que activar JavaScript</p>
+        </noscript>
+	</body> 
+</html> 
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+   
+</head>
+<body>
+    <script>
+        function copiar(){
+            var texto = document.getElementById("caja1").value;
+            document.getElementById("caja2").value=texto;
+            
+        }
+    </script>
+    <h1>COPIAR TEXTO</h1>
+    <form>
+        <input id="caja1" type="text" name="caja1"/>
+        <input id="caja2" type="text" name="caja2"/>
+        <input type="button" value="Copiar" onclick="copiar()"/>
+    </form>
+</body>
+</html>

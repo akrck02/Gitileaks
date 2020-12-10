@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+   		<meta charset="utf-8" />
+		<title>Ejercicio3</title>
+		 <style type="text/css">
+			body { 
+				text-align:center;
+				font-family:Verdana, Geneva, sans-serif;
+				font-size:14px;
+			}
+			table{
+				border:1px solid black;
+				border-collapse:collapse;
+				width: 500px
+			}
+			td, th{
+				border:1px solid black;
+			}
+			#botones{
+				margin: 0 auto;
+				text-align:center;
+				clear:both;
+				width: 600px
+				padding: 10px;
+			}
+			#cajadatos{
+				margin: 0 auto;
+				text-align:center;
+				clear:both;
+				width: 600px;
+				padding: 10px;
+			}
+			#botones input{ 
+				font-family:Verdana, Geneva, sans-serif;
+				float:none;
+				width: 100px;
+			}
+        </style>
+		<script>
+        	var cajadatod, bd, tabla
+			function iniciar(){
+				var solicitud=indexedDB.open('tareas');
+				solicitud.addEventListener('error', errores);
+				solicitud.addEventListener('success', crear);
+				solicitud.addEventListener('upgradeneeded', crearbd);
+			}
+			function errores(e){
+				alert("Ha ocurrido un error");
+			} 
+			function crear(e){
+				bd=e.target.result;
+				mostrar();
+			}
+			function crearbd(e){
+				bd=e.target.result;
+				var almacen=bd.createObjectStore('tareas',{keyPath:'clave'});
+			}
+			function mostrar(){
+				cajadatos.innerHTML='';
+				var transaccion=bd.transaction(['tareas'],'readwrite');
+				var almacen=transaccion.objectStore('tareas');
+				var nuevocusor=almacen.openCursor();
+				tabla="<table><tr><th>Clave</th><th>Tarea</th><th>Importancia</th><th>&nbsp;</th></tr>"
+				nuevocusor.addEventListener('success', mostrarlista);
+				
+
+			} 
+			function mostrarlista(e){
+				var cursor=e.target.result;
+				if (cursor){
+					tabla+="<tr><td>"+cursor.value.clave+"</td><td>"+cursor.value.tarea+"</td><td>"+cursor.value.importancia+"</td><td><input type='button' onclick='eliminar(\""+cursor.value.clave+"\")' value='Eliminar'></td></tr>";
+					cursor.continue();
+				}else{
+					tabla+="</table>"
+					cajadatos.innerHTML=tabla
+				}
+				
+				
+			}
+			function eliminar(clave){
+				if (confirm('¿Está seguro?')){
+					var transaccion=bd.transaction(['tareas'],'readwrite');
+					var almacen=transaccion.objectStore('tareas');
+					var solicitud=almacen.delete(clave);
+					solicitud.addEventListener('success',mostrar);
+					solicitud.addEventListener('error', errores);
+			
+				}
+			}
+			window.addEventListener('load', iniciar);
+        </script>
+	</head>
+    <body>
+       <section id="cajadatos">
+            
+		</section>
+        <section id="botones">
+            <form id="formulario" action="Ejercicio3-1.html">
+                <input type="submit"  id="nuevo" value="Nueva tarea">
+            </form>
+        </section>
+	</body>
+</html>

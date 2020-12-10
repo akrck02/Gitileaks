@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Ejercicio 13 - DOM básico y atributos XHTML</title>
+         <style>
+             table tr td{
+                 border: 2px solid black;
+                 border-collapse: separate;  
+             }
+             .espacio{
+                 visibility: hidden;
+             }
+        </style>    
+    </head>
+    <body>
+        <table>
+            <tr>
+                <!-- Dias -->
+                <td><img id="dia_uno" src=""/></td>
+                <td><img id="dia_dos" src=""/></td>
+                
+                <td><img name="barra" src=""/></td>
+                
+                <!-- Mes -->
+                <td><img id="mes_uno" src=""/></td>
+                <td><img id="mes_dos" src=""/></td>
+                
+                <td><img name="barra" src=""/></td>
+                
+                 <!-- Año -->
+                <td><img id="anio_uno" src=""/></td>
+                <td><img id="anio_dos" src=""/></td>
+                <td><img id="anio_tres" src=""/></td>
+                <td><img id="anio_cuatro" src=""/></td>                
+            </tr>
+            
+            <tr>
+                <td class="espacio"></td>   
+                <!-- Horas -->
+                <td><img id="hora_uno" src=""/></td>
+                <td><img id="hora_dos" src=""/></td>
+                
+                <td><img name="punto" src=""/></td>
+                
+                <!-- Minutos -->
+                <td><img id="minuto_uno" src=""/></td>
+                <td><img id="minuto_dos" src=""/></td>
+                
+                <td><img name="punto" src=""/></td>
+                
+                 <!-- Segundos -->
+                <td><img id="segundo_uno" src=""/></td>
+                <td><img id="segundo_dos" src=""/></td>
+                <td class="espacio"></td>                 
+            </tr> 
+            
+            <script type="text/javascript">
+                
+            setInterval(function(){   
+            
+            //Imagenes de las barras    
+            var arrBar= document.getElementsByName("barra");
+            for(var i=0;i<arrBar.length;i++){
+                var indiceBarra=arrBar[i];
+                indiceBarra.src="images/barra.jpg";  
+            }                
+                       
+            //Imagenes de los puntos     
+            var arrPun=document.getElementsByName("punto");    
+            for(var i=0;i<arrPun.length;i++){
+                var indicePunto=arrPun[i];
+                indicePunto.src="images/puntos.jpg";  
+            }
+                
+            //Array de imagenes para la fecha, hora, minuto etc
+            var arr= new Array("0.jpg","1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg");
+            var fecha= new Date();              
+            
+            //Dia
+            var dia=fecha.getDate().toString(); 
+            if(fecha.getDate()<10){ 
+                var dia="0"+fecha.getDate();
+            }   
+                
+            var arrDia= dia.split(""); 
+            var dia_uno=arr[parseInt(arrDia[0])]; 
+            var dia_dos=arr[parseInt(arrDia[1])];
+                      
+            document.getElementById("dia_uno").src="images/"+dia_uno; 
+            document.getElementById("dia_dos").src="images/"+dia_dos; 
+               
+            
+            //Mes        
+            var correctMonth=fecha.getMonth()+1; 
+            var mes= correctMonth.toString();
+            if(correctMonth<10){ 
+                var mes="0"+correctMonth;
+            }   
+                
+            var arrMes=mes.split("");
+            var mes_uno=arr[parseInt(arrMes[0])]; 
+            var mes_dos=arr[parseInt(arrMes[1])];
+                
+            document.getElementById("mes_uno").src="images/"+mes_uno; 
+            document.getElementById("mes_dos").src="images/"+mes_dos; 
+                  
+                
+            //Año
+            var anio= fecha.getFullYear().toString();
+            var arrAnio=anio.split("");
+         
+            var anio_uno=arr[parseInt(arrAnio[0])]; 
+            var anio_dos=arr[parseInt(arrAnio[1])];
+            var anio_tres=arr[parseInt(arrAnio[2])];
+            var anio_cuatro=arr[parseInt(arrAnio[3])];
+                
+            document.getElementById("anio_uno").src="images/"+anio_uno; 
+            document.getElementById("anio_dos").src="images/"+anio_dos;
+            document.getElementById("anio_tres").src="images/"+anio_tres;
+            document.getElementById("anio_cuatro").src="images/"+anio_cuatro;
+            
+                
+                
+            //Horas
+            var hora= fecha.getHours().toString();            
+            if(fecha.getHours()<10){
+                var hora="0"+fecha.getHours();
+            }     
+                
+            var arrHora=hora.split("");
+            var hora_uno=arr[parseInt(arrHora[0])]; 
+            var hora_dos=arr[parseInt(arrHora[1])];
+                
+            document.getElementById("hora_uno").src="images/"+hora_uno;
+            document.getElementById("hora_dos").src="images/"+hora_dos;
+                          
+              
+            
+            //Minutos    
+            var min= fecha.getMinutes().toString();            
+            if(fecha.getMinutes()<10){
+                var min="0"+fecha.getMinutes();
+            }           
+                
+            var arrMin=min.split("");
+            var minuto_uno=arr[parseInt(arrMin[0])]; 
+            var minuto_dos=arr[parseInt(arrMin[1])];
+                
+            document.getElementById("minuto_uno").src="images/"+minuto_uno; 
+            document.getElementById("minuto_dos").src="images/"+minuto_dos;        
+   
+                
+            //Segundos      
+            var sec= fecha.getSeconds().toString();            
+            if(fecha.getSeconds()<10){
+                var sec="0"+fecha.getSeconds();
+            }           
+                
+            var arrSec=sec.split("");
+            var segundo_uno=arr[parseInt(arrSec[0])]; 
+            var segundo_dos=arr[parseInt(arrSec[1])];
+                
+            document.getElementById("segundo_uno").src="images/"+segundo_uno; 
+            document.getElementById("segundo_dos").src="images/"+segundo_dos; 
+            
+            
+            }, 1000);               
+            </script>                          
+        </table>
+    </body>
+</html>

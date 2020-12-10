@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio1</title>
+        <link rel="stylesheet" type="text/css" href="jscal/css/jscal2.css" />
+   		<link rel="stylesheet" type="text/css" href="jscal/css/border-radius.css" />
+    	<link rel="stylesheet" type="text/css" href="jscal/css/gold/gold.css" />
+    	<script type="text/javascript" src="jscal/js/jscal2.js"></script>
+    	<script type="text/javascript" src="jscal/js/lang/es.js"></script>
+        <script type="text/javascript" >
+		//<![CDATA[
+		window.onload=function(){
+			Calendar.setup({
+				inputField: "fecha",
+				dateFormat:"%A, %d de %B de  %Y",
+				trigger: "calendario",
+				weekNumbers: false,
+				
+			})
+		}
+		//]]>
+		</script>
+         <script type="text/javascript" src="overlib/overlib.js">
+         <!-- overLIB (c) Erik Bosrup-->
+         </script>
+		<script type="text/javascript" >
+		//<![CDATA[
+			overlib_pagedefaults(CENTER, WIDTH, 100, DELAY, 250, OFFSETX, 150, ABOVE);
+		//]]>
+		</script>
+    </head>
+    <body>
+       <h1>CALENDARIO</h1>
+        <form id="miform" action="">
+        	<label for="fecha">Fecha:</label>
+        	<input type="text"  id="fecha" readonly="readonly" size="50"/>
+			<button id="calendario" onmouseover="overlib('Pulse el botón para introducir la fecha');" onmouseout="nd();">...</button>
+            <span id="fechalarga"></span>
+        </form>
+    </body>
+</html>

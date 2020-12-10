@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <style>
+        h1{
+            text-align: center;
+        }
+        img{
+            border: 1px solid black;
+        }
+        table{
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var arrNum=new Array();
+        for(i=0;i<=9;i++){
+            arrNum[i]=`images/${i}.jpg`;
+        }
+        var fecha=new Date();
+        var dia=fecha.getDate();
+        var d1;
+        var d2;
+        var mes=fecha.getMonth()+1;
+        var m1;
+        var m2;
+        var ano=fecha.getFullYear();
+        var y1;
+        var y2;
+        var y3;
+        var y4;
+        var hora=fecha.getHours();
+        var h1;
+        var h2;
+        var minutos=fecha.getMinutes();
+        var min1;
+        var min2;
+        var segundos=fecha.getSeconds();
+        var s1;
+        var s2;
+        function asignarValores(){
+            fecha=new Date();
+            var dia=fecha.getDate();
+        var mes=fecha.getMonth()+1;
+        var ano=fecha.getFullYear();
+        var hora=fecha.getHours();
+        var minutos=fecha.getMinutes();
+        var segundos=fecha.getSeconds();
+            //día
+                
+            if(dia<=9){
+                    d1=0;
+                    d2=dia;
+                }
+                else{
+                    let strdia=""+dia;
+                    d1=parseInt(strdia.charAt(0));
+                    d2=parseInt(strdia.charAt(1));
+                }
+                //mes
+                
+                if(mes<=9){
+                    m1=0;
+                    m2=mes;
+                }
+                else{
+                    let strmes=""+mes;
+                    m1=parseInt(strmes.charAt(0));
+                    m2=parseInt(strmes.charAt(1));
+                }
+                //año
+                
+                    let strano=""+ano;
+                    y1=parseInt(strano.charAt(0));
+                    y2=parseInt(strano.charAt(1));
+                    y3=parseInt(strano.charAt(2));
+                    y4=parseInt(strano.charAt(3));
+                //hora
+                
+                if(hora<=9){
+                    h1=0;
+                    h2=hora;
+                }
+                else{
+                    let strhora=""+hora;
+                    h1=parseInt(strhora.charAt(0));
+                    h2=parseInt(strhora.charAt(1));
+                }
+                //minutos
+                
+                if(minutos<=9){
+                    min1=0;
+                    min2=minutos;
+                }
+                else{
+                    let strminutos=""+minutos;
+                    min1=parseInt(strminutos.charAt(0));
+                    min2=parseInt(strminutos.charAt(1));
+                }
+                //segundos
+                if(segundos<=9){
+                    s1=0;
+                    s2=segundos;
+                }
+                else{
+                    let strsegundos=""+segundos;
+                    s1=parseInt(strsegundos.charAt(0));
+                    s2=parseInt(strsegundos.charAt(1));
+                }
+                document.getElementById("d1").setAttribute("src", arrNum[d1]);
+                document.getElementById("d2").setAttribute("src", arrNum[d2]);
+                document.getElementById("m1").setAttribute("src", arrNum[m1]);
+                document.getElementById("m2").setAttribute("src", arrNum[m2]);
+                document.getElementById("y1").setAttribute("src", arrNum[y1]);
+                document.getElementById("y2").setAttribute("src", arrNum[y2]);
+                document.getElementById("y3").setAttribute("src", arrNum[y3]);
+                document.getElementById("y4").setAttribute("src", arrNum[y4]);
+                document.getElementById("h1").setAttribute("src", arrNum[h1]);
+                document.getElementById("h2").setAttribute("src", arrNum[h2]);
+                document.getElementById("min1").setAttribute("src", arrNum[min1]);
+                document.getElementById("min2").setAttribute("src", arrNum[min2]);
+                document.getElementById("s1").setAttribute("src", arrNum[s1]);
+                document.getElementById("s2").setAttribute("src", arrNum[s2]);
+                console.log(arrNum);
+        }
+    </script>
+    <header>
+        <h1>FECHA Y HORA</h1>
+    </header>
+    <main>
+        <table>
+            <tr id="fecha">
+                <script>
+                    document.write(`<td><img id='d1' </td>`);
+                    document.write(`<td><img id='d2' </td>`);
+                </script>
+                <td><img src="images/barra.jpg" alt="/"></td>
+                <script>
+                    document.write(`<td><img id='m1'</td>`);
+                    document.write(`<td><img id='m2' </td>`);
+                </script>
+                <td><img src="images/barra.jpg" alt="/"></td>
+                <script>
+                    document.write(`<td><img id='y1'</td>`);
+                    document.write(`<td><img id='y2' </td>`);
+                    document.write(`<td><img id='y3'</td>`);
+                    document.write(`<td><img id='y4'</td>`);
+                </script>
+            </tr>
+            <tr>
+                <td></td>
+                <script>
+                    document.write(`<td><img id='h1' </td>`);
+                    document.write(`<td><img id='h2' </td>`);
+                </script>
+                <td><img src="images/puntos.jpg" alt=":"></td>
+                <script>
+                    document.write(`<td><img id='min1'</td>`);
+                    document.write(`<td><img id='min2'</td>`);
+                </script>
+                <td><img src="images/puntos.jpg" alt=":"></td>
+                <script>
+                    document.write(`<td><img id='s1' </td>`);
+                    document.write(`<td><img id='s2'</td>`);
+                </script>
+            </tr>
+        </table>
+    </main>
+
+</body>
+<script>
+    var inter=setInterval(asignarValores,1000);
+</script>
+</html>

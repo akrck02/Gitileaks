@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   		<title>Ejercicio2</title>
+        <style type="text/css">
+			.capa{
+				width: 200px;
+				border: 1px solid black;
+				background-color:red;
+				height:200px;
+				margin: 10px;
+				float:left
+			}
+			#ocultar{
+				clear:both;
+				display:block;
+				width:650px;
+				margin:10px;
+			}
+			
+        </style>
+    	<script src="scripts/jquery-1.10.2.min.js" type="text/javascript"></script>	
+ 		<script type="text/javascript">
+			$(document).ready(function(){
+				$("input").click(function(){
+					if ($(".capa:eq(0)").css("opacity")==1){
+					  $(".capa:eq(0)").fadeTo("slow",0.15,function(){
+						   $(".capa:eq(1)").fadeTo("slow",0.4,function(){ 
+								$(".capa:eq(2)").fadeTo("slow",0.7);
+							});
+						});
+					}else{
+					  	$(".capa:eq(0)").fadeTo("slow",1,function(){
+					   		$(".capa:eq(1)").fadeTo("slow",1,function(){ 
+								$(".capa:eq(2)").fadeTo("slow",1);
+							});
+						});
+				 	 }
+				});
+			});	
+         </script>
+	</head>
+	<body>
+        <div class="capa"></div>
+        <div class="capa"></div>
+        <div class="capa"></div>
+        <div id="boton">
+        <input type="button" id="ocultar" value="Cambiar opacidad"/>
+        </div>
+	</body>
+</html>

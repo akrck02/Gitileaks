@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Ejercicio 6</title>  
+</head>
+<body>
+   
+    <h1 style="text-align: center;">FECHA Y HORA</h1>
+    <table style="margin: auto;">
+        <tr style="margin: auto;">
+            <td style= "border: gray solid"><img id="d1" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img id="d2" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img src="images/barra.jpg" alt="barra"/></td>
+            <td style= "border: gray solid"><img id="m1" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img id="m2" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img src="images/barra.jpg" alt="barra"/></td>
+            <td style= "border: gray solid"><img id="y1" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img id="y2" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img id="y3" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img id="y4" src="" alt="num"/></td>
+        </tr>
+        <tr style="margin: auto;">
+            <td></td>
+            <td style= "border: gray solid"><img id="h1" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img id="h2" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img src="images/puntos.jpg" alt="barra"/></td>
+            <td style= "border: gray solid"><img id="min1" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img id="min2" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img src="images/puntos.jpg" alt="barra"/></td>
+            <td style= "border: gray solid"><img id="s1" src="" alt="num"/></td>
+            <td style= "border: gray solid"><img id="s2" src="" alt="num"/></td>
+        </tr>
+    </table> 
+    <script>
+        function cambiar(){
+        var arrayImagenes= new Array();
+        for(var i =0; i<10;i++){
+            arrayImagenes[i]= "images/" + i + ".jpg";
+        }
+        var fecha = new Date;
+        var dia = fecha.getDate();
+        if(dia<10){
+            document.getElementById("d1").setAttribute("src", arrayImagenes[0]);
+            document.getElementById("d2").setAttribute("src", arrayImagenes[dia]);
+        }else{
+            var num = dia.toString();
+            var num1 = parseInt(num[0]);
+            var num2 = parseInt(num[1]);
+            document.getElementById("d1").setAttribute("src", arrayImagenes[num1]);
+            document.getElementById("d2").setAttribute("src", arrayImagenes[num2]);
+        }
+        var mes = fecha.getMonth()+1;
+        if(mes<10){
+   
+            document.getElementById("m1").setAttribute("src",arrayImagenes[0]);
+            document.getElementById("m2").setAttribute("src", arrayImagenes[mes]);
+        }else{
+            var num = mes.toString();
+            var num1 = parseInt(num[0]);
+            var num2 = parseInt(num[1]);
+          
+            document.getElementById("m1").setAttribute("src", arrayImagenes[num1]);
+            document.getElementById("m2").setAttribute("src", arrayImagenes[num2]);
+        }
+        var anio = fecha.getFullYear();
+        var num = anio.toString();
+            var num1 = parseInt(num[0]);
+            var num2 = parseInt(num[1]);
+            var num3 = parseInt(num[2]);
+            var num4 = parseInt(num[3]);
+            document.getElementById("y1").setAttribute("src", arrayImagenes[num1]);
+            document.getElementById("y2").setAttribute("src", arrayImagenes[num2]);
+            document.getElementById("y3").setAttribute("src", arrayImagenes[num1]);
+            document.getElementById("y4").setAttribute("src", arrayImagenes[num2]);
+
+        var hora = fecha.getHours();
+        if(hora<10){
+            document.getElementById("h1").setAttribute("src",arrayImagenes[0]);
+            document.getElementById("h2").setAttribute("src", arrayImagenes[hora]);
+        }else{
+            var num = hora.toString();
+            var num1 = parseInt(num[0]);
+            var num2 = parseInt(num[1]);
+            document.getElementById("h1").setAttribute("src", arrayImagenes[num1]);
+            document.getElementById("h2").setAttribute("src", arrayImagenes[num2]);
+        }
+
+        var min = fecha.getMinutes();
+        if(min<10){
+            document.getElementById("min1").setAttribute("src",arrayImagenes[0]);
+            document.getElementById("min2").setAttribute("src", arrayImagenes[min]);
+        }else{
+            var num = min.toString();
+            var num1 = parseInt(num[0]);
+            var num2 = parseInt(num[1]);
+            document.getElementById("min1").setAttribute("src", arrayImagenes[num1]);
+            document.getElementById("min2").setAttribute("src", arrayImagenes[num2]);
+        }
+
+        seg = fecha.getSeconds();
+        if(seg<10){
+            document.getElementById("s1").setAttribute("src",arrayImagenes[0]);
+            document.getElementById("s2").setAttribute("src", arrayImagenes[seg]);
+        }else{
+            var num = seg.toString();
+            var num1 = parseInt(num[0]);
+            var num2 = parseInt(num[1]);
+            document.getElementById("s1").setAttribute("src", arrayImagenes[num1]);
+            document.getElementById("s2").setAttribute("src", arrayImagenes[num2]);
+        }
+        }
+        location(setInterval(cambiar,1000));
+    </script>
+</body>
+</html>

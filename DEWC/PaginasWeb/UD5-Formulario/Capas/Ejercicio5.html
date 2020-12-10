@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio5</title>
+        <style type="text/css">
+			#galeria1{
+				position:absolute;
+				top:100px;
+				left:100px;
+				width:300px;
+				height:200px;
+				background-color:grey;
+				border: 1px solid black;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				y=0;
+				galeria1=document.getElementById("galeria1");
+				intervalo=setInterval("cortina()",10);
+			}
+			function cortina(){
+				if(y<=200){
+					galeria1.style.clip="rect(0px 300px "+y+"px 0px)";
+					y++;
+				}else{
+					clearInterval(intervalo);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="galeria1">
+            <ol>
+                <li>Mi</li>
+                <li>capa</li>
+                <li>que</li>
+                <li>va</li>
+                <li>apareciendo</li>
+                <li>poco</li>
+                <li>a</li>
+                <li>poco</li>
+            </ol>
+		</div>
+	</body>
+</html> 

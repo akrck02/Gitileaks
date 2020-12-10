@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio5</title>
+         <script>
+			var empezar=true;
+			var operacion=false;
+			var igual=false;
+			function numero(tecla){
+				var resultado=document.getElementById("resultado");
+				if (igual){
+					resultado.value="";
+				}
+				operacion=false;
+				igual=false;
+				empezar=false;
+				var resultado=document.getElementById("resultado");
+				resultado.value=resultado.value + tecla;
+				var fallo=document.getElementById("fallo")
+				fallo.className="oculto"
+				
+			}
+			function operacionF(tecla){
+				if ((!operacion && !empezar) || igual ){
+					var resultado=document.getElementById("resultado");
+					resultado.value=resultado.value + tecla;
+					igual=false;
+				}
+				operacion=true;
+				var fallo=document.getElementById("fallo")
+				fallo.className="oculto"
+			}
+			function calcular(){
+				var resultado=document.getElementById("resultado");
+				igual=true;
+				if (empezar || operacion){
+					var fallo=document.getElementById("fallo")
+					fallo.className="visible";					
+				}else{
+				
+					resultado.value=eval(resultado.value)
+				
+				}
+			}
+			function limpiar(){
+				var resultado=document.getElementById("resultado");
+				resultado.value="";
+				empezar=true;
+				operacion=false;
+				var fallo=document.getElementById("fallo")
+				fallo.className="oculto"
+			}
+		</script>
+		<style>
+		
+			.oculto { display: none; }
+			.visible { display: inline; }
+
+			#resultadodiv{
+				width: 100%;
+				text-align:center;
+			}
+			#resultado{
+				width: 90%;
+			}
+			div{
+				float: left;
+				width: 25%;
+				text-align:center;
+			}
+			#calculadora{
+				width:300px;
+				border: 1px solid black;
+				padding:10px
+			}
+			.tecla{
+				width: 40px;
+			}
+			#fallo{
+				width:99%;
+				border: 1px solid red;
+				padding:1px
+				text-align:center;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>CALCULADORA</h1>
+		<div id="calculadora">
+			<div id="resultadodiv"><input type="text" disabled="disabled" id="resultado"/></div>
+			
+			<div id="1"><input type="button" value="1" onclick="numero('1')" class="tecla"/></div>
+			<div id="2"><input type="button" value="2" onclick="numero('2')" class="tecla"/></div>
+			<div id="3"><input type="button" value="3" onclick="numero('3')" class="tecla"/></div>
+			<div id="mas"><input type="button" value="C" onclick="limpiar()" class="tecla"/></div>
+			<div id="4"><input type="button" value="4" onclick="numero('4')" class="tecla"/></div>
+			<div id="5"><input type="button" value="5" onclick="numero('5')" class="tecla"/></div>
+			<div id="6"><input type="button" value="6" onclick="numero('6')" class="tecla"/></div>
+			<div id="mas"><input type="button" value="+" onclick="operacionF('+')" class="tecla"/></div>
+			<div id="7"><input type="button" value="7" onclick="numero('7')" class="tecla"/></div>
+			<div id="8"><input type="button" value="8" onclick="numero('8')" class="tecla"/></div>
+			<div id="9"><input type="button" value="9" onclick="numero('9')" class="tecla"/></div>
+			<div id="menos"><input type="button" value="-" onclick="operacionF('-')" class="tecla"/></div>
+			<div id="0"><input type="button" value="0" onclick="numero('0')" class="tecla"/></div>
+			<div id="dividir"><input type="button" value="/" onclick="operacionF('/')" class="tecla"/></div>
+			<div id="igual"><input type="button" value="=" onclick="calcular()" class="tecla"/></div>
+			<div id="por"><input type="button" value="*" onclick="operacionF('*')" class="tecla"/></div>
+			<div id="fallo" class="oculto"><p>Las operaciones introducidas no son correctas</p></div>
+		</div>
+    	<noscript>
+            <p>Para ver correctamente este cÃ³digo tiene que activar JavaScript</p>
+        </noscript>
+	</body> 
+</html> 
+

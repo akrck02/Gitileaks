@@ -1,0 +1,55 @@
+body{
+	text-align: center;
+	font-family:Verdana, Geneva, sans-serif;
+} 
+header, section, footer, aside, nav, article, figure, figcaption, hgroup{
+	display : block;
+} 
+#reproductor{
+	width: 720px;
+	margin: 20px auto;
+	padding: 10px 5px 5px 5px;
+	background: #999999;
+	border: 1px solid #666666;
+	border-radius: 10px;
+}
+#play{
+	padding: 2px 10px;
+	width: 100px;
+	border: 1px solid #000000;
+	background: #DDDDDD;
+	font-weight:bold;
+	border-radius:10px;
+}
+nav{
+	margin: 5px 0px;
+}
+#botones{
+	float: left;
+	width: 135px;
+	height: 50px;
+	padding-left: 5px;
+} 
+#barra{
+	float: left;
+	width: 400px;
+	height: 16px;
+	padding: 2px;
+	margin: 2px 5px;
+	border: 1px solid #CCCCCC;
+	background: #EEEEEE;
+} 
+#progreso{
+	width: 0px;
+	height: 16px;
+	background: rgba(0,0,150,.2);
+}
+.clear{
+	clear:both;
+}
+#nombre{
+	float: left;
+}
+#tiempo{
+	float: right;
+}

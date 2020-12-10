@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Ejercicio 4 - DOM basico y atributos XHTML</title>
+
+      
+
+        <script type="text/javascript">
+        function copiar() {
+           var texto = document.getElementById("textillo").value;
+           document.getElementById("textillo").value = "";
+           document.getElementById("textilloCopia").value = texto;
+        }
+        </script>
+    </head>
+
+    <body>
+        <h1>COPIAR TEXTO</h1>
+        <table>
+            <tr>
+                <td><input type="text" id="textillo" name="textillo"></td>
+                <td><input type="text" id="textilloCopia" name="textilloCopia"></td>
+                <td><input type="button" onclick=copiar() value="Copiar"></td>
+            </tr>
+
+        </table>
+       
+    </body>
+</html>

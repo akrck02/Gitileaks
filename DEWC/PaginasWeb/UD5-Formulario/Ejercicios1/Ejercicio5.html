@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ejercicio5</title>
+
+<script type="text/javascript">
+window.onload=function(){
+	document.getElementById("areadetexto").onkeyup=calcula;
+	document.getElementById("limite").onchange=comprobarnumero;
+	document.getElementById("areadetexto").onfocus=limita;
+}
+function comprobarnumero(){
+	var limite=document.getElementById("limite");
+	if (isNaN(limite.value)){
+		alert("El límite debe ser un valor númerico");
+		limite.value=5;
+	}
+}
+function limita(){
+	document.getElementById("areadetexto").maxLength=document.getElementById("limite").value
+}
+
+function calcula() {
+	var areadetexto=document.getElementById("areadetexto").value;
+	var numero=document.getElementById("numero")
+	numero.value=areadetexto.length	
+	
+}
+
+</script>
+<style type="text/css">
+	body {
+		font-family: arial, helvetica;
+	}
+	label {
+	   width: 15%;
+	   float: left;
+	}
+	textarea{
+		width:30%;
+		height: 70px;
+	}
+	#numero{
+		width:5%;
+		text-align:right;
+	}
+</style>
+</head>
+
+    <body>
+    	<h1>NÚMERO DE CARACTERES DE UN TEXTAREA</h1>
+        <form name="miformulario">
+        	<div><label for="limite">Límite:</label><input type="text" id="limite" value="5"/></div>
+            <div><label for="areadetexto">Texto:</label><textarea id="areadetexto"></textarea></div>
+            <div><label for="numero">Número de caracteres:</label><input type="text" id="numero" value="0"/></div>
+        </form>
+    </body>
+</html>
+

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 5</title>
+<h1>Calculadora</h1>
+
+<script type="text/javascript">
+
+var operador="";
+var numAnte=0;
+var cont=0;
+var result=0;
+
+var numAct=0;
+function operacion(operad) {
+    operador = operad;
+    numAnte = parseInt(document.getElementById("cajatexto").value);
+    document.getElementById("cajatexto").value=" ";
+    
+    
+}
+
+function calcula() {
+
+    numAct = parseInt(document.getElementById("cajatexto").value);
+
+    if(isNaN(numAct)) {
+        document.getElementById("cajatexto").value="ERROR Escribe un numero"
+    }
+    else{
+    
+        if(cont>0){
+
+            numAnte = result
+        }   
+
+        if(operador=="+"){
+            result=numAnte+numAct;
+        }
+        if(operador=="-"){
+            result=numAnte-numAct;
+        }
+        if(operador=="*"){
+            result=numAnte*numAct;
+        }
+        if(operador=="/"){
+            if(numAct==0) {
+               alert("ERROR No se puede dividir por 0");
+            }
+            else{
+                result=numAnte/numAct;
+            }
+           
+        }
+
+
+        document.getElementById("cajatexto").value=result;
+        cont++;
+    }
+}
+
+function escribe(num) {
+
+    document.getElementById("cajatexto").value+=num;
+
+}
+function limpiar() {
+    numAnte=0;
+    document.getElementById("cajatexto").value="";
+
+}
+
+</script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td colspan="4">
+                <input type="text" id="cajatexto" maxlength="20" readonly="true">
+            </td>
+        </tr>
+        <tr> 
+            <td><input type="button" value="1" onclick="escribe(1)"> </td>
+            <td><input type="button" value="2" onclick="escribe(2)"> </td>
+            <td><input type="button" value="3" onclick="escribe(3)"> </td>
+            <td><input type="button" value="C" onclick="limpiar()"> </td>
+        </tr>
+        <tr> 
+            <td><input type="button" value="4" onclick="escribe(4)"> </td>
+            <td><input type="button" value="5" onclick="escribe(5)"> </td>
+            <td><input type="button" value="6" onclick="escribe(6)"> </td>
+            <td><input type="button" name="oper" value="+" onclick="operacion('+')"> </td>
+        </tr>
+        <tr> 
+            <td><input type="button" value="7" onclick="escribe(7)"> </td>
+            <td><input type="button" value="8" onclick="escribe(8)"> </td>
+            <td><input type="button" value="9" onclick="escribe(9)"> </td>
+            <td><input type="button" name="oper" value="-" onclick="operacion('-')"> </td>
+        </tr>
+        <tr> 
+            <td><input type="button" value="0" onclick="escribe(0)"> </td>
+            <td><input type="button" name="oper" value="/" onclick="operacion('/')"> </td>
+            <td><input type="button" value="=" onclick="calcula()"> </td>
+            <td><input type="button" name="oper" value="*" onclick="operacion('*')"> </td>
+        </tr>
+    
+    
+    
+    </table>
+</body>
+</html>

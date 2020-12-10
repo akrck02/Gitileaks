@@ -1,0 +1,25 @@
+<html>
+
+<script>
+
+function gehitu(a,b){
+	return a+b;
+}
+
+function sumatorio(){
+	sum=0;
+	for(i=0; i<arguments.length; i++) {
+		sum+=arguments[i];
+	}
+	return(sum);
+}
+
+console.info(gehitu(2, 4)); // 6
+console.info(gehitu(4, 4)); // 8
+console.info(gehitu(1, 2)); // 3
+
+console.info(sumatorio(1, 2,3)); // 6
+
+</script>
+
+</html>

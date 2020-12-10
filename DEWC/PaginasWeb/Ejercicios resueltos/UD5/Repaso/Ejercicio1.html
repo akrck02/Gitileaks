@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio5</title>
+		<style type="text/css">
+            body {
+                font-family: arial, helvetica;
+				font-size:12px;
+				margin:4px;
+            }
+            form{
+               width:100%;
+			   vertical-align:top;
+			  
+            }
+            #titulo {
+                text-align:center;
+                width:100%;
+            }
+			.oculto{
+				color:red;
+				float:left;
+			}
+			.etiqueta{
+				clear:both;
+				float:left;
+			}
+			#botones{
+				clear:both;
+			}
+        </style>
+        
+        <script type="text/javascript">
+		//<![CDATA[
+			window.onload=function(){
+				document.getElementById("crear").onclick=crearCuenta;
+				document.getElementById("borrar").onclick=borrar;
+				document.getElementById("crear").disabled=true;
+				document.getElementById("condiciones").onchange=habilitarBoton;
+			}
+			function habilitarBoton(){
+				var condiciones=document.getElementById("condiciones");
+				if (condiciones.checked){
+					document.getElementById("crear").disabled=false;
+				}else{
+					document.getElementById("crear").disabled=true;
+				}
+			}
+			function crearCuenta(){
+				ocultar();
+				var nombre=document.getElementById("nombre").value;
+				var email=document.getElementById("email").value;
+				var clave1=document.getElementById("clave1").value;
+				var clave2=document.getElementById("clave2").value;
+				var condiciones=document.getElementById("condiciones").value;
+				var boton=document.getElementById("crear");
+				var validar =true;
+				if (nombre.trim()==""){
+					document.getElementById("errornombre").innerHTML="<p>Introduca un nombre</p>"
+					document.getElementById("errornombre").style.display="inline";
+					validar=false;
+				}
+				if (email!=""){
+					if  (!/^\w+@\w+\.\w+$/.test(email)){
+						document.getElementById("erroremail").innerHTML="<p>El email no es correcto</p>"
+						document.getElementById("erroremail").style.display="inline";
+						validar=false;
+					}
+				}
+				if (clave1.length<8){
+					document.getElementById("errorclave1").innerHTML="<p>La contraseña tiene que tener mas de 8 caracteres y uno de ellos debe ser numérico</p>"
+					document.getElementById("errorclave1").style.display="inline";
+					validar=false;
+				}else if (!/\d{1}/.test(clave1)){
+					///+.\d{1}+./
+					document.getElementById("errorclave1").innerHTML="<p>La contraseña tiene que tener mas de 8 caracteres y uno de ellos debe ser numérico</p>"
+					document.getElementById("errorclave1").style.display="inline";
+					validar=false;
+				}
+				if (clave1!=clave2){
+					document.getElementById("errorclave2").innerHTML="<p>La contraseña no coincide con su repetición</p>"
+					document.getElementById("errorclave2").style.display="inline";
+					validar=false;
+				}
+				if (validar){
+					boton.value="Creando cuenta..."
+					boton.disabled=true
+					setTimeout("habilitar()",5000);
+				}
+				return false;
+			}
+			function ocultar(){
+				document.getElementById("errornombre").style.display="none";
+				document.getElementById("erroremail").style.display="none";
+				document.getElementById("errorclave1").style.display="none";
+				document.getElementById("errorclave2").style.display="none";
+			}
+			function habilitar(){
+				document.getElementById("titulo").innerHTML="<h1>Bienvenido " + nombre.value + "</h1>"
+				document.getElementById("titulo").style.display="inline";
+				document.getElementById("divform").style.display="none";
+			}
+			function borrar(){
+				if (confirm("¿Estas seguro de que deseas borrar los datos?")){
+					ocultar();
+					return true;
+				}else{
+					return false;
+				}
+			}
+		//]]>
+        </script>
+    </head>
+    <body>
+         <div id="titulo"><h1>FORMULARIO</h1></div>
+         <div id="divform">
+            <form id="miform" action="">
+                <div class="etiqueta">
+                	<label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" value="" size="20" />
+                </div>
+                <div id="errornombre" class="oculto"></div>
+                <div class="etiqueta">
+                	<label for="email" >e-mail:</label>
+                    <input type="text" id="email" value="" size="20" />
+                </div>
+                <div id="erroremail" class="oculto"></div>
+                <div class="etiqueta">
+                	<label for="clave1">Contraseña:</label>
+                    <input type="password" id="clave1" value="" size="8"/>
+                </div>
+                <div id="errorclave1"  class="oculto"></div>
+                <div class="etiqueta">
+                	<label for="clave2">Repetir contraseña:</label>
+                    <input type="password" id="clave2" value="" size="8"/>
+                </div>
+                <div id="errorclave2"  class="oculto"></div>
+                <div class="etiqueta">
+                	<input type="checkbox" id="condiciones" /> 
+                    <label for="condiciones">Acepto las condiciones</label>
+                </div>
+                <div id="botones">  
+                    <input type="submit" id="crear" value="Crear cuenta" />
+                    <input type="reset" id="borrar" value="Borrar datos"/>
+           		</div>
+            </form>
+      	</div>
+    </body>
+</html>

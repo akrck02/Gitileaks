@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+        function cambio(){
+            var izq = document.getElementById("izquierda");
+            var textIzq = izq.value;
+            var der = document.getElementById("derecha");
+            var textDer = der.value;
+            izq.value=textDer;
+            der.value=textIzq;
+
+        }
+    </script>
+</head>
+<body>
+    <input type="text" name="izquierda" id="izquierda" >
+    <input type="text" name="derecha" id="derecha">
+    <input type="button" name="boton" id="boton" value="cambio" onclick="cambio();">
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+<meta charset="utf-8">
+<title>Invocar función desde JavaScript</title>
+	<script> 
+			function aplicar_IVA(valorProducto, IVA) { 
+				var productoConIVA = valorProducto * IVA;
+				alert("El precio del producto, aplicando el IVA del " + IVA + " es: " + productoConIVA); 
+			} 
+	</script> 		
+</head>
+<body>  
+<script>
+			aplicar_IVA(300, 1.18)
+</script>
+</body>  
+</html> 

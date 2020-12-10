@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Examen</title>
+        <link rel="stylesheet" type="text/css" href="jscal/css/jscal2.css" />
+   		<link rel="stylesheet" type="text/css" href="jscal/css/border-radius.css" />
+    	<script type="text/javascript" src="jscal/js/jscal2.js"></script>
+    	<script type="text/javascript" src="jscal/js/lang/es.js"></script>
+		<style type="text/css">
+            body {
+                font-family: arial, helvetica;
+				font-size:12px;
+            }
+			#caja{
+				float:left;
+				width: 48%;
+				background-color:#CCC;
+				padding:10px;
+			}
+			#divformulario{
+				float:left;
+				width:48%;
+				padding:10px;
+			}
+			label{
+				padding: 5px;
+			}
+			.oculto{
+				color:red;
+				float:left;
+			}
+			.etiqueta{
+				clear:both;
+				float:left;
+			}
+			#botones{
+				clear:both;
+			}
+        </style>
+        <script type="text/javascript">
+		//<![CDATA[
+			window.onload=function(){
+				document.getElementById("categoria").onchange=mostrarsubcategoria;
+                document.getElementById("divsubcategoria").style.display="none";
+				document.getElementById("caja").style.display="none"
+				document.getElementById("nombre").onfocus=resaltar;
+				document.getElementById("nombre").onblur=desresaltar;
+				document.getElementById("email").onfocus=resaltar;
+				document.getElementById("email").onblur=desresaltar;
+				document.getElementById("clave1").onfocus=resaltar;
+				document.getElementById("clave1").onblur=desresaltar;
+				document.getElementById("clave2").onfocus=resaltar;
+				document.getElementById("clave2").onblur=desresaltar;
+				document.getElementById("crear").onclick=crearCuenta;
+				document.getElementById("borrar").onclick=borrar;
+				document.getElementById("crear").disabled=true;
+				document.getElementById("condiciones").onchange=habilitarBoton;
+			}
+			
+			function resaltar(){
+				this.style.border="2px solid black";
+				this.style.backgroundColor="#CCF";
+			}
+			
+			function desresaltar(){
+				this.style.border="";
+				this.style.backgroundColor="white";
+			}
+			
+			function habilitarBoton(){
+				var condiciones=document.getElementById("condiciones");
+				if (condiciones.checked){
+					document.getElementById("crear").disabled=false;
+				}else{
+					document.getElementById("crear").disabled=true;
+				}
+			}
+			
+			function crearCuenta(){
+				ocultar();
+				var validar =true;
+				if (document.getElementById("nombre").value.trim()==""){
+					document.getElementById("errornombre").innerHTML="<p>Introduzca un nombre</p>"
+					document.getElementById("errornombre").style.display="inline";
+					validar=false;
+				}
+				if  (!/^\w+@\w+\.\w+$/.test(document.getElementById("email").value)){
+					document.getElementById("erroremail").innerHTML="<p>Introduzca un email correcto</p>"
+					document.getElementById("erroremail").style.display="inline";
+					validar=false;
+				}
+				if (document.getElementById("clave1").value.length<8){
+					document.getElementById("errorclave1").innerHTML="<p>La contraseña tiene que tener mas de 8 caracteres</p>"
+					document.getElementById("errorclave1").style.display="inline";
+					validar=false;
+				}
+				if (document.getElementById("clave1").value!=document.getElementById("clave2").value){
+					document.getElementById("errorclave2").innerHTML="<p>La contraseña no coincide con su repetición</p>"
+					document.getElementById("errorclave2").style.display="inline";
+					validar=false;
+				}
+				if (document.getElementById("categoria").selectedIndex==0){
+					document.getElementById("errorcategoria").innerHTML="<p>Debe elegir alguna preferencia</p>"
+					document.getElementById("errorcategoria").style.display="inline";
+					validar=false;
+				}else{
+					if (document.getElementById("subcategoria").selectedIndex==0){
+						document.getElementById("errorsubcategoria").innerHTML="<p>Debe elegir algun elemento</p>"
+						document.getElementById("errorsubcategoria").style.display="inline";
+						validar=false;
+					}
+				}
+				if (validar){
+					document.getElementById("crear").value="Creando cuenta..."
+					document.getElementById("crear").disabled=true
+					setTimeout("mostrarDatos()",5000);
+				}
+			}
+			function ocultar(){
+				document.getElementById("errornombre").style.display="none";
+				document.getElementById("erroremail").style.display="none";
+				document.getElementById("errorclave1").style.display="none";
+				document.getElementById("errorclave2").style.display="none"
+				document.getElementById("errorcategoria").style.display="none";
+				document.getElementById("errorsubcategoria").style.display="none";
+			}
+			
+			function borrar(){
+				if (confirm("¿Estas seguro de que deseas borrar los datos?")){
+					ocultar();
+					document.getElementById("caja").style.display="none"
+					document.getElementById("divsubcategoria").style.display="none";
+					document.getElementById("miform").reset();
+					return true;
+				}else{
+					return false;
+				}
+			}
+			
+			function mostrarDatos(){
+				var textoHTML="<h1>" + nombre.value.toUpperCase()  +"</h1>";
+				textoHTML=textoHTML + "<p>Email: " + document.getElementById("email").value;
+				var categoria=document.getElementById("categoria").options[document.getElementById("categoria").selectedIndex].text
+				var subcategoria=document.getElementById("subcategoria").options[document.getElementById("subcategoria").selectedIndex].text
+				textoHTML=textoHTML + "<p>Preferencias: " +categoria + "-" + subcategoria;
+				document.getElementById("caja").innerHTML=textoHTML;
+				document.getElementById("caja").style.display="inline";
+				document.getElementById("crear").value="Crear cuenta";
+				document.getElementById("crear").disabled=false;
+			}
+			
+			function mostrarsubcategoria(){
+				var subcategoria_1=new Array("Seleccione un elemento", "España","Alemania","Argentina","Canada","EEUU","Sudafrica");
+                var subcategoria_2=new Array("Seleccione un elemento","Juego de Tronos","El Código Da Vinci","Guerra y Paz","La dieta dunkan");
+                var subcategoria_3=new Array("Seleccione un elemento", "El Pianista","La Jungla","Arma Letal","Tarantula","El Resplandor");
+                var subcategoria_4=new Array("Seleccione un elemento", "Super Mario Kart","Tetris","Super Mario World","Zelda Ocarina of Time","Final Fantasy VII");
+                var miarray=new Array(subcategoria_1, subcategoria_2, subcategoria_3,subcategoria_4);
+                var indice=document.getElementById("categoria").selectedIndex;
+			    document.getElementById("divsubcategoria").innerHTML="";
+				if (indice!=0) {
+					document.getElementById("errorcategoria").style.display="none";
+					elemento=document.createElement("select");
+					elemento.setAttribute("id", "subcategoria");
+					document.getElementById("divsubcategoria").appendChild(elemento);
+				 	var miarray_sel=miarray[indice-1];
+                    for (i=0; i<miarray_sel.length; i++){
+						elementooption=document.createElement("option");
+                        contenido=document.createTextNode(miarray_sel[i]);
+						elementooption.appendChild(contenido);
+                        document.getElementById("subcategoria").appendChild(elementooption);
+                    }
+                    document.getElementById("divsubcategoria").style.display="inline";
+                }else{
+                    document.getElementById("divsubcategoria").style.display="none";
+                }
+            }
+			//]]>
+		</script>
+    </head>
+    <body>
+    	<div id="caja"></div>
+        <div id="divformulario">
+       		<h1>EXAMEN JAVASCRIPT</h1>
+            <form id="miform" action="">
+                <div class="etiqueta">
+                	<label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" value="" size="20" />
+                </div>
+                <div id="errornombre" class="oculto"></div>
+                <div class="etiqueta">
+                	<label for="email" >e-mail:</label>
+                    <input type="text" id="email" value="" size="20" />
+                </div>
+                <div id="erroremail" class="oculto"></div>
+                <div class="etiqueta">
+                	<label for="clave1">Contraseña:</label>
+                    <input type="password" id="clave1" value="" size="8"/>
+                </div>
+                <div id="errorclave1"  class="oculto"></div>
+                <div class="etiqueta">
+                	<label for="clave2">Repetir contraseña:</label>
+                    <input type="password" id="clave2" value="" size="8"/>
+                </div>
+                <div id="errorclave2"  class="oculto"></div>
+                <div class="etiqueta">
+                	<label for="categoria">Preferencias</label>
+                    <select id="categoria" >
+                        <option value="0" selected="selected">Seleccione un preferencia</option>
+                        <option value="1">Viajar</option>
+                        <option value="2">Leer</option>
+                        <option value="3">Cine</option>
+                        <option value="4">Juegos</option>
+                    </select>
+                     <div id="divsubcategoria"></div>
+                 </div>
+                <div id="errorcategoria" class="oculto"></div>
+                <div id="errorsubcategoria"  class="oculto"></div>
+                <div class="etiqueta">
+                	<input type="checkbox" id="condiciones" /> 
+                    <label for="condiciones">Acepto las condiciones</label>
+                </div>
+                <div id="botones">  
+                    <input type="button" id="crear" value="Crear cuenta" />
+                    <input type="reset" id="borrar" value="Borrar datos"/>
+           		</div>
+            </form>
+       </div>
+    </body>
+</html>

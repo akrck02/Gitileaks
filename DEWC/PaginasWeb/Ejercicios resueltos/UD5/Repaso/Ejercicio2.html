@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio2</title>
+        <script type="text/javascript">
+		//<![CDATA[
+            window.onload=function(){
+                document.getElementById("enviar").onclick=cambiarcolor;
+            }
+            function cambiarcolor(){
+				var colores = document.getElementsByName("color")
+                for (var i=0;i<=colores.length-1;i++){
+					 if (colores[i].checked){
+						document.body.style.backgroundColor=colores[i].value;
+						if (colores[i].value=="white" || colores[i].value=="yellow" ){
+							document.body.style.color="black";
+						}else{
+							document.body.style.color="white";
+						}
+                        break;
+                    }
+                }
+                return false;  
+            }
+		//]]>
+        </script>
+    </head>
+    <body>
+        <form id="miform" aciotn="#">
+            <input id="blanco" type="radio" value="white" name="color"/><label for="blanco">Blanco</label><br/>
+            <input id="rojo" type="radio" value="red" name="color"/><label for="rojo">Rojo</label><br/>
+            <input id="verde" type="radio" value="green" name="color"/><label for="verde">Verde</label><br/>
+            <input id="azul" type="radio" value="blue" name="color"/><label for="azul">Azul</label><br/>
+            <input id="amarillo" type="radio" value="yellow" name="color"/><label for="amarillo">Amarillo</label><br/>
+            <input id="turquesa" type="radio" value="turquoise" name="color"/><label for="turquesa">Turquesa</label><br/>
+            <input id="morado" type="radio" value="purple" name="color"/><label for="morado">Morado</label><br/>
+            <input id="negro" type="radio" value="black" name="color"/><label for="negro">Negro</label><br/><br/>
+            <input type="submit" id="enviar" value="Cambia color" />
+        </form>
+    </body>
+</html>

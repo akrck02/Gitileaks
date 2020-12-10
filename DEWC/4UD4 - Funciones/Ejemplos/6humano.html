@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Comprobación de humano</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+	
+	<script>
+		function ComprobarHumano() { 
+			var resultado = prompt("Introduce el resultado de 144/12: ");
+			var humano = Verificacion(resultado);
+
+			if(humano == true) { 
+				document.write("Has ingresado el resultado correcto y podrás ver el contenido."); 
+			}else{ 
+				alert("No has introducido el valor correcto"); 
+			}
+		}
+
+		function Verificacion(res) {
+			var compruebaResultado;
+			if (res == 12) { 
+				compruebaResultado=true;
+			}else{
+				compruebaResultado=false;
+			}
+			return compruebaResultado;
+		}
+	</script>
+
+</head>
+<body>
+	<script type="text/javascript">
+		ComprobarHumano();
+	</script>
+</body>
+</html>

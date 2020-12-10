@@ -1,0 +1,89 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Checkbox</title>
+        <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <style type="text/css">
+			body, a, label, input{
+				font-family: Verdana, Geneva, sans-serif;
+				font-size: 15px;
+				margin:5px;
+				padding:0px;
+			}
+		</style>
+        <script type="text/javascript">
+			$(document).ready(function(){
+				$("<a href='#' id='schk1'>Seleccionar</a> | <a href='#' id='dchk1'>Deseleccionar</a><br/> ").prependTo("#chk1")
+				$("#chk1").children("div").children("label").css("color","blue");
+				$("#chk1 a").click(function(evento){
+					var tipo=$(this).attr("id")
+					$(this).parent("div").children("div").fadeOut(2000,function(){
+						if (tipo=="schk1"){
+							$(this).children("input").prop("checked",true);
+							$(this).children("label").css("color","red");
+							$(this).fadeIn(2000)
+						}else{
+							$(this).children("input").prop("checked",false);
+							$(this).children("label").css("color","blue");
+							$(this).fadeIn(2000)
+						}
+						
+					});
+				})
+				
+				$("#chk1 input").click(function(){
+					if ($(this).prop("checked")==true){
+						$(this).next("label").css("color","red").animate({"font-size":"30px"},3000).animate({"font-size":"15px"},3000)	
+						
+					}else{
+						$(this).next("label").css("color","blue").animate({"font-size":"30px"},3000).animate({"font-size":"15px"},3000)
+					}
+				})
+				$("<a href='#' id='schk2'>Seleccionar</a> | <a href='#' id='dchk2'>Deseleccionar</a><br/>").prependTo("#chk2")
+				$("#chk2").children("div").children("label").css("color","orange");
+				$("#chk2 a").click(function(evento){
+					var tipo=$(this).attr("id")
+					$(this).parent("div").slideUp("slow",function(){
+						if (tipo=="schk2"){
+							$(this).children("div").children("input").prop("checked",true);
+							$(this).children("div").children("label").css("color","green");
+						}else{
+							$(this).children("div").children("input").prop("checked",false);
+							$(this).children("div").children("label").css("color","orange");
+						}
+					})
+					$(this).parent("div").slideDown("slow")
+					evento.preventDefault();
+				})
+				
+				$("#chk2 input").click(function(evento){
+					$(this).parent("div").slideUp("slow", function(){
+						if ($(this).children("input").prop("checked")==true){
+							$(this).children("label").css("color", "green")
+						}else{
+							$(this).children("label").css("color", "orange")
+						}
+					})
+					$(this).parent("div").slideDown("slow");
+				 });
+			 });
+   		</script>
+    </head>
+    <body>
+        <form method="post" action="#">
+            <div id="chk1">
+				<div><input type="checkbox"  id="jQuery"> <label for="jQuery">jQuery</label></div>
+				<div><input type="checkbox"  id="JavaScript"> <label for="JavaScript">JavaScript</label></div>
+				<div><input type="checkbox"  id="Ajax"> <label for="Ajax">Ajax</label></div>
+				<div><input type="checkbox"  id="Otros"> <label for="Otros">Otros</label></div>
+			</div>
+            <br/>
+            <div id="chk2">
+				<div><input type="checkbox" id="ASP" > <label for="ASP">ASP</label></div>
+				<div><input type="checkbox" id="PHP" > <label for="PHP">PHP</label></div>
+				<div><input type="checkbox" id=".Net" > <label for=".Net">.Net</label></div>
+			</div>				
+        </form>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio4</title>
+        <link href="css/estilos4.css" rel="stylesheet" >
+        <script>
+			window.status="Bienvenido a JavaScript";
+			var miventana=window.open("http://www.google.es","Google","resizable=0,scrollbars=0,toolbar=0,menubar=1,locationbar=0,statusbar=0,top=50,left=150,width=300,   height=300");
+			
+			
+						
+		</script>
+	</head>
+	<body>
+    	<section id="screen">
+        	<h1>Objeto screen</h1>
+            <script>
+				document.write(" <p>La resolución de la pantalla es " +screen.width+"x" +screen.height +"</strong></p>");
+			</script>
+        </section>
+        <section id="navigator">
+        	<h1>Objeto navigator</h1>
+             <script>
+				document.write("<p>El nombre del navegador que usas es:<strong> " + navigator.appName + "</strong><br>");
+				document.write("Usas el siguiente sistema operativo: <strong>" + navigator.platform+ "</strong><br>");
+				document.write("La versión del navegador que usas es: <strong>" + navigator.appVersion + "</strong></p>");
+			</script>
+        </section>
+        <section id="document">
+        	<h1>Objeto document</h1>
+            <script>
+				
+				document.write("<p>La URL del documento es: <strong>" + document.URL + "</strong></p>");
+			</script>
+        </section>
+        <section id="location">
+        	<h1>Objeto location</h1>
+            <script>
+				document.write("<p>El protocolo usado para acceder a esta página ha sido: <strong>" + location.protocol + "</strong></p>");
+			</script>
+        </section>
+    	<noscript>
+            <p>Para ver correctamente este código tiene que activar JavaScript</p>
+        </noscript>
+	</body> 
+</html> 
+

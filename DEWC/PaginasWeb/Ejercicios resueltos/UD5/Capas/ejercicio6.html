@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio5</title>
+        <style type="text/css">
+			#galeria1{
+				position:absolute;
+				top:100px;
+				left:100px;
+				width:600px;
+				height:450px;
+				z-index:2;
+			}
+			#galeria2{
+				position:absolute;
+				top:100px;
+				left:100px;
+				width:600px;
+				height:450px;
+				z-index:1;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				imagenes = new Array();
+				imagenes[0]="images/paseanimales/aguila.jpg"
+				imagenes[1]="images/paseanimales/ballena.jpg"
+				imagenes[2]="images/paseanimales/flamenco.jpg"
+				imagenes[3]="images/paseanimales/pinguinos.jpg"
+				imagenes[4]="images/paseanimales/tortuga.jpg"
+				y=450;
+				actual=0;
+				galeria1=document.getElementById("galeria1");
+				galeria2=document.getElementById("galeria2");
+				galeria1.style.backgroundImage="url("+imagenes[actual]+")";
+				galeria2.style.backgroundImage="url("+imagenes[actual+1]+")";
+				centrar();
+				intervalo=setInterval("cortina()",10);
+				window.onresize=centrar;  
+			}
+			function centrar(){
+				var x=window.innerWidth/2;
+				var y=window.innerHeight/2;
+				galeria1.style.left=(x-300)+"px";
+				galeria1.style.top=(y-225)+"px";
+				galeria2.style.left=(x-300)+"px";
+				galeria2.style.top=(y-225)+"px";
+			}
+			function cortina(){
+				if(y>=0){
+					galeria1.style.clip="rect(0px 600px "+y+"px 0px)";
+					y--;
+				}else{
+					actual++;
+					galeria1.style.backgroundImage="url("+imagenes[actual]+")";
+					if(actual==imagenes.length-1){
+						actual=-1;
+					}
+					galeria2.style.backgroundImage="url("+imagenes[actual+1]+")";
+					y=450;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="galeria1"></div>
+		<div id="galeria2"></div>
+	</body>
+</html> 

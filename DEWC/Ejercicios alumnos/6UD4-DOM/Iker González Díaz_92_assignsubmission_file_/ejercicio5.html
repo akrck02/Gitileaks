@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+    <h1>CALCULADORA</h1>
+    <table>
+        <script>
+            var num_pantalla="";
+            var resultado=0;
+            var operacion_previa="";
+            function escribir(numero){
+                num_pantalla+=numero;
+                document.getElementById("display").setAttribute("value", num_pantalla);
+            }
+           function operacion(tipo){
+               switch (operacion_previa){
+                    case "":
+                    resultado+=parseInt(num_pantalla);
+                    break;
+                    case "s":
+                        resultado+=parseInt(num_pantalla);
+                    break;
+                    case "r":
+                        resultado-=parseInt(num_pantalla);
+                    break;
+                    case "m":
+                        resultado*=parseInt(num_pantalla);
+                    break;
+                    case "d":
+                        resultado/=parseInt(num_pantalla);
+                    break;
+                }
+                operacion_previa=tipo;
+                num_pantalla="";
+                document.getElementById("display").setAttribute("value", resultado);
+           }
+           function suprimir(){
+               num_pantalla="";
+               document.getElementById("display").setAttribute("value", num_pantalla);
+               resultado=0;
+               operacion_previa="";
+           }
+           function igual(){
+            switch (operacion_previa){
+                    case "":
+                    resultado+=parseInt(num_pantalla);
+                    break;
+                    case "s":
+                        resultado+=parseInt(num_pantalla);
+                    break;
+                    case "r":
+                        resultado-=parseInt(num_pantalla);
+                    break;
+                    case "m":
+                        resultado*=parseInt(num_pantalla);
+                    break;
+                    case "d":
+                        resultado/=parseInt(num_pantalla);
+                    break;
+                }
+                document.getElementById("display").setAttribute("value", resultado);
+                num_pantalla="";
+                operacion_previa="i";
+           }
+        </script>
+        <tr>
+            <td colspan='4'>
+                <input type='text' disabled value="" name='display' id='display' style='background-color:lightgray;border:1px solid black; color: green'>
+            </td>
+        </tr>
+        <tr>
+        <td>
+            <input type="button" name="numero" value="1" id="1" onclick="escribir(1)"/>
+        </td>
+        <td>
+            <input type="button" name="numero" value="2" id="2" onclick="escribir(2)"/>
+        </td>
+        <td>
+            <input type="button" name="numero" value="3" id="3" onclick="escribir(3)"/>
+        </td>
+        <td>
+            <input type="button" name="boton" value="C" id="c" onclick="suprimir()"/>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <input type="button" name="numero" value="4" id="4" onclick="escribir(4)"/>
+        </td>
+        <td>
+            <input type="button" name="numero" value="5" id="5" onclick="escribir(5)"/>
+        </td>
+        <td>
+            <input type="button" name="numero" value="6" id="6" onclick="escribir(6)"/>
+        </td>
+        <td>
+            <input type="button" name="boton" value="+" id="suma" onclick="operacion('s')"/>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <input type="button" name="numero" value="7" id="7" onclick="escribir(7)"/>
+        </td>
+        <td>
+            <input type="button" name="numero" value="8" id="8" onclick="escribir(8)"/>
+        </td>
+        <td>
+            <input type="button" name="numero" value="9" id="9" onclick="escribir(9)"/>
+        </td>
+        <td>
+            <input type="button" name="boton" value="-" id="menos" onclick="operacion('r')"/>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <input type="button" name="numero" value="0" id="0" onclick="escribir(0)"/>
+        </td>
+        <td>
+            <input type="button" name="boton" value="/" id="dividir" onclick="operacion('d')"/>
+        </td>
+        <td>
+            <input type="button" name="boton" value="=" id="igual" onclick="igual()"/>
+        </td>
+        <td>
+            <input type="button" name="boton" value="*" id="multiplicar" onclick="operacion('m')"/>
+        </td>
+    </tr>
+    </table>
+</body>
+</html>

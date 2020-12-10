@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Examen</title>
+        <link rel="stylesheet" type="text/css" href="jscal/css/jscal2.css" />
+   		<link rel="stylesheet" type="text/css" href="jscal/css/border-radius.css" />
+    	<script type="text/javascript" src="jscal/js/jscal2.js"></script>
+    	<script type="text/javascript" src="jscal/js/lang/es.js"></script>
+		<style type="text/css">
+            body {
+                font-family: arial, helvetica;
+				font-size:12px;
+				
+            }
+			#caja{
+				float:left;
+				width: 48%;
+				background-color:#CCC;
+				padding:10px;
+			}
+			#divformulario{
+				float:left;
+				width:48%;
+				padding:10px;
+			}
+			label{
+				padding: 5px;
+			}
+			#selecProv{
+				float:left;
+				clear:both;
+				display:block;
+			}
+        </style>
+        <script type="text/javascript">
+		//<![CDATA[
+			window.onload=function(){
+				var provincias=new Array("Alava","Albacete","Alicante","Almería","Asturias","Avila","Badajoz","Barcelona","Burgos","Cáceres", "Cádiz","Cantabria","Castellón","Ciudad Real","Córdoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara", "Guipúzcoa","Huelva","Huesca","Islas Baleares","Jaén","León","Lérida","Lugo","Madrid","Málaga","Murcia","Navarra","Orense","Palencia","Las Palmas", "Pontevedra","La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona","Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza");
+				var elemento, contenido;
+				elemento=document.createElement("select");
+				elemento.setAttribute("id", "provincia");
+				document.getElementById("selectProv").appendChild(elemento);
+				elemento=document.createElement("option");
+				contenido=document.createTextNode("Seleccione una provincia");
+				elemento.setAttribute("value", "0");
+				elemento.appendChild(contenido);
+				document.getElementById("provincia").appendChild(elemento);
+				for (i=0; i<provincias.length; i++){
+						elemento=document.createElement("option");
+                        contenido=document.createTextNode(provincias[i]);
+						elemento.setAttribute("value", i+1);
+						elemento.appendChild(contenido);
+                        document.getElementById("provincia").appendChild(elemento);
+				}
+				Calendar.setup({
+					inputField: "fecha",
+					dateFormat:"%d/%m/%Y",
+					trigger: "calendario",
+				});
+				caja=document.getElementById("caja");
+				nombre =document.getElementById("nombre");
+				apellidos =document.getElementById("apellidos");
+				fecha =document.getElementById("fecha");
+				cp =document.getElementById("cp");
+				provincia =document.getElementById("provincia");
+				analisis=document.getElementById("analisis");
+				hardware=document.getElementById("hardware");
+				administracion=document.getElementById("administracion");
+				telecomunicacion=document.getElementById("telecomunicacion");
+				enviar=document.getElementById("enviar");
+				limpiar=document.getElementById("limpiar");
+				caja.style.display="none";
+				enviar.onclick=enviarDatos;
+				limpiar.onclick=limpiarDatos;
+				nombre.onfocus=resaltar;
+				nombre.onblur=desresaltar;
+				apellidos.onfocus=resaltar;
+				apellidos.onblur=desresaltar;
+				cp.onfocus=resaltar;
+				cp.onblur=desresaltar;
+			}
+			function resaltar(){
+				this.style.border="2px solid black";
+				this.style.backgroundColor="#CCF";
+			}
+			function desresaltar(){
+				this.style.border="";
+				this.style.backgroundColor="white";
+			}
+			function enviarDatos(){
+				if (validar()){
+					enviar.value="Enviando...";
+					enviar.disabled=false;
+					setTimeout("mostrarDatos()", 5000);
+				}else{
+					return false;
+				}
+			}
+			function mostrarDatos(){
+				var textoHTML="<h1>DATOS RESUMEN DE " + nombre.value.toUpperCase() + " " + apellidos.value.toUpperCase() +"</h1>";
+				textoHTML=textoHTML + "<p>Tienes " + calcularEdad(fecha.value) + " años y naciste un "  + calcularDia(fecha.value) +"</p>";
+				textoHTML=textoHTML + "<p>Vives en " + provincia.options[provincia.selectedIndex].text + " y tu código postal es "  + cp.value +"</p>";
+				var contador=0;
+				var preferencias="";
+				if (analisis.checked){
+					contador=contador+1;
+					preferencias=preferencias + "<li>Análisis y programación</li>";
+				}
+				if (hardware.checked){
+					contador=contador+1;
+					preferencias=preferencias + "<li>Hardware, redes y seguridad</li>";
+				}
+				if (administracion.checked){
+					contador=contador+1;
+					preferencias=preferencias + "<li>Administracion y base de datos</li>";
+				}
+				if (telecomunicacion.checked){
+					contador=contador+1;
+					preferencias=preferencias + "<li>Telecomunicaciones</li>";
+				}
+				if (contador==1){
+					textoHTML=textoHTML + "<p>Has seleccionado una preferencia:</p>";
+				}else{
+					textoHTML=textoHTML + "<p>Has seleccionado " + contador + " preferencias:</p>";
+				}
+				textoHTML=textoHTML + "<ul> "+ preferencias + "</ul>";
+				caja.innerHTML=textoHTML;
+				caja.style.display="inline";
+				enviar.value="Enviar";
+			}
+			function limpiarDatos(){
+				if (confirm("¿Esta seguro  que desea limpiar el formulario?")){
+					caja.style.display="none";
+					caja.innerHTML="";
+					document.getElementById("miformulario").reset();
+					return true;
+				}else{
+					return false;
+				}
+			}
+			function validar(){
+				if (nombre.value.trim()==""){
+					alert("Debe introducir un nombre");
+					nombre.focus();
+					return false;
+				}else if (apellidos.value.trim()==""){
+					alert("Debe introducir sus apellidos");
+					apellidos.focus();
+					return false;
+				}else if (fecha.value.trim()==""){
+					alert("Debe introducir una fecha");
+					document.getElementById("calendario").focus();
+					return false;
+				}else if (provincia.selectedIndex==0){
+					alert("Debe elegir una provincia");
+					provincia.focus();
+					return false;
+				}
+				if (cp.value.trim()==""){
+					alert("Debe introducir un código postal");
+					cp.focus();
+					return false;
+				}else if(isNaN(cp.value)){
+					alert("El codigo postal debe ser numerico");
+					cp.focus();
+					return false;
+				}
+				if (!(analisis.checked || hardware.checked || administracion.checked || telecomunicacion.checked)){
+					alert("Debe elegir alguna preferencia");
+					document.getElementById("analisis").focus();
+					return false;
+				}
+				return true;
+			}
+			function calcularEdad(fecha_nacimiento){
+				var fecha_actual=new Date();
+				var ano_actual=fecha_actual.getFullYear();
+				var mes_actual=fecha_actual.getMonth();
+				var dia_actual=fecha_actual.getDate();
+				var fechas = fecha_nacimiento.split("/");
+				var ano_nacimiento=fechas[2];
+				var mes_nacimiento=fechas[1]-1;
+				var dia_nacimiento=fechas[0];
+				var edad=ano_actual-ano_nacimiento;
+				if (mes_actual<mes_nacimiento){
+					edad-=1;
+				}else if (mes_actual==mes_nacimiento){
+					if (dia_actual<dia_nacimiento){
+						edad-=1;
+					}
+				}
+				if (edad<0){
+					edad=0;
+				}
+				return edad;
+			}
+			function calcularDia(fecha){
+				var fechas = fecha.split("/");
+				var anio=fechas[2];
+				var mes=fechas[1]-1;
+				var dia=fechas[0];
+				var fechaux=new Date(anio,mes,dia);
+				var dias=new Array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado");
+				var dia =fechaux.getDay();
+				return dias[dia];
+			}
+			//]]>
+		</script>
+    </head>
+    <body>
+    	<div id="caja"></div>
+        <div id="divformulario">
+       		<h1>EXAMEN JAVASCRIPT</h1>
+            <form id="miformulario" action="#">
+            	<label for="nombre">Nombre:&nbsp;&nbsp;</label>
+                <input type="text" id="nombre" value="" size="30"/><br/>
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" value="" size="30"/><br/>
+                <label for="fecha">Fecha de nacimiento</label>
+                <input type="text"  id="fecha"  size="10" readonly="readonly"/>
+				<button id="calendario">...</button>
+                <hr/>
+                <div id="selectProv"></div>
+                <label for="cp">Codigo postal:</label>
+                <input type="text" id="cp" value="" size="5" maxlength="5"/><br/>
+                <hr/>
+                <label>Selecciona tus preferencias</label><br/>
+                <input type="checkbox" id="analisis" value="1"/><label for="analisis">Análisis y programación</label><br/>
+                <input type="checkbox" id="hardware" value="2"/><label for="hardware">Hardware, redes y seguridad</label><br/>
+                <input type="checkbox" id="administracion" value="3"/><label for="administracion">Administración de base de datos</label><br/>
+                <input type="checkbox" id="telecomunicacion" value="4"/><label for="telecomunicacion">Telecomunicaciones</label><br/>
+              </form>
+              <div id="botones">
+              	<input type="submit" value="Enviar" id="enviar"/>
+                <input type="reset" value="Limpiar" id="limpiar"/>
+              </div>
+       </div>
+    </body>
+</html>

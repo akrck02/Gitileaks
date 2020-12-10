@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio5</title>
+    <script>
+        var num;
+        var oeracion="";
+        function escribir(num){
+            document.getElementById("texto").value+=num;
+        }
+        function limpiar(){
+            document.getElementById("texto").value="";
+            num=0;
+        }
+        function operacion(opc){
+            num=document.getElementById("texto").value;
+            num+="";
+            switch(opc){
+                case '+':
+                    num+=num;
+                    escribir(opc);
+                    break;
+                case '-':
+                    num-=num;
+                    escribir(opc);
+                    break;
+                case '/':                
+                    console.log(num);
+                    escribir(opc);                    
+                    num/=num;
+                    break;
+                case '*':
+                    num*=num;
+                    escribir(opc);
+                    break;
+                case '=':
+                    num=document.getElementById("texto").value; 
+                    console.log(num);
+                    if(num.charAt(num.length-1)==0){
+                        document.getElementById("texto").value="No se puede dividir entre 0";
+                        break;
+                    }      
+                    num=eval(num);            
+                    document.getElementById("texto").value=eval(num);
+                    break;
+                }
+            
+        }  
+    </script>
+</head>
+<body>
+    <table border="1">
+        <h1>CALCULADORA</h1>
+        <tr><input type="text" id="texto" name="texto"/></tr>
+        <tr>
+            <td><input type="button" id="1" value="1" onclick="escribir(1);"></td>
+            <td><input type="button" id="2" value="2" onclick="escribir(2);"></td>
+            <td><input type="button" id="3" value="3" onclick="escribir(3);"></td>
+            <td><input type="button" id="C" value="C" onclick="limpiar();"></td>
+        </tr>
+        <tr>
+            <td><input type="button" id="4" value="4" onclick="escribir(4);"></td>
+            <td><input type="button" id="5" value="5" onclick="escribir(5);"></td>
+            <td><input type="button" id="6" value="6" onclick="escribir(6);"></td>
+            <td><input type="button" id="+" value="+" onclick="operacion('+');"></td>
+        </tr>
+        <tr>
+            <td><input type="button" id="7" value="7" onclick="escribir(7);"></td>
+            <td><input type="button" id="8" value="8" onclick="escribir(8);"></td>
+            <td><input type="button" id="9" value="9" onclick="escribir(9);"></td>
+            <td><input type="button" id="-" value="-" onclick="operacion('-');"></td>
+        </tr>
+        <tr>
+            <td><input type="button" id="0" value="0" onclick="escribir(0);"></td>
+            <td><input type="button" id="/" value="/" onclick="operacion('/');"></td>
+            <td><input type="button" id="=" value="=" onclick="operacion('=');"></td>
+            <td><input type="button" id="*" value="*" onclick="operacion('*');"></td>
+        </tr>
+        
+    </table>
+</body>
+</html>

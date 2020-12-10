@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <style type="text/css">
+			#mapa { float:left; }
+			#antipodas { float:right; }
+        </style>
+        <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
+        </script>
+        <script type="text/javascript">
+			function initialize() {
+				var coordendas=new google.maps.LatLng(42.84, -2.66)
+				var mapOptions = {
+					center: coordendas,
+					zoom: 6,
+				};
+				var map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+				var mapOptions = {
+					center: calcularAntipodas(coordendas),
+					zoom: 6,
+					disableDefaultUI: true,
+				};
+				var map1 = new google.maps.Map(document.getElementById("antipodas"), mapOptions);
+				google.maps.event.addListener(map, 'center_changed', function() {
+				var coordenadas=map.getCenter();
+					map1.setCenter(calcularAntipodas(coordenadas));
+				});
+				google.maps.event.addListener(map, 'zoom_changed', function() {
+					var zoom=map.getZoom();
+					map1.setZoom(zoom);
+				});
+				google.maps.event.addListener(map, 'maptypeid_changed', function() {
+					var tipo=map.getMapTypeId();
+					map1.setMapTypeId(tipo);
+				});
+				google.maps.event.addListener(map, 'click', function(event) {
+					addMarker(event.latLng,map);
+					addMarker(calcularAntipodas(event.latLng),map1);
+				});
+				function addMarker(location,mapa) {
+					marker = new google.maps.Marker({
+						position: location,
+						map: mapa
+					});
+					var popup = new google.maps.InfoWindow({
+						content: 'Latitud: ' + location.lat() + '<br>Longitud: ' + location.lng(),
+						position: location
+					});
+					popup.open(mapa);
+				}
+			}
+			function calcularAntipodas(posicion){
+				latitud=posicion.lat();
+				longitud=posicion.lng();
+				latitud_ant=-latitud;
+				//longitud_ant=180-longitud
+				if (longitud>=0){
+					longitud_ant=-(180-longitud)
+				}else{
+					longitud_ant=180+longitud
+				}
+				//alert("latitud: " + latitud + "\nlongitud: " + longitud + "\nlatitud_ant: "+ latitud_ant + "\nlongitud_ant: " + longitud_ant);
+				posicion_ant= new google.maps.LatLng(latitud_ant, longitud_ant)
+				return posicion_ant
+			}
+        </script>
+    </head>
+    <body onload="initialize()">
+    	<div id="mapa" style="width:40%; height:300px"></div>
+        <div id="antipodas" style="width:40%; height:300px"></div>
+    </body>
+</html>

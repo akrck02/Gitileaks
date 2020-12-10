@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        function pedirint() {
+            var num = null;
+            do{
+                var strnum = prompt("Introduce un número").trim();
+                var num = parseInt(strnum);
+                if(isNaN(num)){
+                    alert("El número no es válido");
+                }
+            }while(isNaN(num));
+            return num;
+        }
+        function suma (sum1, sum2){
+            return (sum1+sum2);
+        }
+
+        var sum1 = pedirint();
+        var sum2 = pedirint();
+        var res = suma(sum1, sum2);
+
+        document.write("<p><b>Primer sumando introducido:</b> " + sum1 + "</p>");
+        document.write("<p><b>Segundo sumando introducido:</b> " + sum2 + "</p>");
+        document.write("<p><b>Resultado de la suma:</b> " + res + "</p>");
+
+    </script>
+</body>
+</html>

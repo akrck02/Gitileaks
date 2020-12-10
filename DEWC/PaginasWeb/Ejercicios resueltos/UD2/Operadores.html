@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Operadores</title>
+	</head>
+	<body>
+		<header>
+        	<h1>Operaciones matemáticas</h1>
+        </header>
+         <script> 
+            var numero1 = prompt("Introduce un n\u00FAmero: "); 
+            var numero2 = prompt("Introduce otro n\u00FAmero: "); 
+            var resultado;
+            document.write ("<section><span>Vamos a operar con los números " + numero1 +  " y " + numero2 +":</span>");
+            document.write ("<ul>");
+            resultado=parseInt(numero1) + parseInt(numero2);
+            document.write ("<li>" + numero1 + " + " + numero2 + " = " + resultado + "</li>");
+            resultado=numero1-numero2;
+            document.write ("<li>" + numero1 + " - " + numero2 + " = " + resultado + "</li>");
+            resultado=numero1*numero2;
+			document.write ("<li>" + numero1 + " * " + numero2 + " = " + resultado + "</li>");
+            resultado=numero1/numero2
+			document.write ("<li>" + numero1 + " / " + numero2 + " = " );
+            numero2 != 0 ? document.write(resultado + "</li>") : document.write("No se puede divider por 0</li>"); 
+            resultado=numero1%numero2
+			document.write ("<li>" + numero1 + " % " + numero2 + " = " );
+			numero2 != 0 ? document.write(numero1%numero2 + "</li>") : document.write("No se puede divider por 0</li>"); 
+            document.write ("</ul></section>");
+        </script> 
+		<noscript>
+			<p>Para ver correctamente este código tiene que activar JavaScript</p>
+		</noscript>
+	</body> 
+</html> 
+

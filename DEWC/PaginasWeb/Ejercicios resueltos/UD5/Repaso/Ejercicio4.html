@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio4</title>
+        <script type="text/javascript">
+            window.onload=function(){
+                document.getElementById("pais").onchange=mostrarregion;
+                document.getElementById("region").style.display="none";
+            }
+            function mostrarregion(){
+				var provincias_1=new Array("-", "Andalucía", "Asturias", "Baleares", "Canarias", "Euskadi", "...");
+                var provincias_2=new Array("-", "Salta","San Juan", "San Luis", "La Rioja", "La Pampa", "...");
+                var provincias_3=new Array("-", "Cali", "Santamarta", "Medellin", "Cartagena", "...");
+                var provincias_4=new Array("-", "Aisne", "Creuse", "Dordogne", "Essonne", "Gironde ", "...");
+                var miarray=new Array(provincias_1, provincias_2, provincias_3,provincias_4);
+                var paises=document.getElementById("pais").options;
+                var indice=document.getElementById("pais").selectedIndex;
+                var numero=paises[indice].value;
+				if (numero!=0) {
+                    var miarray_sel=miarray[numero-1];
+                    var elementooption, contenido, opcion
+				    document.getElementById("region").innerHTML="";
+                    for (i=0; i<miarray_sel.length; i++){
+						elementooption=document.createElement("option");
+                        contenido=document.createTextNode(miarray_sel[i]);
+						elementooption.appendChild(contenido);
+                        var region=document.getElementById("region");
+                        region.appendChild(elementooption);
+                    }
+                    document.getElementById("region").style.display="inline";
+                }else{
+                    document.getElementById("region").style.display="none";
+                }
+                return false;
+            }
+		</script>
+	</head>
+	<body>
+        <form id="miform">
+            <select id="pais" >
+                <option value="0" selected="selected">Seleccione un Pais</option>
+                <option value="1">España</option>
+                <option value="2">Argentina</option>
+                <option value="3">Colombia</option>
+                <option value="4">Francia</option>
+            </select>
+            <select id="region"></select>
+        </form>
+    </body>
+</html>

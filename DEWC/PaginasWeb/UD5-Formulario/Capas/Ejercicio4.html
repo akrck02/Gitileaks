@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio4</title>		
+		<style type="text/css">
+			#ampliacion{
+				position:absolute;
+				display:none;
+				border: 1px solid black;
+			}
+			#cerrar{
+				background-color:#333333;
+				font-family:arial,verdana;
+				font-size:8pt;
+				line-height:20px;
+				padding-right:8px;
+				text-align:right;
+			}
+			.cerrar{
+				color:#ffffff;
+			}
+		</style>
+		<script type="text/javascript">
+			imagenes = new Array();
+			imagenes[0]=new Array("images/ancares.jpg",155,80);
+			imagenes[1]=new Array("images/basel.jpg",155,80);
+			imagenes[2]=new Array("images/cabra.jpg",250,226);
+			imagenes[3]=new Array("images/madridbanco.jpg",252,207);
+			var alto, ancho, x, y,intervalo
+			var posicion=0;
+			window.onload=function(){
+				ampliacion=document.getElementById("ampliacion");
+				imagen=document.getElementById("mi_imagen");
+				enlaces=document.getElementsByName("enlace");
+				document.getElementById("cerrar").onclick=cerrar_ampliacion;
+				for(var i=0;i<enlaces.length;i++){
+					enlaces[i].onclick=muestra_imagen;
+				}
+				window.onresize=centrar;
+			}
+			function cerrar_ampliacion(){
+				ampliacion.style.display="none";
+			}
+			function muestra_imagen(){
+				ampliacion.style.display="inline";
+				for(var i=0;i<enlaces.length;i++){
+					if(enlaces[i]==this){
+						imagen.src=imagenes[i][0];
+						ancho=imagenes[i][1];
+						alto=imagenes[i][2];
+						x=window.innerWidth/2;
+						y=window.innerHeight/2;
+						x=(x-ancho/2);
+						y=(y-alto/2);
+						ampliacion.style.top=y+"px";
+					}
+				}
+				intervalo=setInterval("colocar()",1);
+			}
+			function centrar(){
+				if(ampliacion.style.display=="inline"){
+					var x=window.innerWidth/2;
+					var y=window.innerHeight/2;
+					ampliacion.style.left=(x-ancho/2)+"px";
+					ampliacion.style.top=(y-alto/2)+"px";
+				}
+			}
+			function colocar(){
+				if (posicion<x){
+					ampliacion.style.left=posicion+"px";
+					posicion=posicion+1;
+				}else{
+					clearInterval(intervalo);
+					posicion=0;
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+    	<ul>
+			<li><a href="#" name="enlace" id="ancares">Ver imagen Ancares</a></li>
+			<li><a href="#" name="enlace" id="basilea">Ver imagen Basilea</a></li>
+			<li><a href="#" name="enlace" id="cabrita">Ver una cabrita</a></li>
+			<li><a href="#" name="enlace" id="madrid">Ver imagen de Madrid</a></li>
+		</ul>
+		<div id="ampliacion">
+			<div><img id="mi_imagen"/></div>
+			<div id="cerrar">
+				<a href="#" name="cerrar" class="cerrar">[x]Cerrar</a>
+			</div>
+		</div>
+	</body>
+</html> 

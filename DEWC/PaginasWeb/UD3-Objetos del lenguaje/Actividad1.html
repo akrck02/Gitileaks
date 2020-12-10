@@ -1,0 +1,27 @@
+﻿<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Hipotenusa</title>
+	</head>
+	<body>
+    	<header>
+        	<h1>CÁLCULO DE LA HIPOTENUSA DE UN TRIÁNGULO RECTANGULO</h1>
+        </header>
+         <script> 
+			var cateto1 = prompt("Introduce la longitud del primer cateto: ");
+			var cateto2 = prompt("Introduce la longitud del segundo cateto: ");
+			cateto1=Math.pow(cateto1,2);
+			cateto2=Math.pow(cateto2,2); 
+			var hipotenusa=cateto1+cateto2;
+			hipotenusa = Math.sqrt(hipotenusa);
+            document.write ("<section>");
+            document.write ("<p>La hipotenusa de un triángulo rectángulo cuyos catetos miden " + cateto1 + " y " + cateto2
+			 + " cm es " + hipotenusa.toFixed(2) + " cm<sup>2</sup></p>"); 
+        </script> 
+		<noscript>
+            <p>Para ver correctamente este código tiene que activar JavaScript</p>
+        </noscript>
+	</body> 
+</html> 
+

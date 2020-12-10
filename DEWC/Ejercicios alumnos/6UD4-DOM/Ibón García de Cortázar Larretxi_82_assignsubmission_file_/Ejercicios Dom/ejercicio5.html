@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 13 - DOM b�sico y atributos XHTML</title>
+
+<script type="text/javascript">
+	var numAuxiliar = 0;
+	var contOperacion = 0;
+	var ultimaOperacion = "";
+	function dameNumero(num){
+		document.getElementById("pantalla").value = document.getElementById("pantalla").value+""+num;
+	}
+
+	function operacion(ope){
+		ultimaOperacion = ope;
+		if(contOperacion==0){
+			numAuxiliar = parseInt(document.getElementById("pantalla").value);
+			document.getElementById("pantalla").value = "";
+			contOperacion++;
+		}
+		else{
+			switch (ope){
+			case 'sum':
+				numAuxiliar = numAuxiliar + parseInt(document.getElementById("pantalla").value);
+				break;
+			case 'resta':
+				numAuxiliar = numAuxiliar - parseInt(document.getElementById("pantalla").value);
+				break;
+			case 'mult':
+				numAuxiliar = numAuxiliar * parseInt(document.getElementById("pantalla").value);
+				break;
+			case 'dividir':
+				numAuxiliar = numAuxiliar / parseInt(document.getElementById("pantalla").value);
+				break;
+			}
+			document.getElementById("pantalla").value = "";
+			document.getElementById("label").innerText = numAuxiliar;
+		}
+	}
+	function igual(){
+		switch (ultimaOperacion){
+			case 'sum':
+				numAuxiliar = numAuxiliar + parseInt(document.getElementById("pantalla").value);
+				break;
+			case 'resta':
+				numAuxiliar = numAuxiliar - parseInt(document.getElementById("pantalla").value);
+				break;
+			case 'multi':
+				numAuxiliar = numAuxiliar * parseInt(document.getElementById("pantalla").value);
+				break;
+			case 'dividir':
+				numAuxiliar = numAuxiliar / parseInt(document.getElementById("pantalla").value);
+				break;
+		}
+		ultimaOperacion = "";
+		document.getElementById("label").innerText = numAuxiliar;
+		document.getElementById("pantalla").value = "";
+	}
+
+	function limpiar(){
+		document.getElementById("pantalla").value = "";
+		numAuxiliar = 0;
+		contOperacion = 0;
+		document.getElementById("label").innerText = "";
+	}
+
+</script>
+</head>
+<body>
+	<h1>CALCULADORA</h1>
+	<form>
+		<table>
+			<tr>
+				<label id="label"></label>
+				<td colspan="4"><input id="pantalla" type="number" disabled style="background-color:yellow; width:210px"/></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="1" onclick="dameNumero(1);" style="height:30px; width:50px"/></td>
+				<td><input type="button" value="2" onclick="dameNumero(2);" style="height:30px; width:50px"/></td>
+				<td><input type="button" value="3" onclick="dameNumero(3);" style="height:30px; width:50px"/></td>
+				<td><input id="C" type="button" value="C" onclick="limpiar();" style="height:30px; width:50px"/></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="4" onclick="dameNumero(4);" style="height:30px; width:50px"/></td>
+				<td><input type="button" value="5" onclick="dameNumero(5);" style="height:30px; width:50px"/></td>
+				<td><input type="button" value="6" onclick="dameNumero(6);" style="height:30px; width:50px"/></td>
+				<td><input id="+" type="button" value="+" onclick="operacion('sum');" style="height:30px; width:50px"/></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="7" onclick="dameNumero(7);" style="height:30px; width:50px"/></td>
+				<td><input type="button" value="8" onclick="dameNumero(8);" style="height:30px; width:50px"/></td>
+				<td><input type="button" value="9" onclick="dameNumero(9);" style="height:30px; width:50px"/></td>
+				<td><input id="-" type="button" value="-" onclick="operacion('resta');" style="height:30px; width:50px"/></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="0" onclick="dameNumero(0);" style="height:30px; width:50px"/></td>
+				<td><input id="/" type="button" value="/" onclick="operacion('dividir');" style="height:30px; width:50px"/></td>
+				<td><input id="=" type="button" value="=" onclick="igual();" style="height:30px; width:50px"/></td>
+				<td><input id="*" type="button" value="*" onclick="multi('multi');" style="height:30px; width:50px"/></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

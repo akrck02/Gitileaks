@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Ejercicio7</title>
+        <style type="text/css">
+			body{
+				font-family:Verdana, Geneva, sans-serif;
+				text-align:center;
+			}
+			div{
+				width:90%;
+				background-color:#6CC;
+				height:210px;
+				border:1px solid black;
+				margin: 0 auto;
+			}
+				
+        </style>
+		<script type="text/javascript"> 
+		//<![CDATA[
+			var peticion_http = null;
+			var cuentaAtras = null;
+			var tiempoMaximo = 9000;
+			function inicializa_xhr() { 
+				if(window.XMLHttpRequest) {
+					return new XMLHttpRequest();
+				}else if(window.ActiveXObject) {
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				}
+			}
+			function cargarDatos() {
+				peticion_http = inicializa_xhr();
+				if(peticion_http) {
+					document.getElementById("informacion").innerHTML="<img src='images\/cargando.gif'\/>"
+					cuentaAtras = setTimeout(expirada, tiempoMaximo);
+					peticion_http.onreadystatechange = procesarRespuesta; 
+					peticion_http.open("POST", "Ejercicio2.php");
+					peticion_http.send(null);
+				}
+			}
+			function procesarRespuesta() { 
+				if(peticion_http.readyState ==4 && peticion_http.status == 200) {
+					clearTimeout(cuentaAtras);
+					var respuesta = peticion_http.responseText;
+					document.getElementById("informacion").innerHTML="<p>"+respuesta+"</p>"
+				}
+			}
+			function expirada() {
+				// La cuentra atrás se ha cumplido, detener la petición HTTP pendiente
+				peticion_http.abort();
+				document.getElementById("informacion").innerHTML="<p>NO SE HAN PODIDO CARGAR LOS DATOS</p>"
+			}
+			window.onload = function(){
+				document.getElementById("btnDatos").onclick=cargarDatos;
+			}
+		//]]>
+		</script>
+	</head>
+	<body>
+    	<h1>EJERCICIO 2</h1>
+        <div id="informacion"></div>
+        <form action="" > 
+           <input type="button" value="Pedir datos al servidor" id="btnDatos"/>
+        </form>
+	</body>
+</html>

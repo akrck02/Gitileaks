@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio6</title>
+    <script>        
+        var fechaActual;
+        var dias;
+        var meses;
+        var anios;
+        var horas;
+        var minutos;
+        var segundos;
+        var dia1, dia2, mes1, mes2, hora1, hora2, minuto1, minuto2, segundo1, segundo2, anio1, anio2, anio3, anio4;
+        
+        var ruta=
+            ["images/0.jpg",
+            "images/1.jpg",
+            "images/2.jpg",
+            "images/3.jpg",
+            "images/4.jpg",
+            "images/5.jpg",
+            "images/6.jpg",
+            "images/7.jpg",
+            "images/8.jpg",
+            "images/9.jpg"];
+
+        function datos(){       
+            fechaActual= new Date();       
+            dias = fechaActual.getDate();  
+            meses = fechaActual.getMonth()+1; 
+            anios = fechaActual.getFullYear();  
+            horas = fechaActual.getHours();
+            minutos = fechaActual.getMinutes();
+            segundos = fechaActual.getSeconds();
+            if(dias<10)
+                dia1=0;
+            else
+                dia1=Math.floor(dias/10);
+            dia2=dias%10;
+            if(meses<10)
+                mes1=0;
+            else
+                mes1=Math.floor(meses/10);
+            mes2=meses%10;
+            if(horas<10)
+                hora1=0;
+            else
+                hora1=Math.floor(horas/10);
+            hora2=horas%10;
+            if(minutos<10)
+                minuto1=0;
+            else
+                minuto1=Math.floor(minutos/10);
+            minuto2=minutos%10;
+            if(segundos<10)
+                segundo1=0;
+            else
+                segundo1=Math.floor(segundos/10);
+            segundo2=segundos%10;
+
+            anio1=Math.trunc(anios/1000);
+            anio2=Math.trunc(anios/100%10);
+            anio3=Math.trunc(anios/10%10);
+            anio4=Math.trunc(anios%10);
+            ponerFoto();
+        }
+
+        function ponerFoto(){
+            document.getElementById("dia1").src=ruta[dia1];
+            document.getElementById("dia2").src=ruta[dia2];
+            document.getElementById("mes1").src=ruta[mes1];
+            document.getElementById("mes2").src=ruta[mes2];
+            document.getElementById("anio1").src=ruta[anio1];
+            document.getElementById("anio2").src=ruta[anio2];
+            document.getElementById("anio3").src=ruta[anio3];
+            document.getElementById("anio4").src=ruta[anio4];
+
+            document.getElementById("hora1").src=ruta[hora1];
+            document.getElementById("hora2").src=ruta[hora2];
+            document.getElementById("minuto1").src=ruta[minuto1];
+            document.getElementById("minuto2").src=ruta[minuto2];
+            document.getElementById("segundo1").src=ruta[segundo1];
+            document.getElementById("segundo2").src=ruta[segundo2];
+        }
+    </script>
+</head>
+<body>
+    <h1>Fecha y Hora</h1>
+    <table border="1">
+        <tr>
+            <td><img id="dia1" src=""/></td>
+            <td><img id="dia2" src=""/></td>
+            <td><img id="barra1" src="images/barra.jpg"/></td>
+            <td><img id="mes1" src=""/></td>
+            <td><img id="mes2" src=""/></td>
+            <td><img id="barra2" src="images/barra.jpg"/></td>
+            <td><img id="anio1" src=""/></td>
+            <td><img id="anio2" src=""/></td>
+            <td><img id="anio3" src=""/></td>
+            <td><img id="anio4" src=""/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><img id="hora1" src=""/></td>
+            <td><img id="hora2" src=""/></td>
+            <td><img id="puntos1" src="images/puntos.jpg"/></td>
+            <td><img id="minuto1" src=""/></td>
+            <td><img id="minuto2" src=""/></td>
+            <td><img id="puntos2" src="images/puntos.jpg"/></td>
+            <td><img id="segundo1" src=""/></td>
+            <td><img id="segundo2" src=""/></td>
+            <td></td>
+        </tr>
+    </table>
+    <script>
+        setInterval(datos, 1000);
+    </script>
+</body>
+</html>

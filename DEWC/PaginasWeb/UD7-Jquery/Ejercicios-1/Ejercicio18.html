@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   		<title>Ejercicio18</title>
+    	<script src="scripts/jquery-1.10.2.min.js" type="text/javascript"></script>	
+ 		<style type="text/css">
+			body {
+				font-family: arial, helvetica;
+			}
+			form{
+				text-align:center;
+				width:100%;
+			}
+			#titulo {
+				text-align:center;
+				width:100%;
+			}
+			table{
+				padding:0px;
+				margin: 0 auto;
+			}
+			th{
+				border: 1px solid black;
+			}
+			td{
+				border: 1px solid black;
+				text-align: left;
+				width:300px;
+			}
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#enviar").click(function(){
+					$("#caja").remove()
+					var mensaje= $("<div id='caja'><p>Has seleccionado un procesador " + $("input[name=proc]:checked").val() + " con un sistema operativo " + $("input[name=so]:checked").val() + "</p></div>"); 
+					mensaje.insertAfter("#miform");
+					$("#caja").css({ 
+						"background-color": "#396",
+						"width": "300px",
+						"color": "white",
+						"padding": "15px",
+						"margin": "0 auto"
+					});
+				});
+				$("#limpiar").click(function(){
+					$("#caja").remove()
+				});
+			});
+			</script>
+		</head>
+		<body>
+			<div id="titulo"><h1>RADIO BUTTON</h1>
+			<p> Selecciona las opciones deseadas</p></div>
+			<form id="miform">
+			<table>
+			<tr>
+				<th>Procesador</th>
+				<th>Sistema Operativo</th>
+			</tr>
+			<tr>
+				<td>
+					<input id="opt1" name="proc" type="radio" value="Mac Pro 2,0 Mhz" checked="checked"/><label for="opt1">Mac Pro 2,0 Mhz</label></br>
+					<input id="opt2" name="proc" type="radio" value="Intel i3 1,9 Mhz" /><label for="opt2">Intel i3 1,9 Mhz</label></br>
+					<input id="opt3" name="proc" type="radio" value="Intel i5 2,2 Mhz" /><label for="opt3">Intel i5 2,2 Mhz</label></br>
+				</td>
+				<td>
+					<input id="opt4" name="so" type="radio" value="Windows XP" checked="checked"/><label for="opt4">Windows XP</label></br>
+					<input id="opt5" name="so" type="radio" value="Windows 7" /><label for="opt5">Windows 7</label></br>
+					<input id="opt6" name="so" type="radio" value="Windows Server 2008" /><label for="opt6">Windows Server 2008</label></br>
+				</td>
+			</tr>
+			</table>
+			</br>
+			<input type="button" id="enviar" value="Enviar" />
+			<input type="reset" id="limpiar" value="Limpiar"/>
+		</form>
+	</body>
+</html>

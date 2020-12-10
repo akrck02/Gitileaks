@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio5</title>
+        <script> 
+            var j, i, sumatorio;
+            document.write ("<header><h1>Sumatorios</h1></header>"); 
+			j=1;
+			i=1;
+			sumatorio=0;
+			document.write("<section>");
+			while (i<=100){
+				sumatorio=sumatorio+i;
+				document.write (sumatorio + ",");
+				if (j==10){
+					document.write("<br>")
+					j=0;
+				}
+				j=j+1;
+				i=i+1;
+			}
+			document.write("</section>");
+        </script> 
+	</head>
+	<body>
+    	<noscript>
+			<p>Para ver correctamente este código tiene que activar JavaScript</p>		
+        </noscript>  
+	</body> 
+</html> 
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   		<title>Ejercicio14</title>
+    	<style type="text/css">
+			li{
+				border:1px solid #444444;
+				float:left;
+				list-style-type:none;
+				font-family:Arial, Helvetica, sans-serif;
+				font-size:12px;
+				padding:5px;
+				height:15px;
+				display:block;
+				width:100px;
+				text-align:center;
+			}
+			a, a:visited{
+				text-decoration:none;
+			}
+			.normalMenu{
+				color:white;
+				background-color: #333;
+			}
+			.hoverMenu,.selectedMenu{
+				background-color: #EEE;
+				color:#444444;
+			}
+			.normalA{
+				color:white;
+			}
+			.hoverA,.selectedA{
+				color:#444444;
+			}
+        </style>
+		<script src="scripts/jquery-1.10.2.min.js" type="text/javascript"></script>	
+ 		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#navigationMenu li').mouseenter(function(){
+						if (!$(this).hasClass("selectedMenu")){
+							$(this).removeClass();
+							$(this).addClass('hoverMenu');
+							$(this).children().removeClass();
+							$(this).children().addClass('hoverA');
+						}
+					});
+					
+					$('#navigationMenu li').mouseleave(function(){
+						if (!$(this).hasClass("selectedMenu")){
+							$(this).removeClass();
+							$(this).addClass('normalMenu');
+							$(this).children().removeClass();
+							$(this).children().addClass('normalA');
+						}
+					});
+				});
+		</script>
+	</head>
+	<body>
+       	<div>
+            <ul id="navigationMenu">
+                <li class="normalMenu"><a href="#" class="normalA">Home</a></li>
+                <li class="normalMenu"><a href="#" class="normalA">Services</a></li>
+                <li class="selectedMenu"><a href="#" class="selectedA">Our clients</a></li>
+                <li class="normalMenu"> <a href="#" class="normalA">The team</a></li>
+                <li class="normalMenu"><a href="#" class="normalA">About us</a></li>
+                <li class="normalMenu"><a href="#"class="normalA" >Contact us</a></li>
+            </ul>
+        </div>
+	</body>
+</html>

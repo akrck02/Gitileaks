@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio9</title>
+        <script>
+			var anchura=screen.width;
+			var altura=screen.height;
+			anchura =(anchura/2)-150;
+			altura=(altura/2)-150;
+			var propiedades="width=300,height=300,top=" + altura + ",left=" + anchura;
+		</script>
+    </head>
+	<body>
+    	<header><h1>MANEJANDO VENTANAS</h1></header>
+        <section>
+				<form name="formulario">
+                	<label for="name">Nombre y Apellidos</label>
+                	<input type="text" name="nombre">
+                     <input type="button" value="Entrar" onclick="
+                    		var url='\'www.google.es\'';
+                    		if (document.formulario.nombre.value==''){
+                            	alert('Debe introducir su Nombre y Apellidos')
+                            }else{
+                                 var myWindow1 = window.open('', 'ventanaSec', propiedades);
+                                 myWindow1.document.write('<!doctype html>');
+                                 myWindow1.document.write('<html lang=\'es\'>');
+                                 myWindow1.document.write('<head>');
+                                 myWindow1.document.write('<meta charset=\'utf-8\'>');  
+                                 myWindow1.document.write('<title>Bienvenido</title>'); 
+                                 myWindow1.document.write('</head>') ; 
+                                 myWindow1.document.write('<body><section>');
+                                 myWindow1.document.write('<p>Bienvenido ' + document.formulario.nombre.value + '</p>');
+                                 myWindow1.document.write('<form><input type=\'button\' value=\'Empezar a navegar\' onclick= 		\'window.close()\'></form>');
+                                 myWindow1.document.write('</section></body>');
+                                 myWindow1.document.write('</html>');
+                                 window.location='http://www.google.es';
+					
+                            }
+                            "
+                    	
+				</form>
+				
+			
+		</section>      
+        <noscript>
+            <p>Para ver correctamente este código tiene que activar JavaScript</p>
+        </noscript>
+	</body> 
+</html> 
+

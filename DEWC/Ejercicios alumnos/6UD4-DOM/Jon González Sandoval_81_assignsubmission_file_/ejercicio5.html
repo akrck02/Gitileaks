@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora</title>
+    <style>
+        table{
+            border: 1px solid black;
+            padding: 10px;
+        }
+        #texto{
+            text-align: right;
+        }
+        .boton{
+            width: 34px;
+            height: 23px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CALCULADORA</h1>
+    <table>
+        <form>
+            <tr>
+                <td colspan="4"><input type="text" disabled id="texto" value=""></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="1" class="boton" onclick="anadir('1')"></td>
+                <td><input type="button" value="2" class="boton" onclick="anadir('2')"></td>
+                <td><input type="button" value="3" class="boton" onclick="anadir('3')"></td>
+                <td><input type="button" value="C" class="boton" onclick="anadir('C')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="4" class="boton" onclick="anadir('4')"></td>
+                <td><input type="button" value="5" class="boton" onclick="anadir('5')"></td>
+                <td><input type="button" value="6" class="boton" onclick="anadir('6')"></td>
+                <td><input type="button" value="+" class="boton" onclick="anadir('+')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="7" class="boton" onclick="anadir('7')"></td>
+                <td><input type="button" value="8" class="boton" onclick="anadir('8')"></td>
+                <td><input type="button" value="9" class="boton" onclick="anadir('9')"></td>
+                <td><input type="button" value="-" class="boton" onclick="anadir('-')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="0" class="boton" onclick="anadir('0')"></td>
+                <td><input type="button" value="/" class="boton" onclick="anadir('/')"></td>
+                <td><input type="button" value="=" class="boton" onclick="anadir('=')"></td>
+                <td><input type="button" value="*" class="boton" onclick="anadir('*')"></td>
+            </tr>
+        </form>
+    </table>
+
+    <script>
+        function anadir(dato){
+            switch (dato) {
+                case "C":
+                    document.getElementById("texto").value = "";
+                    break;
+                case "=":
+                    var resultado = document.getElementById("texto").value;
+                    console.log(resultado);
+                    if(resultado === ''){
+                        anadir("C");
+                    }else{
+                        if(resultado.charAt(0) != "/" && resultado.charAt(0) != "*" && isFinite(eval(resultado))){
+                            document.getElementById("texto").value = eval(resultado);    
+                        }else{
+                            alert("Error, la operacion no devuelve un numero");
+                            anadir("C");
+                        }
+                    }
+                    break;
+                default:
+                    var textoTemp = document.getElementById("texto").value;
+                    document.getElementById("texto").value = textoTemp += dato;
+                    break;
+            }
+
+            // if(dato == "C"){
+            //     document.getElementById("texto").value = "";
+            // }else{
+            //     if(dato == "="){
+            //         var resultado = document.getElementById("texto").value;
+            //         if(resultado == null)
+            //             anadir("C");
+            //         if(resultado.charAt(0) != "/" && resultado.charAt(0) != "*" && isFinite(eval(resultado))){
+            //             document.getElementById("texto").value = eval(resultado);    
+            //         }else{
+            //             alert("Error, la operacion no devuelve un numero");
+            //             anadir("C");
+            //         }
+                    
+            //     }else{
+            //         var textoTemp = document.getElementById("texto").value;
+            //         document.getElementById("texto").value = textoTemp += dato;
+            //     }
+            // }
+        }
+    </script>
+</body>
+
+</html>

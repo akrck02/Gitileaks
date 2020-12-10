@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><img src="images/0.jpg" alt="" id='day10'></td>
+            <td><img src="images/0.jpg" alt="" id='day1'></td>
+            <td><img src="images/barra.jpg" alt=""></td>
+            <td><img src="images/0.jpg" alt="" id='month10'></td>
+            <td><img src="images/0.jpg" alt="" id='month1'></td>
+            <td><img src="images/barra.jpg" alt=""></td>
+            <td><img src="images/0.jpg" alt="" id='year1000'></td>
+            <td><img src="images/0.jpg" alt="" id='year100'></td>
+            <td><img src="images/0.jpg" alt="" id='year10'></td>
+            <td><img src="images/0.jpg" alt="" id='year1'></td>
+        </tr>
+        <tr>
+            <td><img src="images/0.jpg" alt="" id='hour10'></td>
+            <td><img src="images/0.jpg" alt="" id='hour1'></td>
+            <td><img src="images/puntos.jpg" alt=""></td>
+            <td><img src="images/0.jpg" alt="" id='min10'></td>
+            <td><img src="images/0.jpg" alt="" id='min1'></td>
+            <td><img src="images/puntos.jpg" alt=""></td>
+            <td><img src="images/0.jpg" alt="" id='sec10'></td>
+            <td><img src="images/0.jpg" alt="" id='sec1'></td>
+        </tr>
+    </table>
+    <script>
+        var arr_nums = [
+            "images/0.jpg",
+            "images/1.jpg",
+            "images/2.jpg",
+            "images/3.jpg",
+            "images/4.jpg",
+            "images/5.jpg",
+            "images/6.jpg",
+            "images/7.jpg",
+            "images/8.jpg",
+            "images/9.jpg",
+        ];
+        
+        setInterval(function () {
+            var date = new Date();
+            var seconds = date.getSeconds(); 
+            var minutes = date.getMinutes();
+            var hours = date.getHours();
+            var days = date.getDate();
+            var months = date.getMonth();
+            var years = date.getFullYear();
+
+            document.getElementById('sec1').src = arr_nums[seconds % 10];
+            document.getElementById('sec10').src = arr_nums[parseInt(seconds/10)];
+
+            document.getElementById('min1').src = arr_nums[minutes % 10];
+            document.getElementById('min10').src = arr_nums[parseInt(minutes/10)];
+
+            document.getElementById('hour1').src = arr_nums[(hours % 10) + 1];
+            document.getElementById('hour10').src = arr_nums[parseInt(hours/10)];
+
+            document.getElementById('day1').src = arr_nums[days % 10];
+            document.getElementById('day10').src = arr_nums[parseInt(days/10)];
+
+            document.getElementById('month1').src = arr_nums[(months % 10) + 1];
+            document.getElementById('month10').src = arr_nums[parseInt(months/10)];
+
+            document.getElementById('year1').src = arr_nums[((years%1000)%100) % 10];
+            document.getElementById('year10').src = arr_nums[parseInt(((years%1000)%100)/10)];
+            document.getElementById('year100').src = arr_nums[parseInt((years%1000)/100)];
+            document.getElementById('year1000').src = arr_nums[parseInt(years/1000)];
+
+        },999);
+    </script>
+</body>
+</html>

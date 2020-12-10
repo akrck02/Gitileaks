@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        
+        window.onload = function(){
+            cargarVisitas();
+        }
+
+        function cargarVisitas() {
+            var visitas = cuantasVisitas();
+            document.getElementById("cont").innerHTML = visitas + " visitas en esta sesión";
+        }
+        function cuantasVisitas() {
+            if (sessionStorage.getItem("visitas") != null){
+                var n = sessionStorage.getItem("visitas");
+                n++;
+                sessionStorage.setItem("visitas", n);
+            } else {
+                sessionStorage.setItem("visitas", 1);
+            }
+            return sessionStorage.getItem("visitas");
+        }
+    </script>
+</head>
+<body>
+    <h1 id="cont"></h1>
+</body>
+</html>

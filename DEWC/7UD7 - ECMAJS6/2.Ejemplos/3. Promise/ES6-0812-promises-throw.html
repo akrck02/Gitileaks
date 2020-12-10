@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Promises</title>
+	<script>
+
+		function proceso1() {
+			return new Promise(function(resolve, reject) {
+				setTimeout(()=>{
+					console.log("Promesa1 - Todo bien");
+					resolve(["a", "b", "c"]);
+				},800);
+			})
+		}
+
+		function proceso2() {
+			return new Promise(function(resolve, reject) {
+				setTimeout(()=>{
+					console.log("Promesa2 - Todo bien");
+					resolve(["d", "e", "f"]);
+				},400);
+			})
+		}
+
+		function proceso3() {
+			return new Promise(function(resolve, reject) {
+				setTimeout(()=>{
+					console.log("Promesa3 - Todo bien");
+					resolve(["x", "y", "z"]);
+				},700);
+			})
+		}
+
+		//Referencia tipo callback
+		//Anidar promesas
+		proceso1()
+		.then(function(respuesta) {
+			console.log(respuesta);
+			throw "Error catastrófico";
+			return proceso2();
+		})
+		.then(function(respuesta) {
+			console.log(respuesta);
+			return proceso3();
+		})
+		.then(function(respuesta) {
+			console.log(respuesta);
+		})
+		.catch(function(msg) {
+			console.error("Error en una promesa",msg);
+		});
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

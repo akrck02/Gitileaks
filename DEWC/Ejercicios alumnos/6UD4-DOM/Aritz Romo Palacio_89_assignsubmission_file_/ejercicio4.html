@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function copiar() {
+            var txtOriginal = document.getElementById("caja1").value;
+            var caja2 = document.getElementById("caja2");
+            caja2.value = txtOriginal;
+        }
+    </script>
+
+    <h1>COPIAR TEXTO</h1>
+
+    <input type="text" id="caja1" size=20 value="">
+    <input type="text" id="caja2" size=20 value="">
+    <input type="button" id="boton" name="boton" value="Copiar el texto a la derecha" onclick="copiar()" />
+</body>
+</html>

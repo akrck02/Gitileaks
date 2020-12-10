@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Ejercicio 4</title>
+    </head>
+    <body>
+        <form>
+            <input type="text" id="original" name="original"/>
+            <input type="text" id="copia" name="copia"/>
+            <script>
+                function cambiar(){
+                    var copia = document.getElementById("original").value;
+                    document.getElementById("copia").value = copia;
+                }
+            </script>
+            <input type="button" name="copiar" value="COPIAR EL TEXTO A LA DERECHA" onclick="cambiar()" />
+        </form>
+    </body>
+</html>

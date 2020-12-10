@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        h1{
+            text-align: center;
+        }
+        table{
+            margin: auto;
+            border-collapse: collapse;
+        }
+        img{
+            border:1px solid lightgray;
+            padding: 7px;
+        }
+    </style>
+    <script>
+        var nums = [];
+        for (let i = 0; i <= 9; i++) {
+            nums[i] = "images/"+i+".jpg";
+        }
+
+        function obtenerDigitos(num){
+            if(num>2000){
+                var n4 = parseInt(num%10);
+                var n3 = parseInt((num/10)%10);
+                var n2 = parseInt((num/10/10)%10);
+                var n1 = parseInt(num/10/10/10);
+                return [n1,n2,n3,n4];
+            }else if(num>9){
+                var n1 = parseInt(num/10);
+                var n2 = parseInt(num%10);
+            }else{
+                var n1 = 0;
+                var n2 = num; 
+            }    
+            return [n1,n2];    
+        }
+
+        function actualizar() {
+            var date = new Date();
+            hora = obtenerDigitos(date.getHours());
+            min = obtenerDigitos(date.getMinutes());
+            seg = obtenerDigitos(date.getSeconds());
+            dia = obtenerDigitos(date.getDay());          
+            mes = obtenerDigitos(date.getMonth());          
+            ano = obtenerDigitos(date.getFullYear());
+
+            document.getElementById("hora1").setAttribute("src",nums[hora[0]]);
+            document.getElementById("hora2").setAttribute("src",nums[hora[1]]);
+
+            document.getElementById("min1").setAttribute("src",nums[min[0]]);
+            document.getElementById("min2").setAttribute("src",nums[min[1]]);
+
+            document.getElementById("seg1").setAttribute("src",nums[seg[0]]);
+            document.getElementById("seg2").setAttribute("src",nums[seg[1]]);
+
+            document.getElementById("dia1").setAttribute("src",nums[dia[0]]);
+            document.getElementById("dia2").setAttribute("src",nums[dia[1]]);
+
+            document.getElementById("mes1").setAttribute("src",nums[mes[0]]);
+            document.getElementById("mes2").setAttribute("src",nums[mes[1]]);
+
+            document.getElementById("ano1").setAttribute("src",nums[ano[0]]);
+            document.getElementById("ano2").setAttribute("src",nums[ano[1]]);
+            document.getElementById("ano3").setAttribute("src",nums[ano[2]]);
+            document.getElementById("ano4").setAttribute("src",nums[ano[3]]);
+        }
+        
+    </script>
+</head>
+<body>
+    <table>
+        <h1>FECHA Y HORA</h1>
+        <tr>
+            <td><img id="dia1" src=""></td>
+            <td><img id="dia2" src=""></td>
+            <td><img src="images/barra.jpg"></td>
+            <td><img id="mes1" src=""></td>
+            <td><img id="mes2" src=""></td>
+            <td><img src="images/barra.jpg"></td>
+            <td><img id="ano1" src=""></td>
+            <td><img id="ano2" src=""></td>
+            <td><img id="ano3" src=""></td>
+            <td><img id="ano4" src=""></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><img id="hora1" src=""></td>
+            <td><img id="hora2" src=""></td>
+            <td><img src="images/puntos.jpg"></td>
+            <td><img id="min1" src=""></td>
+            <td><img id="min2" src=""></td>
+            <td><img src="images/puntos.jpg"></td>
+            <td><img id="seg1" src=""></td>
+            <td><img id="seg2" src=""></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <script>
+        var myVar = setInterval(actualizar, 1000);
+    </script>
+</body>
+</html>

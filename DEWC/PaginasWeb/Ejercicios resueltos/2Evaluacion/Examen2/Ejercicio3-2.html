@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+   		<meta charset="utf-8" />
+		<title>Ejercicio3</title>
+		 <style type="text/css">
+			body { 
+				font-family:Verdana, Geneva, sans-serif;
+				font-size:14px;
+			}
+			
+			
+			#caja{
+			  margin: 0 auto;
+			  font-family:Georgia, "Times New Roman", Times, serif;
+			}
+			
+        </style>
+        <script src="scripts/jquery-1.10.2.min.js"></script>
+		<script>
+        	var galeria, bd,textohtml
+			function iniciar(){
+				var solicitud=indexedDB.open('videos');
+				solicitud.addEventListener('error', errores);
+				solicitud.addEventListener('success', crear);
+				solicitud.addEventListener('upgradeneeded', crearbd);
+				galeria=document.getElementById("galeria");
+			}
+			function errores(e){
+				alert("Ha ocurrido un error");
+			} 
+			function crear(e){
+				bd=e.target.result;
+				mostrar();
+			}
+			function crearbd(e){
+				bd=e.target.result;
+				var almacen=bd.createObjectStore('videos',{keyPath:'id'});
+			}
+			function mostrar(){
+				galeria.innerHTML='';
+				var transaccion=bd.transaction(['videos'],'readwrite');
+				var almacen=transaccion.objectStore('videos');
+				var nuevocusor=almacen.openCursor();
+				textohtml="<ul>"
+				nuevocusor.addEventListener('success', mostrarlista);
+			} 
+			function mostrarlista(e){
+				var cursor=e.target.result;
+				if (cursor){
+					textohtml+='<li><a href="#" onclick="abrir(\''+cursor.value.archivo1+'\',\''+cursor.value.archivo2+'\')">' + cursor.value.descripcion + '</a>&nbsp;&nbsp;<input type="button" value="X" onclick="eliminar(\''+ cursor.value.id +'\')"/></li>';
+					cursor.continue();
+				}else{
+					galeria.innerHTML=textohtml+"</ul>"
+				}
+			}
+			function abrir(archivo1,archivo2){
+					document.getElementById("caja");
+					caja.innerHTML="<div id='divvideo'><video  width='300'  preload controls loop><source src='" +archivo1 + "'><source src='" +archivo2 + "'></video></div>"	
+			}
+			function eliminar(clave){
+				if (confirm('¿Está seguro?')){
+					var transaccion=bd.transaction(['videos'],'readwrite');
+					var almacen=transaccion.objectStore('videos');
+					var solicitud=almacen.delete(clave);
+					solicitud.addEventListener('success',mostrar);
+					solicitud.addEventListener('error', errores);
+			
+				}
+			}
+			window.addEventListener('load', iniciar);
+        </script>
+	</head>
+    <body>
+    	<header><h1>LISTADO DE VIDEOS</h1></header>
+       	 <section id="botones">
+            <form id="formulario" action="Ejercicio3-1.html">
+                <input type="submit"  id="nuevo" value="Nuevo video"/>
+            </form>
+        </section>
+        <section id="galeria">
+            
+		</section>
+       
+         <section id="caja">
+            
+		</section>
+	</body>
+</html>

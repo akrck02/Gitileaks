@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio3</title>
+        <script>  
+            var j, i; 
+            document.write ("<header><h1>Números pares entre 1 y 100</h1></header>"); 
+			j=1;
+			i=1;
+			document.write("<section>");
+			while (i<100){
+				document.write (i + ",");
+				if (j==5){
+					document.write("<br>");
+					j=0;
+				}
+				j++;
+				i=i+2;
+			}
+			document.write("</section>");
+        </script> 
+	</head>
+	<body>
+		<noscript>
+            <p>Para ver correctamente este código tiene que activar JavaScript</p>
+        </noscript>
+	</body> 
+</html> 
+

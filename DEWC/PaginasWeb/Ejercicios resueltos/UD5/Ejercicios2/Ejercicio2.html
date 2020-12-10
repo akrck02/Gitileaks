@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ejercicio2</title>
+
+<style type="text/css">
+body {font-family: arial, helvetica;text-align:center;}
+form{
+	text-align:center;
+	width:100%;
+}
+#titulo {
+	text-align:center;
+	width:100%;
+}
+</style>
+
+<script type="text/javascript">
+
+window.onload=function(){
+	document.getElementById("enviar").onclick=mostrarinformacion;
+	
+	
+}
+function mostrarinformacion(){
+	var chequeados="";
+	for (var i=1;i<=4;i++){
+		if (document.getElementById("opt" + i).checked){
+			chequeados =chequeados + "*" + document.getElementById("opt" + i).value + "\n";
+		}
+	}
+	if (chequeados==""){
+		alert("No ha seleccionado ninguna opción");
+	}else{
+		alert("Ha seleccionado las opciones:\n" + chequeados);
+	}
+	return false;
+}
+</script>
+</head>
+
+<body>
+
+<div id="titulo"><h1>CHECKBOX</h1>
+<p> Selecciona las opciones deseadas</p></div>
+<form id="miform">
+<input id="opt1" type="checkbox" value="uno" /><label for="opt1">Opción 1</label></br>
+<input id="opt2" type="checkbox" value="dos" /><label for="opt2">Opción 2</label></br>
+<input id="opt3" type="checkbox" value="tres" /><label for="opt3">Opción 3</label></br>
+<input id="opt4" type="checkbox" value="cuatro" /><label for="opt4">Opción 4</label></br>
+</br>
+<input type="submit" id="enviar" value="Enviar" />
+<input type="reset" id="limpiar" value="Limpiar"/>
+</form>
+</body>
+</html>

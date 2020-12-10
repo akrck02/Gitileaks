@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        var resultado = 0;
+        var last_operator = '';
+        var num1 = 0, num2 = 0;
+        function limpiar() {
+            document.getElementById("resultado").value = "";
+        }       
+
+        function deactivate() {
+            var operators = document.getElementsByClassName("operator");
+            for(var i = 0; i < operators.length; i++) {
+                operators[i].disabled = true;
+            }
+        }
+
+        function activate() {
+            var operators = document.getElementsByClassName("operator");
+            for(var i = 0; i < operators.length; i++) {
+                operators[i].disabled = false;
+            }
+        }
+
+        function operar(operator) {
+            document.getElementById("error").innerHTML = '';
+            num2 = 0;
+            num2 = parseInt(document.getElementById("resultado").value);
+            switch(last_operator) {
+                case '*':
+                    num1 *= num2;
+                break;
+                case '/':
+                    if(num2 != 0)
+                        num1 /= num2;
+                    else
+                        document.getElementById("error").innerHTML = 'ERROR: No puedes dividir entre 0';
+                break;
+                case '-':
+                    num1 -= num2;
+                break;
+                case '+':
+                default:
+                    num1 += num2;
+                break;
+            }
+            last_operator = operator;
+            limpiar();
+        }
+
+        function mostrar(operator) {
+            operar();
+            document.getElementById("resultado").value = num1;
+            num1 = 0;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>CALCULADORA</h1>
+    </header>
+
+    <table>
+        <tr>
+            <td colspan = 4>
+                <input type="text" id="resultado"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="1" onclick="getElementById('resultado').value += '1'; activate();"/>
+            </td>
+            <td>
+                <input type="button" value="2" onclick="getElementById('resultado').value += '2'; activate();"/>  
+            </td>
+            <td>
+                <input type="button" value="3" onclick="getElementById('resultado').value += '3'; activate();"/>
+            </td>
+            <td>
+                <input type="button" value="C" onclick="borrar();"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="4" onclick="getElementById('resultado').value += '4'; activate();"/>
+            </td>
+            <td>
+                <input type="button" value="5" onclick="getElementById('resultado').value += '5'; activate();"/>
+            </td>
+            <td>
+                <input type="button" value="6" onclick="getElementById('resultado').value += '6'; activate();"/>
+            </td>
+            <td>
+                <input type="button" value="+" onclick="operar('+'); deactivate();" class='operator' disabled/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="7" onclick="getElementById('resultado').value += '7'; activate();"/>
+            </td>
+            <td>
+                <input type="button" value="8" onclick="getElementById('resultado').value += '8'; activate();"/>
+            </td>
+            <td>
+                <input type="button" value="9" onclick="getElementById('resultado').value += '9'; activate();"/>
+            </td>
+            <td>
+                <input type="button" value="-" onclick="operar('-'); deactivate();" class='operator' disabled/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="0" onclick="getElementById('resultado').value += '0'; activate();"/>
+            </td>
+            <td>
+                <input type="button" value="/" onclick="operar('/'); deactivate();" class='operator' disabled/>
+            </td>
+            <td>
+                <input type="button" value="=" onclick="mostrar();" class='operator' disabled/>
+            </td>
+            <td>
+                <input type="button" value="*" onclick="operar('*'); deactivate();" class='operator' disabled/>
+            </td>
+        </tr>
+    </table>
+    <div id='error' style='color:red'></div>
+</body>
+</html>

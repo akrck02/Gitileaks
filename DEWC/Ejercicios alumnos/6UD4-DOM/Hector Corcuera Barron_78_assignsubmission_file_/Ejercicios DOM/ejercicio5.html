@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let naux;
+        let contope=0;
+        let opera="";
+        function numpulsado(num){
+            document.getElementById("pantalla").value+=num;
+        }
+
+        function operacion(op){
+            let n=document.getElementById("pantalla").value;
+            let num=parseInt(n);
+            opera=op;
+            if(contope==0){
+                naux=num;
+                contope++;
+            }
+            else{
+                switch(op){
+                    case '+':
+                        naux+=num;
+                        break;
+                    case '-':  
+                        naux-=num;
+                        break;
+                    case '/':
+                        naux=naux/num;
+                        break;
+                    case '*':
+                        naux=naux*num;
+                        break;
+                 }
+            }
+            document.getElementById("pantalla").value="";           
+        }
+
+        function mostrar(){
+            operacion(opera);
+            document.getElementById("pantalla").value=naux;
+            naux=0;
+            contope=0;
+        }
+
+        function borrar(){
+            document.getElementById("pantalla").value="";
+        }
+    </script>
+</head>
+<body>
+    <h1>CALCULADORA</h1>
+    <table>
+        <tr>
+            <td colspan=4><input type="text" id="pantalla" disabled></td>
+        </tr>
+        <tr>
+            <td><input type="button" id="1" value="1" onclick="numpulsado(1)"></td>
+            <td><input type="button" id="2" value="2" onclick="numpulsado(2)"></td>
+            <td><input type="button" id="3" value="3" onclick="numpulsado(3)"></td>
+            <td><input type="button" id="C" value="C" onclick="borrar()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" id="4" value="4" onclick="numpulsado(4)"></td>
+            <td><input type="button" id="5" value="5" onclick="numpulsado(5)"></td>
+            <td><input type="button" id="6" value="6" onclick="numpulsado(6)"></td>
+            <td><input type="button" id="+" value="+" onclick="operacion ('+')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" id="7" value="7" onclick="numpulsado(7)"></td>
+            <td><input type="button" id="8" value="8" onclick="numpulsado(8)"></td>
+            <td><input type="button" id="9" value="9" onclick="numpulsado(9)"></td>
+            <td><input type="button" id="-" value="-" onclick="operacion ('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" id="0" value="0" onclick="numpulsado(0)"></td>
+            <td><input type="button" id="/" value="/" onclick="operacion ('/')"></td>
+            <td><input type="button" id="=" value="=" onclick="mostrar()"></td>
+            <td><input type="button" id="*" value="*" onclick="operacion ('*')"></td>
+        </tr>
+    </table>
+</body>
+</html>

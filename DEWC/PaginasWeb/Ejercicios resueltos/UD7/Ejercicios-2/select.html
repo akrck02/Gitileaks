@@ -1,0 +1,26 @@
+<html>
+
+<script type="text/javascript" src="jquery.js"></script>
+
+<script>
+ 
+$(document).ready(function() {
+    // Así accedemos al Texto de la opción seleccionada
+    var valor = $("#edad option:selected").html();
+    alert(valor);
+    // Si seleccionamos la opción "Texto 2"
+    // nos mostrará por pantalla "Texto 2"
+});
+ 
+</script>
+
+<select name="edad" id="edad">
+    <option value="1-10">1-10</option>
+    <option value="10-20">10-20</option>
+    <option value="20-30">20-30</option>
+    <option value="30-40">30-40</option>
+    <option value="40-50">40-50</option>
+    <option value="50+">50+</option>
+</select>
+
+</html>

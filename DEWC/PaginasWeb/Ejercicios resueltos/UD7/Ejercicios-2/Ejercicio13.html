@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   		<title>Ejercicio13</title>
+    	<style type="text/css">
+			.tip{
+				background-color: #ffcc99;
+				padding: 3px;
+				display: none;
+				position: absolute;
+			}
+			#elemento1{
+				background-color: #ccccff; 
+				padding: 5px;
+			}
+		</style>
+		<script src="scripts/jquery-1.10.2.min.js" type="text/javascript"></script>	
+ 		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#elemento1").mouseenter(function(e){
+					texto="id=" + $(this).attr("id")
+					crearTip("elemento1tip" , texto, e)
+					
+				})
+				$("#elemento1").mouseleave(function(){
+					$("#elemento1tip").remove();
+				})
+				$("#elemento2").mouseenter(function(e){
+					texto= $(this).attr("href")
+					crearTip("elemento2tip" , texto, e)
+				})
+				$("#elemento2").mouseleave(function(){
+					$("#elemento2tip").remove();
+				})
+				function crearTip(elemento,texto,e){
+					$("<div class='tip' id='" + elemento + "'>" + texto + "</div>").appendTo("body");
+					$("#"+ elemento).css("left", e.pageX );
+					$("#"+ elemento).css("top", e.pageY + 5);
+					$("#"+ elemento).show(500);
+				}
+			});
+		</script>
+	</head>
+	<body>
+       	<h1>TIP</h1>
+        <div id="elemento1">Pasa el ratón por encima de esta capa y aparecera un tip diciendo cual es el id de este elemento</div>
+        <p>Pasa el raton por encima del enlace y aparecera un tip con dirección del enlace. <a id="elemento2" href="http://www.google.es">Enlace a Google</a> </p>
+	</body>
+</html>

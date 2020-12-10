@@ -1,0 +1,37 @@
+<!DOCTYPE html >
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script>
+        /*
+                                Uso funciones get , set para asignar y leer propiedad de la clases.
+                                OJO! con la barra baja, es obligatoria para que funcione: _edad     
+                                
+                                */
+        class Animal {
+            constructor(nombre) {
+                this.nombre = nombre;
+                this._edad = 0;
+            }
+            get edad() {
+                return this._edad;
+            }
+            set edad(value) {
+                if (value < 0) {
+                    alert("Eso no es posible");
+                }
+                this._edad = value;
+            }
+            verNombre() {
+                console.log("Yo soy " + this.nombre);
+            }
+        }
+        var objVivo = new Animal("Hormiga");
+        objVivo.verNombre();
+        objVivo.edad = 5;
+        console.log(objVivo.edad);
+    </script>
+</head>
+
+</html>

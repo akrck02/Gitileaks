@@ -1,0 +1,121 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Ejercicio 4</title>
+    <style>td{
+        border: 2px solid black
+    }
+    #vacia{
+        border: none;
+    }</style> 
+    <script type="text/javascript">
+        
+        var rutas = ["images/0.jpg", "images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg", "images/5.jpg", "images/6.jpg", 
+                    "images/7.jpg", "images/8.jpg", "images/9.jpg", "images/barra.jpg", "images/puntos.jpg"];
+        
+        function asignarsrc(){
+            var fecha = new Date();
+            var dia = fecha.getDate();
+            var mes = fecha.getMonth()+1;
+            var anio = fecha.getFullYear();
+            if(dia < 10){
+                document.getElementById("d1").setAttribute("src", rutas[0]); 
+                document.getElementById("d2").setAttribute("src", rutas[dia]);
+            }else{
+                var r1 = Math.trunc(dia/10);
+                document.getElementById("d1").setAttribute("src", rutas[r1]);
+                document.getElementById("d2").setAttribute("src", rutas[dia%10]);
+            }
+        
+            if(mes < 10){
+                document.getElementById("m1").setAttribute("src", rutas[0]); 
+                document.getElementById("m2").setAttribute("src", rutas[mes]);
+            }else{
+                var r1 = Math.trunc(mes/10);
+                document.getElementById("m1").setAttribute("src", rutas[r1]);
+                document.getElementById("m2").setAttribute("src", rutas[mes%10]);
+            }
+            var anioSeparado = [];
+            anioSeparado[0] = Math.trunc(anio / 1000);
+            anioSeparado[1] = Math.trunc((anio/100)%10);
+            anioSeparado[2] = Math.trunc(anio / 1000)%10;
+            anioSeparado[3] = anio % 10;
+            console.log(anioSeparado);
+
+            document.getElementById("a1").setAttribute("src", rutas[anioSeparado[0]]);
+            document.getElementById("a2").setAttribute("src", rutas[anioSeparado[1]]);
+            document.getElementById("a3").setAttribute("src", rutas[anioSeparado[2]]);
+            document.getElementById("a4").setAttribute("src", rutas[anioSeparado[3]]);
+
+            var segundos = fecha.getSeconds();
+            var minutos = fecha.getMinutes();
+            var horas = fecha.getHours();
+            if(segundos < 10){
+                document.getElementById("s1").setAttribute("src", rutas[0]);
+                document.getElementById("s2").setAttribute("src", rutas[segundos]);
+            }else{
+                var r1 = Math.trunc(segundos/10);
+                document.getElementById("s1").setAttribute("src", rutas[r1]);
+                document.getElementById("s2").setAttribute("src", rutas[segundos%10]);
+            }
+
+            if(minutos < 10){
+                document.getElementById("min1").setAttribute("src", rutas[0]);
+                document.getElementById("min2").setAttribute("src", rutas[minutos]);
+            }else{
+                var r1 = Math.trunc(minutos/10);
+                document.getElementById("min1").setAttribute("src", rutas[r1]);
+                document.getElementById("min2").setAttribute("src", rutas[minutos%10]);
+            }
+
+            if(horas < 10){
+                document.getElementById("h1").setAttribute("src", rutas[0]);
+                document.getElementById("h2").setAttribute("src", rutas[horas]);
+            }else{
+                var r1 = Math.trunc(horas/10);
+                document.getElementById("h1").setAttribute("src", rutas[r1]);
+                document.getElementById("h2").setAttribute("src", rutas[horas%10]);
+            }
+        }
+     
+        
+    </script>
+</head>
+
+<body>
+
+    <table>
+        <caption><h1>FECHA Y HORA</h1></caption>
+        <tr>
+            <td><img src="images/0.jpg" id = "d1" /></td>
+            <td><img src="images/0.jpg" id="d2"/></td>
+            <td id="slash1"><img src="images/barra.jpg"/></td>
+            <td><img src="images/0.jpg" id="m1"/></td>
+            <td><img src="images/0.jpg" id="m2"/></td>
+            <td id="slash2"><img src="images/barra.jpg"/></td>
+            <td><img src="images/0.jpg" id="a1"/></td>
+            <td><img src="images/0.jpg" id="a2"/></td>
+            <td><img src="images/0.jpg" id="a3"/></td>
+            <td><img src="images/0.jpg" id="a4"/></td>
+        </tr>
+        <tr> 
+            <td id="vacia"></td>
+            <td><img src="images/0.jpg" id="h1"/></td>
+            <td><img src="images/0.jpg" id="h2"/></td>
+            <td><img src="images/puntos.jpg" id="puntos1"/></td>
+            <td><img src="images/0.jpg" id="min1"/></td>
+            <td><img src="images/0.jpg" id="min2"/></td>
+            <td id="puntos2"><img src="images/puntos.jpg"/></td>
+            <td><img src="images/0.jpg" id="s1"/></td>
+            <td><img src="images/0.jpg" id="s2"/></td>
+        </tr>
+    </table>
+</body>
+       <script>
+            setInterval('asignarsrc()', 1000); 
+        </script>
+
+</html>

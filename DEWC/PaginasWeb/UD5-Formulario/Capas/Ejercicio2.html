@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ejercicio2</title>
+        <style type="text/css">
+			#coche{
+				left:0px;
+				position:absolute;
+				
+			}
+		</style>
+		<script type="text/javascript">
+			var avance=0;
+			var posicion=0;
+			var movimiento,botarrancar,botparar,botdecelerar,botacelerar,coche;
+			window.onload=function(){	
+				botarrancar=document.getElementById("arrancar");
+				botparar=document.getElementById("parar");
+				botacelerar=document.getElementById("acelerar");
+				botdecelerar=document.getElementById("decelerar");
+				coche= document.getElementById("coche")
+				botarrancar.onclick=arrancar;
+				botparar.onclick=parar;
+				botacelerar.onclick=acelerar;
+				botdecelerar.onclick=decelerar;
+				botparar.style.display="none";
+				botacelerar.style.display="none";
+				botdecelerar.style.display="none";
+			}
+			
+			function arrancar(){
+				avance=1
+				movimiento=setInterval("mover()",1);
+				botparar.style.display="inline";
+				botacelerar.style.display="inline";
+				botdecelerar.style.display="inline";
+				botarrancar.style.display="none";
+			}
+			
+			function mover(){
+				posicion=posicion+avance;
+				coche.style.left=posicion+"px";
+				if(posicion>=window.innerWidth-120){
+					coche.style.left="0px";
+					posicion=0
+				}
+			}
+						
+			function acelerar(){
+				avance=avance+2;
+			}
+			
+			
+			function decelerar(){
+				if(avance>1){
+					avance=avance-2;
+				}
+			}
+			
+			function parar(){
+				botparar.style.display="none";
+				botacelerar.style.display="none";
+				botdecelerar.style.display="none";
+				botarrancar.style.display="inline";
+				clearInterval(movimiento);
+			}
+
+		</script>
+	</head>
+	<body>
+		<input type="button" id="arrancar" value="Arrancar"/>
+		<input type="button" id="parar" value="Parar"/>
+		<input type="button" id="acelerar" value="Acelerar"/>
+        <input type="button" id="decelerar" value="Decelerar"/>
+		<div id="coche"><img src="images/car.png" width="120px"/></div>
+	</body>
+</html> 

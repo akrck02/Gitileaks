@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tanda 2</title>
+    <style>
+        td:not(.blanca){
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var numeros=["images/0.jpg", "images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg", "images/5.jpg", "images/6.jpg", "images/7.jpg", "images/8.jpg", "images/9.jpg"];
+
+        function divideIntArray(numero){
+            var numeroSeparado = [];
+            cont = 0;
+            while(numero >= 10){
+                numeroSeparado[cont] = numero%10;
+                numero=Math.trunc(numero/10);
+                cont++;
+            }
+
+            numeroSeparado[cont] = numero;
+            cont++;
+
+            if(numeroSeparado.length  == 1)
+                numeroSeparado[cont] = 0;
+
+                
+            numeroSeparado.reverse();
+
+            return numeroSeparado;
+        }
+
+        function setTiempo(){
+            d = new Date();
+            hora = d.getHours();
+            min = d.getMinutes();
+            seg = d.getSeconds();
+            ano = d.getFullYear();
+            mes = d.getMonth()+1;
+            dia = d.getDate();
+            
+            var datos = [dia,mes,ano,hora,min,seg];
+            var nombreID = ["dia","mes","ano","hora","min","seg"];
+
+            for (let index = 0; index < datos.length; index++) {
+                temp = divideIntArray(datos[index]);
+                for (let indexInterior = 0; indexInterior < temp.length; indexInterior++) {
+                    document.getElementById("d"+(indexInterior+1)+""+nombreID[index]).setAttribute("src",numeros[temp[indexInterior]]);        
+                }
+            }
+        }
+    </script>
+    <h1 style="align-self: center">FECHA Y HORA</h1>
+    <table>
+        <tr>
+            <td><img src="images/0.jpg" id="d1dia"></td>
+            <td><img src="images/0.jpg" id="d2dia"></td>
+            <td><img src="images/barra.jpg"></td>
+            <td><img src="images/0.jpg" id="d1mes"></td>
+            <td><img src="images/0.jpg" id="d2mes"></td>
+            <td><img src="images/barra.jpg"></td>
+            <td><img src="images/0.jpg" id="d1ano"></td>
+            <td><img src="images/0.jpg" id="d2ano"></td>
+            <td><img src="images/0.jpg" id="d3ano"></td>
+            <td><img src="images/0.jpg" id="d4ano"></td>
+        </tr>
+        <tr>
+            <td class="blanca"></td>
+            <td><img src="images/0.jpg" id="d1hora"></td>
+            <td><img src="images/0.jpg" id="d2hora"></td>
+            <td><img src="images/puntos.jpg"></td>
+            <td><img src="images/0.jpg" id="d1min"></td>
+            <td><img src="images/0.jpg" id="d2min"></td>
+            <td><img src="images/puntos.jpg"></td>
+            <td><img src="images/0.jpg" id="d1seg"></td>
+            <td><img src="images/0.jpg" id="d2seg"></td>
+            <td class="blanca"></td>
+        </tr>
+    </table>
+    <script>
+        setTiempo();
+        setInterval('setTiempo()',1000);
+    </script>
+</body>
+
+</html>

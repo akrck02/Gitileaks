@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON y LocalStorage</title>
+
+    <script>
+        window.onload=function(){
+
+            //DECLARO EL OBJETO PERSONA
+            var persona = {
+                nombre: "txema",
+                edad: 49,
+                provincia: "gipuzkoa"
+            };
+ 
+            //TRANSFORMO A STRING Y GUARDO
+            var personaAGuardar = JSON.stringify(persona);
+            console.log(personaAGuardar);
+            localStorage.setItem("persona", personaAGuardar);
+ 
+            //RECUPERO LA INFORMACIÓN
+            var personaGuardada = localStorage.getItem("persona");
+            var personaGuardada = JSON.parse(personaGuardada);
+
+            var mensaje = document.getElementById('mensaje');
+            mensaje.innerHTML = persona.nombre+","+personaGuardada.edad;
+        }    
+    </script>
+</head>
+<body>
+    <div id="mensaje"></div>
+</body>
+</html>

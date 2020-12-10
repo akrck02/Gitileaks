@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio6</title>
+        <script> 
+           var fecha_nacimiento= prompt("Introduzca cual es su fecha de nacimiento (aaaa/mm/dd)");
+			fecha_nacimiento=new Date(fecha_nacimiento);
+			var fecha_actual=new Date();
+			ano_nacimiento=fecha_nacimiento.getFullYear();
+			mes_nacimiento=fecha_nacimiento.getMonth();
+			dia_nacimiento=fecha_nacimiento.getDate();
+			ano_actual=fecha_actual.getFullYear();
+			mes_actual=fecha_actual.getMonth();
+			dia_actual=fecha_actual.getDate();
+			edad=ano_actual-ano_nacimiento;
+			if (mes_actual<mes_nacimiento){
+				edad-=1;
+			}else if (mes_actual==mes_nacimiento){
+				if (dia_actual<dia_nacimiento){
+					edad-=1;
+				}
+			}
+			document.write("<section>Has nacido el " + fecha_nacimiento.toLocaleDateString() + "<br>Tiene " + edad + " años</section>");
+        </script> 
+	</head>
+	<body> 
+    	<noscript>
+			<p>Para ver correctamente este código tiene que activar JavaScript</p>
+		</noscript> 
+	</body> 
+</html> 
+

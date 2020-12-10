@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ejercicio1</title>
+
+<script type="text/javascript">
+	var numeros="0123456789";
+	var letras=" abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+	var numlet=numeros + letras
+	window.onload=function(){
+		document.getElementById("numeros").onkeypress=controlar;
+		document.getElementById("letras").onkeypress=controlar;
+		document.getElementById("numlet").onkeypress=controlar;
+	}
+	function controlar(elEvento) {
+		var evento=elEvento||window.event;
+		var codigo=evento.charCode||evento.keyCode
+		var caracter=String.fromCharCode(codigo)
+		
+		
+		if (this.id=="numeros"){
+			return numeros.indexOf(caracter)!=-1;
+		}else if (this.id=="letras"){
+			return letras.indexOf(caracter)!=-1;
+		}else if (this.id="numlet"){
+			return numlet.indexOf(caracter)!=-1;
+		}else{
+			return false;
+		}
+	}
+	</script>
+</head>
+
+<body>
+
+<form id="form1" >
+	<label for="numeros">Números:</label><input type="text" id="numeros"/></br>
+    <label for="letras">Letras:</label><input type="text" id="letras"/></br>
+    <label for="numlet">Números y letras:</label><input type="text" id="numlet"/></br>
+</form>
+
+</body>
+</html>
