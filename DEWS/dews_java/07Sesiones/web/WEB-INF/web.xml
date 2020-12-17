@@ -12,6 +12,10 @@
         <servlet-name>ServletGrabar</servlet-name>
         <servlet-class>servlets.ServletGrabar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletPedido</servlet-name>
+        <servlet-class>servlets.ServletPedido</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletForm</servlet-name>
         <url-pattern>/ServletForm</url-pattern>
@@ -19,6 +23,10 @@
     <servlet-mapping>
         <servlet-name>ServletGrabar</servlet-name>
         <url-pattern>/ServletGrabar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPedido</servlet-name>
+        <url-pattern>/ServletPedido</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
