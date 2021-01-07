@@ -8,6 +8,10 @@
         <servlet-name>Servlet2</servlet-name>
         <servlet-class>servlets.Servlet2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletLogin2</servlet-name>
+        <servlet-class>servlets.ServletLogin2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLogin</servlet-name>
         <url-pattern>/ServletLogin</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>Servlet2</servlet-name>
         <url-pattern>/Servlet2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletLogin2</servlet-name>
+        <url-pattern>/ServletLogin2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
