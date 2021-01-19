@@ -44,12 +44,12 @@ public class ServletInicio2 extends HttpServlet {
         
         HashMap<Persona,List<Persona>> mapaAmigos=new HashMap<Persona,List<Persona>>();
         
-        ArrayList<Persona> lst1=new ArrayList<>();
+        ArrayList<Persona> lst1=new ArrayList<Persona>();
         lst1.add(new Persona("Juan",5,null) );
         lst1.add(new Persona("Ana",50,null) );
         lst1.add(new Persona("Jon",51,null) );
         
-        ArrayList<Persona> lst2=new ArrayList<>();
+        ArrayList<Persona> lst2=new ArrayList<Persona>();
         lst2.add(new Persona("Ibon",25,null) );
         lst2.add(new Persona("Hector",20,null) );
      

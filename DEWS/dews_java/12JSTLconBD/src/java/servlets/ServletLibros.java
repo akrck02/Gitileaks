@@ -43,8 +43,6 @@ public class ServletLibros extends HttpServlet {
         //response.sendRedirect("libros.jsp");
         request.getRequestDispatcher("libros.jsp").forward(request, response);
         
-        
-        
     }
 
     
