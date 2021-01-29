@@ -1,0 +1,6 @@
+En el NetBeans, accedemos a tools -> templates -> web -> servlet
+Ahí ya tenemos la opción de abrirlo con el editor
+Lo abrimos y sobreescribimos con la platilla proporcionada
+
+Por otra parte, en tools -> templates -> licences -> default licence
+la abrimos y borramos todo lo que tiene (Es el comentario inicial de cada servlet, no tiene nada importante)
