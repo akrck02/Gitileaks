@@ -56,5 +56,5 @@
 <user username="usuario3" password="usuario3" roles="student"/>
 
 <!-- Crear un usuario con 2 roles "teacher" y "student" -->
-<user username="jaserrano" password="jaserrano" roles="teacher,student"/>
+<user username="profesor" password="profesor" roles="teacher, student"/>
 </tomcat-users>

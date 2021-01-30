@@ -11,8 +11,8 @@
 <br>Pass:<br> <input type='password' name='j_password'><br>
 <input name="submit" type="submit" value="Acceder">
 </form>
-<DIV align="center">
+<div align="center">
 <p style="color:red"> User or Pass incorrect!</p>
-</DIV>
+</div>
 </body>
 </html>
