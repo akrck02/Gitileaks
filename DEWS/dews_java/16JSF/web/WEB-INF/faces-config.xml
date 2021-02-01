@@ -8,4 +8,24 @@
         <managed-bean-class>mbeans.Pregunta</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>suma</managed-bean-name>
+        <managed-bean-class>mbeans.Suma</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>gestorArticulos</managed-bean-name>
+        <managed-bean-class>mbeans.GestorArticulos</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>mBAlumno</managed-bean-name>
+        <managed-bean-class>mbeans.MBAlumno</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>mBMaterias</managed-bean-name>
+        <managed-bean-class>mbeans.MBMaterias</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
 </faces-config>
