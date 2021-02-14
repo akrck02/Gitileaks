@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Clientes</title>
+    </h:head>
+    <h:body>
+        <h1>LISTA CLIENTES</h1>
+        <h:dataTable value="#{mBClientes.todosClientes}" var="cliente" >
+            <h:column>
+                <f:facet name="header">DNI</f:facet>
+                <h:outputLabel value="#{cliente.id_dni}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">NOMBRE</f:facet>
+                <h:outputLabel value="#{cliente.nombre}" />
+            </h:column>
+             <h:column>
+                <f:facet name="header">DIRECCIÓN</f:facet>
+                <h:outputLabel value="#{cliente.direccion}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">EMAIL</f:facet>
+                <h:outputLabel value="#{cliente.email}" />
+            </h:column>
+        </h:dataTable>
+        <h2>NUEVO CLIENTE</h2>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="DNI"/>
+                <h:inputText value="#{mBClientes.cliente.id_dni}" id="dni" required="true" 
+                         requiredMessage="DNI obligatorio">
+                    <f:validator validatorId="validadorDni"/>
+                </h:inputText>
+                <h:message for="dni" />
+                
+                <h:outputLabel value="NOMBRE"/>
+                <h:inputText value="#{mBClientes.cliente.nombre}" id="nombre" required="true" 
+                             requiredMessage="Nombre obligatorio">
+                    <f:converter converterId="conversorNombre"/>
+                </h:inputText>
+                <h:message for="nombre" />
+                
+                <h:outputLabel value="DIRECCIÓN"/>
+                <h:inputText value="#{mBClientes.cliente.direccion}" id="direccion" required="true" 
+                         requiredMessage="Domicilio obligatorio" />
+                <h:message for="direccion" />
+
+                <h:outputLabel value="EMAIL"/>
+                <h:inputText value="#{mBClientes.cliente.email}" id="email" required="true" 
+                             requiredMessage="Email obligatorio">
+                    <f:validator validatorId="validadorEmail" />
+                </h:inputText>
+                <h:message for="email" />
+            </h:panelGrid>
+            <h:commandButton value="REGISTRAR" action="#{mBClientes.registrar()}"/>
+        </h:form>
+    </h:body>
+</html>
+

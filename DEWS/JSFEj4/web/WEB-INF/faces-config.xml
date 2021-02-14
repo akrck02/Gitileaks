@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <managed-bean>
+        <managed-bean-name>mBClientes</managed-bean-name>
+        <managed-bean-class>mbeans.MBClientes</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <validator>
+        <validator-class>validators.ValidadorDni</validator-class>
+        <validator-id>validadorDni</validator-id>
+    </validator>
+    <validator>
+        <validator-class>validators.ValidadorEmail</validator-class>
+        <validator-id>validadorEmail</validator-id>
+    </validator>
+    <converter>
+        <converter-class>converters.ConversorNombre</converter-class>
+        <converter-id>conversorNombre</converter-id>
+    </converter>
+</faces-config>

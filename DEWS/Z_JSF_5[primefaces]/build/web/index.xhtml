@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>EJER 5</title>
+    </h:head>
+    <h:body>
+        <h:form>
+        <!--<div class="p-field">
+            <p:outputLabel for="username2" styleClass="p-d-block">Username</p:outputLabel>
+            <p:inputText id="username2" styleClass="p-d-block ui-state-error"/>
+            <small class="p-d-block ui-state-error">Username is not available.</small>
+        </div>-->
+        <p:outputLabel for="fechaini" value="Desde:"/>
+        <p:calendar binding="#{fini}" id="fechaini" value="#{managedRutas.fInicio}" pattern="dd-MM-yyyy HH:mm"/>
+
+        <p:outputLabel for="fechafin" value="Hasta:"/>
+        <p:calendar id="fechafin" value="#{managedRutas.fFinal}" pattern="dd-MM-yyyy HH:mm">
+            <f:validator validatorId="fechaValida"/>
+            <f:attribute name="fini" value="#{fini.value}" />
+        </p:calendar>
+        <h:message for="fechafin" />
+        
+        <p:commandButton value="VER RUTAS" action="#{managedRutas.cargarRutas()}" ajax="false" />
+        </h:form>
+    
+        <h:form rendered="#{managedRutas.rutas != null}">
+            <!--<ui:repeat value="#{managedRutas.rutas}" var="ruta">
+                <h:outputText value="#{ruta.tarifa}" />
+                <br></br>
+            </ui:repeat>-->
+            
+            <div class="card">
+                <h5>Row Editing</h5>
+                <p:dataTable id="products1" var="ruta" value="#{managedRutas.rutas}" editable="true" style="margin-bottom:20px">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{ruta.idRuta}"/>
+                    </p:column>
+
+                    <p:column headerText="ORIGEN">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{ruta.ciudadOrigen}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{ruta.ciudadOrigen}" style="width:100%" label="Name"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="DESTINO">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{ruta.ciudadDestino}"/></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{ruta.ciudadDestino}" style="width:100%" label="Name"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="SALIDA">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="$#{ruta.horaSalida}">
+                                    <f:convertDateTime pattern="dd/mm/yyyy HH:mm" />
+                                </h:outputText>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:calendar id="fechaini" value="#{ruta.horaSalida}" pattern="dd-MM-yyyy HH:mm"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="TARIFA">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{ruta.tarifa}€"/></f:facet>
+                            <f:facet name="input">
+                                 <p:spinner value="#{ruta.tarifa}" stepFactor="5"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column style="width:6rem">
+                        <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <p:commandLink value="VER PASAJEROS" action="#{managedRutas.verPasajeros(ruta.idRuta)}" ajax="false"/>
+                    </p:column>
+                    
+                    <f:facet name="footer">
+                        <p:commandButton value="GUARDAR CAMBIOS" action="#{managedRutas.verPasajeros(ruta.idRuta)}" ajax="false"/>
+                    </f:facet>
+                </p:dataTable>
+            </div>
+        </h:form>
+        <h:form rendered="#{managedRutas.dniPasajerosRuta != null}">
+           <div class="card">
+                <h5 style="margin-top: 0">Pasajeros de ruta </h5>
+                <p:pickList id="pickList" value="#{managedRutas.dniPasajerosRuta}" var="dni" itemLabel="#{dni}" itemValue="#{dni}"/>
+                <p:commandButton value="AVISAR A CLIENTES" action="#{managedRutas.avisar()}" ajax="false"/>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+
+

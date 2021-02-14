@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Test de capitales</title>
+    </h:head>
+    <h:body>
+        <h:form rendered="#{!mBTest.empezado}">
+            <h:outputLabel value="Cuantas preguntas quieres hacer?" />
+            <h:selectOneRadio rendered="#{mBTest.numPreguntas==0}" value="#{mBTest.numPreguntas}">
+                <f:selectItems value="#{mBTest.elecciones()}" />
+            </h:selectOneRadio>
+            <h:commandButton value="MOSTRAR" action="#{mBTest.mostrar()}" />
+            <br />
+        </h:form>
+        <h:form rendered="#{mBTest.empezado}">
+            <h:outputLabel value="#{mBTest.preguntaActual().pregunta}"/>
+            <h:inputText value="#{mBTest.preguntaActual().rptaUsuario}" />
+            <h:commandButton value="SIGUIENTE" action="#{mBTest.siguiente()}" />
+            <h:commandButton rendered="#{mBTest.terminado()}" value="RESULTADOS" action="#{mBTest.resultados()}" />
+            <p>
+                <h:outputLabel value="#{mBTest.aciertos} de #{mBTest.respondidas}"/>
+            </p>
+        </h:form>
+    </h:body>
+</html>
+
